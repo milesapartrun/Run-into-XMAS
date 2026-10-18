@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Run into Christmas — 24 Days Winter Running Challenge</title>
-<meta name="description" content="24 Tage, 24 Läufe. Laufe im Dezember mit, sammle Lose und gewinne dein Weihnachtsgeschenk.">
+<title>🎄 Run into Christmas — Winter Running Challenge</title>
+<meta name="description" content="🎄 24 Tage, 24 Läufe. Sammle Lose und gewinne dein Weihnachtsgeschenk!">
 
 <style>
 :root {
@@ -62,12 +62,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
   font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: .08em;
+  letter-spacing: .06em;
   text-align: center;
 }
 
 .hero {
-  padding: 58px 0 36px;
+  padding: 52px 0 34px;
   display: grid;
   grid-template-columns: 1.1fr .9fr;
   gap: 32px;
@@ -77,14 +77,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .eyebrow {
   color: #23864b;
   font-weight: 850;
-  letter-spacing: .14em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   font-size: 12px;
 }
 
 .hero h1 {
   font-size: clamp(48px, 8.5vw, 94px);
-  line-height: .88;
+  line-height: .9;
   letter-spacing: -.08em;
   margin: 18px 0;
 }
@@ -94,7 +94,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .hero p {
   font-size: clamp(16px, 2vw, 19px);
   color: #42664c;
-  line-height: 1.65;
+  line-height: 1.7;
   max-width: 590px;
 }
 
@@ -105,13 +105,15 @@ button, a { -webkit-tap-highlight-color: transparent; }
   align-items: center;
   justify-content: center;
   border: 0;
-  border-radius: 8px;
+  border-radius: 9px;
   padding: 14px 18px;
   font-weight: 900;
   text-decoration: none;
   cursor: pointer;
+  transition: transform .15s, background .15s;
 }
 
+.btn:hover { transform: translateY(-1px); }
 .btn-primary { background: #23864b; color: #fff; }
 
 .btn-secondary {
@@ -147,7 +149,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .visual small {
   color: #fff;
-  letter-spacing: .14em;
+  letter-spacing: .12em;
   text-transform: uppercase;
   font-size: 10px;
   font-weight: 800;
@@ -168,20 +170,20 @@ button, a { -webkit-tap-highlight-color: transparent; }
   font-size: 13px;
   color: #e2ffe8;
   font-weight: 900;
-  letter-spacing: .1em;
+  letter-spacing: .08em;
 }
 
 .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 11px;
-  margin: 12px 0 46px;
+  margin: 12px 0 42px;
 }
 
 .stat, .panel {
   background: linear-gradient(145deg, #fff, #edf9ef);
   border: 1px solid var(--line);
-  border-radius: 13px;
+  border-radius: 14px;
   padding: 18px;
 }
 
@@ -195,7 +197,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   font-size: 11px;
   color: #52715c;
   text-transform: uppercase;
-  letter-spacing: .08em;
+  letter-spacing: .06em;
 }
 
 .sectionhead {
@@ -235,7 +237,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .day:hover { transform: translateY(-2px); border-color: #23864b; }
-.day .num { font-size: 10px; color: #438254; letter-spacing: .08em; font-weight: 800; }
+.day .num { font-size: 10px; color: #438254; letter-spacing: .06em; font-weight: 800; }
 
 .day strong {
   display: block;
@@ -247,12 +249,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .day span { font-size: 11px; color: #52715c; }
 
 .day:after {
-  content: "✦";
+  content: "❄";
   position: absolute;
   right: 10px;
   top: 8px;
-  color: #9bceaa;
-  font-size: 18px;
+  color: #83c896;
+  font-size: 17px;
 }
 
 .day:nth-child(4n+1) { background: linear-gradient(145deg, #fff, #e4f7e8); border-color: #9fd5ac; }
@@ -285,73 +287,107 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .panel h3 { margin: 0 0 8px; font-size: 21px; }
-.panel p { color: #52715c; line-height: 1.55; }
+.panel p { color: #52715c; line-height: 1.6; }
 
 .rowitem {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
+  align-items: flex-start;
+  gap: 10px;
   padding: 13px 0;
   border-bottom: 1px solid var(--line);
 }
 
 .rowitem:last-child { border: 0; }
+.rowicon { font-size: 20px; flex: 0 0 26px; }
 
 .rowitem small {
   display: block;
   color: #52715c;
-  margin-top: 4px;
-  line-height: 1.45;
+  margin-top: 5px;
+  line-height: 1.55;
 }
 
 .raffle {
   background: linear-gradient(120deg, #e3f7e7, #fff);
   border: 1px solid #a9dcb6;
-  border-radius: 16px;
-  padding: 24px;
+  border-radius: 17px;
+  padding: 25px;
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 20px;
+  gap: 24px;
   align-items: center;
   margin-top: 22px;
 }
 
 .raffle h2 {
-  font-size: clamp(25px, 4vw, 37px);
-  line-height: 1.02;
+  font-size: clamp(27px, 4vw, 39px);
+  line-height: 1.08;
   letter-spacing: -.06em;
-  margin: 10px 0;
+  margin: 12px 0 17px;
 }
 
-.raffle p { color: #42664c; line-height: 1.55; margin-bottom: 0; }
+.raffleintro {
+  font-size: 16px;
+  color: #42664c;
+  line-height: 1.6;
+  margin: 0 0 15px;
+}
+
+.rafflepoints {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.rafflepoints li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: #285b39;
+  line-height: 1.5;
+}
+
+.rafflepoints li span { flex: 0 0 23px; }
+
+.rafflefoot {
+  margin-top: 16px;
+  padding-top: 13px;
+  border-top: 1px solid #c5e5cc;
+  color: #52715c;
+  font-size: 13px;
+  line-height: 1.55;
+}
 
 .voucher {
   border: 2px solid #fff;
   background: linear-gradient(145deg, #fff, #d7f4dd);
   color: #14552f;
   box-shadow: 0 8px 25px #174d2820;
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 14px;
+  padding: 22px 20px;
   text-align: center;
-  min-width: 150px;
+  min-width: 170px;
   transform: rotate(2deg);
 }
 
+.vouchericon { font-size: 31px; margin-bottom: 5px; }
+
 .voucher strong {
   display: block;
-  font-size: 35px;
+  font-size: 39px;
   letter-spacing: -.06em;
-  margin: 7px 0;
+  margin: 8px 0;
 }
 
-.voucher span { font-size: 11px; font-weight: 900; letter-spacing: .1em; }
+.voucher span { font-size: 11px; font-weight: 900; letter-spacing: .08em; }
 
 .eventstrip {
   margin-top: 14px;
   border: 1px solid #a9dcb6;
-  border-radius: 13px;
-  padding: 18px 20px;
+  border-radius: 14px;
+  padding: 19px 20px;
   background: #fff;
   display: flex;
   gap: 14px;
@@ -369,7 +405,18 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .eventstrip h3 { margin: 0 0 5px; }
-.eventstrip p { margin: 0; color: #52715c; line-height: 1.5; }
+.eventstrip p { margin: 0; color: #52715c; line-height: 1.55; }
+
+.eventdate {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: #e6f8e9;
+  border-radius: 7px;
+  color: #176335;
+  font-size: 12px;
+  font-weight: 800;
+}
 
 .profilegrid {
   display: grid;
@@ -391,10 +438,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
   font-size: 11px;
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: .08em;
+  letter-spacing: .06em;
 }
 
-.note { color: #52715c; font-size: 12px; line-height: 1.5; }
+.note { color: #52715c; font-size: 12px; line-height: 1.55; }
 
 .footer {
   border-top: 1px solid var(--line);
@@ -445,7 +492,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .field { display: block; margin: 15px 0; }
-
 .field span { display: block; font-size: 12px; color: #52715c; margin-bottom: 6px; }
 
 .field input {
@@ -463,14 +509,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 @media(max-width:760px) {
   .wrap { padding: 17px; }
-  .hero { grid-template-columns: 1fr; padding-top: 43px; gap: 22px; }
+  .hero { grid-template-columns: 1fr; padding-top: 42px; gap: 22px; }
   .visual { min-height: 245px; }
   .calendar { grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .day { min-height: 103px; padding: 11px; }
   .columns { grid-template-columns: 1fr; }
-  .sectionhead { align-items: start; flex-direction: column; }
-  .raffle { grid-template-columns: 1fr; }
-  .voucher { justify-self: start; min-width: 135px; }
+  .sectionhead { align-items: flex-start; flex-direction: column; }
+  .raffle { grid-template-columns: 1fr; gap: 22px; }
+  .voucher { justify-self: start; min-width: 150px; }
   .toplabel { font-size: 9px; padding: 8px; }
   .profilegrid { grid-template-columns: repeat(3, 1fr); }
   .eventstrip { align-items: flex-start; }
@@ -482,6 +528,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .profilemetric { padding: 10px; }
   .profilemetric strong { font-size: 23px; }
   .profilemetric span { font-size: 9px; }
+  .raffle { padding: 19px; }
 }
 </style>
 </head>
@@ -490,44 +537,67 @@ button, a { -webkit-tap-highlight-color: transparent; }
 <div class="wrap">
 
 <header class="nav">
-  <a class="brand" href="#">RUN INTO <span>CHRISTMAS</span></a>
-  <div class="toplabel">24 Days · Winter Running Challenge</div>
+  <a class="brand" href="#">🎄 RUN INTO <span>CHRISTMAS ❄️</span></a>
+  <div class="toplabel">🏃 24 Days · Winter Running Challenge</div>
 </header>
 
 <main>
 <section class="hero">
   <div>
-    <div class="eyebrow">01—24 Dezember · Deine Challenge</div>
+    <div class="eyebrow">🎄 01—24 Dezember · Deine Challenge</div>
     <h1>RUN INTO<br><em>CHRISTMAS.</em></h1>
-    <p>24 Tage, 24 Läufe. Jeden Tag wartet eine neue Distanz. Öffne das nächste Türchen, geh raus und mach deinen Lauf. Verdiene dir deinen Platz auf der Rangliste und sammle Lose für dein Weihnachtsgeschenk!</p>
+    <p>
+      24 Tage. 24 Läufe. 🏃<br>
+      Jeden Tag wartet eine neue Distanz auf dich.<br>
+      Öffne ein Türchen, schnür die Laufschuhe und leg los!<br><br>
+      🎁 Sammle Lose für dein Weihnachtsgeschenk und verdiene dir deinen Platz auf der Rangliste.
+    </p>
     <div class="actions">
-      <button class="btn btn-secondary" onclick="openModal('register')">JETZT REGISTRIEREN</button>
+      <button class="btn btn-primary" onclick="openModal('register')">🎄 JETZT REGISTRIEREN</button>
     </div>
   </div>
 
   <div class="visual">
-    <small>THE DECEMBER RUNNING PROJECT</small>
+    <small>❄️ THE DECEMBER RUNNING PROJECT</small>
     <div class="big24">24</div>
-    <div class="tagline">ONE DAY · ONE RUN · KEEP MOVING</div>
+    <div class="tagline">🏃 ONE DAY · ONE RUN · KEEP MOVING</div>
   </div>
 </section>
 
 <section class="stats">
-  <div class="stat"><strong>24 Tage</strong><span>01.–24. Dezember</span></div>
-  <div class="stat"><strong>300 €</strong><span>Nike-Gutschein zu gewinnen</span></div>
-  <div class="stat"><strong>24 Lose</strong><span>bei 24 bestätigten Läufen</span></div>
+  <div class="stat"><strong>🎄 24 Tage</strong><span>01.–24. Dezember</span></div>
+  <div class="stat"><strong>🎁 300 €</strong><span>Nike-Gutschein zu gewinnen</span></div>
+  <div class="stat"><strong>🎟️ 24 Lose</strong><span>bei 24 bestätigten Läufen</span></div>
 </section>
 
 <section class="raffle">
   <div>
-    <div class="eyebrow">Dein Einsatz zahlt sich aus</div>
-    <h2>Lauf mit. Sammle Lose.<br>Gewinne 300 €.</h2>
-    <p>Jeder bestätigte Lauf zählt als ein Los für die Verlosung eines 300-€-Nike-Gutscheins. 10 bestätigte Läufe = 10 Lose. 24 bestätigte Läufe = 24 Lose. Die 24 Tagesdistanzen ergeben zusammen 300 Kilometer – genau wie der Wert deines möglichen Weihnachtsgeschenks. Die Teilnahmebedingungen werden vor dem Start veröffentlicht.</p>
+    <div class="eyebrow">🎁 Dein Einsatz zahlt sich aus</div>
+    <h2>🏃 Lauf mit.<br>🎟️ Sammle Lose.<br>🎁 Gewinne 300 €.</h2>
+
+    <p class="raffleintro">
+      Jeder bestätigte Lauf bringt dir ein Los für dein Weihnachtsgeschenk!
+    </p>
+
+    <ul class="rafflepoints">
+      <li><span>🎟️</span><div><strong>1 bestätigter Lauf = 1 Los</strong></div></li>
+      <li><span>🎟️</span><div><strong>10 bestätigte Läufe = 10 Lose</strong></div></li>
+      <li><span>🏆</span><div><strong>24 bestätigte Läufe = 24 Lose</strong></div></li>
+      <li><span>📏</span><div>Die 24 Tagesdistanzen ergeben zusammen <strong>300 Kilometer</strong>.</div></li>
+    </ul>
+
+    <div class="rafflefoot">
+      Je mehr Läufe du bestätigst, desto mehr Lose sammelst du.<br>
+      Die Teilnahmebedingungen werden vor dem Start veröffentlicht.
+    </div>
   </div>
+
   <div class="voucher">
-    <span>RUN INTO CHRISTMAS</span>
+    <div class="vouchericon">🎁</div>
+    <span>DEIN WEIHNACHTSGESCHENK</span>
     <strong>300 €</strong>
-    <span>NIKE GUTSCHEIN</span>
+    <span>👟 NIKE-GUTSCHEIN</span>
+    <div class="vouchericon">🎟️ ❄️</div>
   </div>
 </section>
 
@@ -540,56 +610,79 @@ button, a { -webkit-tap-highlight-color: transparent; }
     </svg>
   </div>
   <div>
-    <h3>Die Verlosung – live um 12:00 Uhr</h3>
-    <p>Am 25. Dezember um 12:00 Uhr wird der Gewinner oder die Gewinnerin live ausgelost. Sei dabei, wenn wir gemeinsam dein Weihnachtsgeschenk feiern!</p>
+    <h3>🎥 Die Verlosung – live um 12:00 Uhr!</h3>
+    <p>
+      Wir ziehen den Gewinner oder die Gewinnerin am 25. Dezember live aus allen gültigen Losen.
+      Sei dabei und feiere mit uns dein Weihnachtsgeschenk! 🎁
+    </p>
+    <div class="eventdate">📅 25. Dezember · 🕛 12:00 Uhr</div>
   </div>
 </section>
 
 <section id="kalender">
   <div class="sectionhead">
-    <h2>Dein Adventskalender</h2>
-    <p>Tag N = N Kilometer laufen.</p>
+    <h2>🎄 Dein Adventskalender</h2>
+    <p>🏃 Tag N = N Kilometer laufen.</p>
   </div>
   <div class="calendar" id="calendar"></div>
-  <p class="note">Tippe auf ein Türchen, um die Tagesdistanz zu sehen. Nach der Anmeldung wird der Kalender mit deinem persönlichen Laufstatus verbunden.</p>
+  <p class="note">❄️ Tippe auf ein Türchen, um deine Tagesdistanz zu sehen. Deinen persönlichen Laufstatus schalten wir nach der Anmeldung und Backend-Anbindung frei.</p>
 </section>
 
 <div class="columns">
   <section class="panel">
-    <h3>So funktioniert’s</h3>
-    <div class="rowitem"><div><b>01 — Lauf absolvieren</b><small>Am 1. Dezember 1 km, am 2. Dezember 2 km – bis zu 24 km am 24.</small></div></div>
-    <div class="rowitem"><div><b>02 — Nachweis hochladen</b><small>Lade einen Screenshot aus Strava, Garmin oder Apple Fitness als Laufnachweis hoch.</small></div></div>
-    <div class="rowitem"><div><b>03 — Lose sammeln</b><small>Jeder bestätigte Lauf zählt als ein Los. 10 bestätigte Läufe sind 10 Lose; bei 24 bestätigten Läufen hast du 24 Lose.</small></div></div>
-    <div class="rowitem"><div><b>04 — Fortschritt sehen</b><small>In deinem Profil siehst du absolvierte Läufe, bestätigte Türchen und deine Lose.</small></div></div>
+    <h3>🏃 So funktioniert’s</h3>
+
+    <div class="rowitem">
+      <span class="rowicon">👟</span>
+      <div><b>01 — Lauf absolvieren</b><small>Am 1. Dezember 1 km, am 2. Dezember 2 km – bis zu 24 km am 24. Dezember.</small></div>
+    </div>
+
+    <div class="rowitem">
+      <span class="rowicon">📱</span>
+      <div><b>02 — Nachweis hochladen</b><small>Lade einen Screenshot aus Strava, Garmin oder Apple Fitness als Laufnachweis hoch.</small></div>
+    </div>
+
+    <div class="rowitem">
+      <span class="rowicon">🎟️</span>
+      <div><b>03 — Lose sammeln</b><small>Jeder bestätigte Lauf zählt als ein Los. 10 Läufe = 10 Lose. 24 Läufe = 24 Lose.</small></div>
+    </div>
+
+    <div class="rowitem">
+      <span class="rowicon">📈</span>
+      <div><b>04 — Fortschritt sehen</b><small>Sieh in deinem Profil, wie viele Läufe und Türchen du geschafft hast und wie viele Lose du gesammelt hast.</small></div>
+    </div>
   </section>
 
   <section class="panel">
-    <h3>Dein persönliches Profil</h3>
-    <p>Melde dich an, um deinen Fortschritt und den Status deiner 24 Türchen im Blick zu behalten.</p>
+    <h3>🙌 Dein persönliches Profil</h3>
+    <p>Erstelle dein Konto und behalte deinen Challenge-Fortschritt im Blick.</p>
+
     <div class="profilegrid">
       <div class="profilemetric"><strong id="profileRuns">0</strong><span>Läufe bestätigt</span></div>
       <div class="profilemetric"><strong id="profileDoors">0/24</strong><span>Türchen geschafft</span></div>
       <div class="profilemetric"><strong id="profileTickets">0</strong><span>Deine Lose</span></div>
     </div>
+
     <div class="actions">
-      <button class="btn btn-primary" onclick="openModal('register')">Profil erstellen</button>
-      <button class="btn btn-secondary" onclick="openModal('login')">Anmelden</button>
+      <button class="btn btn-primary" onclick="openModal('register')">🎄 Profil erstellen</button>
+      <button class="btn btn-secondary" onclick="openModal('login')">🔑 Anmelden</button>
     </div>
-    <p class="note">Die Registrierung ist aktuell noch eine Vorschau. Im nächsten Schritt verbinden wir das Formular mit Supabase.</p>
+
+    <p class="note">ℹ️ Die Registrierung ist aktuell noch eine Vorschau. Im nächsten Schritt verbinden wir das Formular mit Supabase.</p>
   </section>
 </div>
 </main>
 
 <footer class="footer">
-  <span>RUN INTO CHRISTMAS ©</span>
-  <span>24 Days · Winter Running Challenge</span>
+  <span>🎄 RUN INTO CHRISTMAS ©</span>
+  <span>❄️ 24 Days · Winter Running Challenge</span>
 </footer>
 </div>
 
 <div class="modalback" id="modalback" onclick="if(event.target===this)closeModal()">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modalhead">
-      <h2 id="modalTitle">Registrieren</h2>
+      <h2 id="modalTitle">🎄 Registrieren</h2>
       <button class="close" type="button" onclick="closeModal()">Schließen ✕</button>
     </div>
 
@@ -598,13 +691,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
       <label class="field"><span>Nachname</span><input name="lastName" autocomplete="family-name" required placeholder="Dein Nachname"></label>
       <label class="field"><span>E-Mail-Adresse</span><input name="email" type="email" autocomplete="email" required placeholder="du@beispiel.de"></label>
       <label class="field"><span>Passwort</span><input name="password" type="password" autocomplete="new-password" minlength="8" required placeholder="Mindestens 8 Zeichen"></label>
-      <button class="btn btn-primary" type="submit" style="width:100%">Registrierung vorbereiten</button>
+      <button class="btn btn-primary" type="submit" style="width:100%">🎁 Registrierung vorbereiten</button>
       <div class="formmsg" id="formmsg" role="status"></div>
     </form>
 
     <div id="loginMsg" class="hidden">
-      <p>Die Anmeldung wird im nächsten Schritt mit Supabase verbunden.</p>
-      <button class="btn btn-primary" onclick="openModal('register')">Konto erstellen</button>
+      <p>🔑 Die Anmeldung wird im nächsten Schritt mit Supabase verbunden.</p>
+      <button class="btn btn-primary" onclick="openModal('register')">🎄 Konto erstellen</button>
     </div>
   </div>
 </div>
@@ -617,12 +710,12 @@ for (let n = 1; n <= 24; n++) {
   el.type = 'button';
   el.className = 'day' + (n === 24 ? ' final' : '');
   el.innerHTML =
-    '<div class="num">DEZEMBER / ' + String(n).padStart(2, '0') + '</div>' +
+    '<div class="num">🎄 DEZEMBER / ' + String(n).padStart(2, '0') + '</div>' +
     '<strong>' + n + ' KM</strong>' +
-    '<span>' + (n === 24 ? 'Final Run' : 'Türchen ' + n) + '</span>';
+    '<span>' + (n === 24 ? '🏁 Final Run' : 'Türchen ' + n) + '</span>';
 
   el.addEventListener('click', () => {
-    alert('Türchen ' + n + ': Deine Tageschallenge sind ' + n + ' km. Nach der Anmeldung und Supabase-Anbindung kannst du hier deinen Laufnachweis hochladen und den Status sehen.');
+    alert('🎄 Türchen ' + n + ': Deine Tageschallenge sind ' + n + ' km. Nach der Anmeldung und Supabase-Anbindung kannst du hier deinen Laufnachweis hochladen und deinen Status sehen.');
   });
 
   cal.appendChild(el);
@@ -633,7 +726,7 @@ function openModal(mode) {
   back.classList.add('open');
   document.getElementById('registerForm').classList.toggle('hidden', mode === 'login');
   document.getElementById('loginMsg').classList.toggle('hidden', mode !== 'login');
-  document.getElementById('modalTitle').textContent = mode === 'login' ? 'Anmelden' : 'Registrieren';
+  document.getElementById('modalTitle').textContent = mode === 'login' ? '🔑 Anmelden' : '🎄 Registrieren';
   document.getElementById('formmsg').textContent = '';
 }
 
