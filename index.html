@@ -418,6 +418,106 @@ button, a { -webkit-tap-highlight-color: transparent; }
   font-weight: 800;
 }
 
+/* Rangliste */
+.leaderboard {
+  margin-top: 38px;
+  padding: 22px;
+  background: linear-gradient(145deg, #fff, #edf9ef);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.leaderboardhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.leaderboardhead h2 {
+  margin: 0;
+  font-size: clamp(26px, 4vw, 34px);
+  letter-spacing: -.055em;
+}
+
+.leaderboardhead p {
+  margin: 8px 0 18px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.live-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #e3f7e7;
+  border: 1px solid #b6dfbf;
+  color: #176335;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  background: #23864b;
+  border-radius: 50%;
+}
+
+.tablewrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fff;
+}
+
+.leaderboard table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 590px;
+  text-align: left;
+}
+
+.leaderboard th {
+  background: #e3f7e7;
+  color: #245b36;
+  padding: 13px 14px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.leaderboard td {
+  padding: 14px;
+  border-top: 1px solid #e1f0e4;
+  color: #285b39;
+  font-size: 14px;
+}
+
+.leaderboard tbody tr:nth-child(even) { background: #f8fcf8; }
+
+.leaderboard .emptyrow td {
+  text-align: center;
+  padding: 28px 16px;
+  color: #52715c;
+  line-height: 1.6;
+}
+
+.empty-icon { display: block; font-size: 27px; margin-bottom: 8px; }
+
+.leaderboardnote {
+  margin: 12px 0 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: #52715c;
+}
+
 .profilegrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -520,6 +620,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .toplabel { font-size: 9px; padding: 8px; }
   .profilegrid { grid-template-columns: repeat(3, 1fr); }
   .eventstrip { align-items: flex-start; }
+  .leaderboard { padding: 16px; }
 }
 
 @media(max-width:390px) {
@@ -627,6 +728,45 @@ button, a { -webkit-tap-highlight-color: transparent; }
   <div class="calendar" id="calendar"></div>
   <p class="note">❄️ Tippe auf ein Türchen, um deine Tagesdistanz zu sehen. Deinen persönlichen Laufstatus schalten wir nach der Anmeldung und Backend-Anbindung frei.</p>
 </section>
+
+<!-- NEU: RANGLISTE -->
+<section class="leaderboard" id="rangliste">
+  <div class="leaderboardhead">
+    <div>
+      <h2>🏆 Rangliste</h2>
+      <p>Wer ist bei Run into Christmas vorne mit dabei?</p>
+    </div>
+    <div class="live-label"><span class="live-dot"></span> Challenge-Rangliste</div>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Platz</th>
+          <th>Vor- und Nachname</th>
+          <th>Bestätigte Läufe</th>
+          <th>Kilometer</th>
+          <th>Lose 🎟️</th>
+        </tr>
+      </thead>
+      <tbody id="leaderboardBody">
+        <tr class="emptyrow">
+          <td colspan="5">
+            <span class="empty-icon">🏃‍♀️ ❄️ 🏃‍♂️</span>
+            <strong>Noch keine Läuferinnen oder Läufer</strong><br>
+            Sobald die Challenge startet und Läufe bestätigt werden, erscheint hier die Rangliste.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="leaderboardnote">
+    ℹ️ Die Rangliste ist aktuell noch leer. Namen, Laufzahlen, Kilometer und Lose werden erst angezeigt, wenn Registrierung und Laufbestätigung mit der Datenbank verbunden sind. Es werden keine Beispieldaten angezeigt.
+  </p>
+</section>
+<!-- ENDE RANGLISTE -->
 
 <div class="columns">
   <section class="panel">
