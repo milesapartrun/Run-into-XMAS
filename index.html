@@ -187,17 +187,31 @@ button, a { -webkit-tap-highlight-color: transparent; }
   padding: 18px;
 }
 
+.stat {
+  text-align: center;
+}
+
 .stat strong {
   display: block;
-  font-size: clamp(23px, 4vw, 32px);
+  font-size: clamp(25px, 4vw, 32px);
   letter-spacing: -.06em;
+  margin-bottom: 7px;
 }
 
 .stat span {
-  font-size: 11px;
+  display: block;
+  font-size: clamp(12px, 2vw, 15px);
   color: #52715c;
   text-transform: uppercase;
-  letter-spacing: .06em;
+  letter-spacing: .04em;
+  font-weight: 850;
+}
+
+.stat small {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+  color: #52715c;
 }
 
 .sectionhead {
@@ -224,7 +238,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .day {
   position: relative;
-  text-align: left;
+  text-align: center;
   background: linear-gradient(145deg, #fff, #e9f9ec);
   border: 1px solid #b6dfbf;
   border-radius: 12px;
@@ -237,13 +251,20 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .day:hover { transform: translateY(-2px); border-color: #23864b; }
-.day .num { font-size: 10px; color: #438254; letter-spacing: .06em; font-weight: 800; }
+
+.day .num {
+  display: block;
+  font-size: 11px;
+  color: #438254;
+  letter-spacing: .04em;
+  font-weight: 850;
+}
 
 .day strong {
   display: block;
-  font-size: clamp(22px, 3vw, 29px);
-  margin: 10px 0 3px;
-  letter-spacing: -.06em;
+  font-size: clamp(15px, 2vw, 19px);
+  margin: 13px 0 5px;
+  letter-spacing: -.03em;
 }
 
 .day span { font-size: 11px; color: #52715c; }
@@ -278,6 +299,22 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .day.done:after { content: "✓"; color: #176335; font-weight: 1000; }
 .day.final.done:after { color: #142b18; }
+
+.day.opened {
+  background: linear-gradient(145deg, #d8f7dc, #fff);
+  border: 2px solid #23864b;
+}
+
+.day.opened strong {
+  font-size: clamp(17px, 2.5vw, 23px);
+  color: #176335;
+}
+
+.day.final.opened {
+  background: linear-gradient(145deg, #1f8247, #14552f);
+}
+
+.day.final.opened strong { color: #fff; }
 
 .columns {
   display: grid;
@@ -480,8 +517,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .leaderboard table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 590px;
+  min-width: 0;
   text-align: left;
+  table-layout: auto;
 }
 
 .leaderboard th {
@@ -504,9 +542,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .leaderboard .emptyrow td {
   text-align: center;
-  padding: 28px 16px;
+  padding: 30px 20px;
   color: #52715c;
-  line-height: 1.6;
+  line-height: 1.7;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .empty-icon { display: block; font-size: 27px; margin-bottom: 8px; }
@@ -516,6 +557,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   font-size: 12px;
   line-height: 1.55;
   color: #52715c;
+  text-align: center;
+  overflow-wrap: anywhere;
 }
 
 .profilegrid {
@@ -612,7 +655,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .hero { grid-template-columns: 1fr; padding-top: 42px; gap: 22px; }
   .visual { min-height: 245px; }
   .calendar { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .day { min-height: 103px; padding: 11px; }
+  .day { min-height: 103px; padding: 11px 6px; }
+  .day .num { font-size: 10px; }
   .columns { grid-template-columns: 1fr; }
   .sectionhead { align-items: flex-start; flex-direction: column; }
   .raffle { grid-template-columns: 1fr; gap: 22px; }
@@ -621,6 +665,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .profilegrid { grid-template-columns: repeat(3, 1fr); }
   .eventstrip { align-items: flex-start; }
   .leaderboard { padding: 16px; }
+  .leaderboardhead { align-items: flex-start; }
+  .leaderboard .emptyrow td { padding: 24px 12px; }
 }
 
 @media(max-width:390px) {
@@ -630,6 +676,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .profilemetric strong { font-size: 23px; }
   .profilemetric span { font-size: 9px; }
   .raffle { padding: 19px; }
+  .stat { padding: 13px 6px; }
+  .stat strong { font-size: 24px; }
+  .stat span { font-size: 11px; letter-spacing: 0; }
+  .stat small { font-size: 10px; }
 }
 </style>
 </head>
@@ -666,15 +716,27 @@ button, a { -webkit-tap-highlight-color: transparent; }
 </section>
 
 <section class="stats">
-  <div class="stat"><strong>🎄 24 Tage</strong><span>01.–24. Dezember</span></div>
-  <div class="stat"><strong>🎁 300 €</strong><span>Nike-Gutschein zu gewinnen</span></div>
-  <div class="stat"><strong>🎟️ 24 Lose</strong><span>bei 24 bestätigten Läufen</span></div>
+  <div class="stat">
+    <strong>🎄</strong>
+    <span>24 Tage</span>
+    <small>01.–24. Dezember</small>
+  </div>
+  <div class="stat">
+    <strong>🎁</strong>
+    <span>300 €</span>
+    <small>Nike-Gutschein zu gewinnen</small>
+  </div>
+  <div class="stat">
+    <strong>🎟️</strong>
+    <span>24 Lose</span>
+    <small>Bei 24 bestätigten Läufen</small>
+  </div>
 </section>
 
 <section class="raffle">
   <div>
     <div class="eyebrow">🎁 Dein Einsatz zahlt sich aus</div>
-    <h2>🏃 Lauf mit.<br>🎟️ Sammle Lose.<br>🎁 Gewinne 300 €.</h2>
+    <h2>🏃 Lauf mit.<br>🎟️ Sammle Lose.<br>🎁 Gewinne 300 €.<br>🎥 Live am 25. Dezember um 12 Uhr!</h2>
 
     <p class="raffleintro">
       Jeder bestätigte Lauf bringt dir ein Los für dein Weihnachtsgeschenk!
@@ -729,7 +791,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   <p class="note">❄️ Tippe auf ein Türchen, um deine Tagesdistanz zu sehen. Deinen persönlichen Laufstatus schalten wir nach der Anmeldung und Backend-Anbindung frei.</p>
 </section>
 
-<!-- NEU: RANGLISTE -->
+<!-- RANGLISTE -->
 <section class="leaderboard" id="rangliste">
   <div class="leaderboardhead">
     <div>
@@ -849,13 +911,27 @@ for (let n = 1; n <= 24; n++) {
   const el = document.createElement('button');
   el.type = 'button';
   el.className = 'day' + (n === 24 ? ' final' : '');
+  el.setAttribute('aria-expanded', 'false');
   el.innerHTML =
-    '<div class="num">🎄 DEZEMBER / ' + String(n).padStart(2, '0') + '</div>' +
-    '<strong>' + n + ' KM</strong>' +
-    '<span>' + (n === 24 ? '🏁 Final Run' : 'Türchen ' + n) + '</span>';
+    '<div class="num">DEZEMBER ' + String(n).padStart(2, '0') + '</div>' +
+    '<strong>Türchen ' + n + '</strong>' +
+    '<span>Tippen zum Öffnen</span>';
 
   el.addEventListener('click', () => {
-    alert('🎄 Türchen ' + n + ': Deine Tageschallenge sind ' + n + ' km. Nach der Anmeldung und Supabase-Anbindung kannst du hier deinen Laufnachweis hochladen und deinen Status sehen.');
+    const isOpen = el.classList.toggle('opened');
+    el.setAttribute('aria-expanded', String(isOpen));
+
+    if (isOpen) {
+      el.innerHTML =
+        '<div class="num">DEZEMBER ' + String(n).padStart(2, '0') + '</div>' +
+        '<strong>' + n + (n === 1 ? ' Kilometer' : ' Kilometer') + '</strong>' +
+        '<span>Türchen ' + n + ' geöffnet ✓</span>';
+    } else {
+      el.innerHTML =
+        '<div class="num">DEZEMBER ' + String(n).padStart(2, '0') + '</div>' +
+        '<strong>Türchen ' + n + '</strong>' +
+        '<span>Tippen zum Öffnen</span>';
+    }
   });
 
   cal.appendChild(el);
