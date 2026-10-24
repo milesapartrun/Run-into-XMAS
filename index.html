@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#174d38">
 
-  <title>🏃 Run into Christmas – Deine Winterlauf-Challenge</title>
+  <title>🏃 Run into Christmas – Winter Running Challenge</title>
 
   <meta
     name="description"
-    content="Run into Christmas: Sammle vom 1. bis 24. Dezember Kilometer, motiviere die Community und unterstütze Laureus Sport for Good."
+    content="Sammle vom 1. bis 24. Dezember Laufkilometer, motiviere die Community und unterstütze Laureus Sport for Good."
   >
 
   <style>
     :root {
-      --green-dark: #174d38;
+      --dark: #174d38;
       --green: #2f7652;
-      --green-medium: #75a984;
-      --green-light: #eaf4e9;
-      --green-pale: #f5f9f3;
+      --medium: #75a984;
+      --light: #eaf4e9;
+      --pale: #f5f9f3;
       --white: #ffffff;
       --text: #183c2c;
       --muted: #6b7f72;
@@ -39,14 +40,8 @@
       margin: 0;
       color: var(--text);
       background: var(--white);
-      font-family:
-        Inter,
-        ui-sans-serif,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
       line-height: 1.6;
     }
 
@@ -78,22 +73,22 @@
     }
 
     .section {
-      padding: 88px 0;
+      padding: 82px 0;
     }
 
     .section-soft {
-      background: var(--green-pale);
+      background: var(--pale);
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 15px;
+      margin-bottom: 14px;
       color: var(--green);
       font-size: 0.78rem;
       font-weight: 850;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
@@ -116,15 +111,8 @@
       font-size: clamp(2rem, 4vw, 3.2rem);
     }
 
-    .section-intro {
-      max-width: 650px;
-      margin: 0 auto 42px;
-      color: var(--muted);
-      font-size: 1.02rem;
-    }
-
     .section-heading {
-      margin-bottom: 42px;
+      margin-bottom: 40px;
       text-align: center;
     }
 
@@ -132,8 +120,11 @@
       margin-bottom: 12px;
     }
 
-    .section-heading .section-intro {
-      margin-bottom: 0;
+    .section-intro {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1rem;
     }
 
     /* HEADER */
@@ -152,14 +143,14 @@
       min-height: 82px;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      color: var(--green-dark);
+      color: var(--dark);
       font-size: 1rem;
       font-weight: 950;
       letter-spacing: -0.045em;
@@ -167,7 +158,7 @@
     }
 
     .brand-runner {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       line-height: 1;
     }
 
@@ -185,28 +176,28 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 23px;
+      gap: 22px;
       color: var(--muted);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 700;
     }
 
     .nav-links a:hover {
-      color: var(--green-dark);
+      color: var(--dark);
     }
 
     .nav-festive {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
       padding: 8px 13px;
       border: 1px solid var(--border);
       border-radius: 15px;
-      background: var(--green-pale);
+      background: var(--pale);
     }
 
     .nav-tree {
-      font-size: 1.75rem;
+      font-size: 1.8rem;
       line-height: 1;
     }
 
@@ -216,7 +207,7 @@
     }
 
     .nav-challenge {
-      color: var(--green-dark);
+      color: var(--dark);
       font-size: 0.77rem;
       font-weight: 850;
       line-height: 1.35;
@@ -243,10 +234,7 @@
       cursor: pointer;
       font-size: 0.91rem;
       font-weight: 850;
-      transition:
-        transform 180ms ease,
-        background 180ms ease,
-        box-shadow 180ms ease;
+      transition: transform 180ms ease, background 180ms ease;
     }
 
     .btn:hover {
@@ -255,7 +243,7 @@
 
     .btn-primary {
       color: var(--white);
-      background: var(--green-dark);
+      background: var(--dark);
       box-shadow: 0 8px 22px rgba(23, 77, 56, 0.15);
     }
 
@@ -265,18 +253,12 @@
 
     .btn-secondary {
       border-color: var(--border);
-      color: var(--green-dark);
+      color: var(--dark);
       background: var(--white);
     }
 
     .btn-secondary:hover {
-      background: var(--green-light);
-    }
-
-    .btn-small {
-      min-height: 41px;
-      padding: 10px 17px;
-      font-size: 0.83rem;
+      background: var(--light);
     }
 
     /* HERO */
@@ -284,13 +266,9 @@
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 88px 0 78px;
+      padding: 82px 0 76px;
       background:
-        radial-gradient(
-          ellipse at 95% 5%,
-          rgba(210, 235, 210, 0.52),
-          transparent 36%
-        ),
+        radial-gradient(ellipse at 95% 5%, rgba(210, 235, 210, 0.52), transparent 36%),
         linear-gradient(180deg, #ffffff 0%, #f8fbf6 100%);
     }
 
@@ -314,25 +292,32 @@
       text-align: center;
     }
 
-    .hero-label {
+    .hero-date {
       display: inline-flex;
+      flex-direction: column;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 24px;
-      padding: 9px 14px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      color: var(--green-dark);
-      background: var(--white);
-      font-size: 0.79rem;
+      gap: 3px;
+      margin-bottom: 26px;
+      color: var(--green);
+    }
+
+    .hero-snowflake {
+      font-size: 1.55rem;
+      line-height: 1.2;
+    }
+
+    .hero-date-text {
+      color: var(--dark);
+      font-size: 0.85rem;
       font-weight: 850;
-      letter-spacing: 0.055em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
 
     .hero h1 {
       max-width: 850px;
-      margin: 0 auto 15px;
-      color: var(--green-dark);
+      margin: 0 auto 16px;
+      color: var(--dark);
       font-size: clamp(2.8rem, 7.4vw, 5.9rem);
       font-weight: 950;
       letter-spacing: -0.075em;
@@ -346,7 +331,7 @@
 
     .hero-subtitle {
       margin-bottom: 29px;
-      color: var(--green-dark);
+      color: var(--dark);
       font-size: clamp(1.25rem, 2.5vw, 1.75rem);
       font-weight: 800;
       letter-spacing: -0.035em;
@@ -380,7 +365,7 @@
       align-items: center;
       justify-content: center;
       border-radius: 9px;
-      background: var(--green-light);
+      background: var(--light);
       font-size: 1rem;
     }
 
@@ -397,24 +382,20 @@
       font-size: 0.82rem;
     }
 
-    /* COMMUNITY / EARTH */
+    /* COMMUNITY */
 
     .community-section {
       overflow: hidden;
-      padding: 84px 0 92px;
+      padding: 82px 0 90px;
       background:
-        radial-gradient(
-          ellipse at 50% 45%,
-          rgba(221, 240, 219, 0.72),
-          transparent 55%
-        ),
+        radial-gradient(ellipse at 50% 45%, rgba(221, 240, 219, 0.72), transparent 55%),
         var(--white);
     }
 
     .community-title {
       max-width: 800px;
       margin: 0 auto 12px;
-      color: var(--green-dark);
+      color: var(--dark);
       text-align: center;
       font-size: clamp(2rem, 4.5vw, 3.45rem);
       letter-spacing: -0.055em;
@@ -442,14 +423,14 @@
       padding: 22px 16px;
       border: 1px solid var(--border);
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.91);
+      background: rgba(255, 255, 255, 0.92);
       text-align: center;
       box-shadow: 0 8px 24px rgba(23, 77, 56, 0.035);
     }
 
     .metric-number {
       margin-bottom: 6px;
-      color: var(--green-dark);
+      color: var(--dark);
       font-size: clamp(1.35rem, 3vw, 2rem);
       font-weight: 950;
       letter-spacing: -0.055em;
@@ -469,7 +450,7 @@
       font-weight: 750;
     }
 
-    /* EARTH ILLUSTRATION */
+    /* EARTH */
 
     .earth-stage {
       position: relative;
@@ -527,20 +508,8 @@
       border: 1px solid rgba(255, 255, 255, 0.8);
       border-radius: 50%;
       background:
-        radial-gradient(
-          circle at 29% 24%,
-          rgba(255, 255, 255, 0.96) 0%,
-          rgba(201, 239, 216, 0.78) 8%,
-          transparent 26%
-        ),
-        radial-gradient(
-          circle at 33% 28%,
-          #a8dcb6 0%,
-          #6ab18a 30%,
-          #39856a 55%,
-          #205d49 77%,
-          #153e35 100%
-        );
+        radial-gradient(circle at 29% 24%, rgba(255, 255, 255, 0.96), rgba(201, 239, 216, 0.78) 8%, transparent 26%),
+        radial-gradient(circle at 33% 28%, #a8dcb6 0%, #6ab18a 30%, #39856a 55%, #205d49 77%, #153e35 100%);
       box-shadow:
         inset -24px -18px 42px rgba(8, 47, 38, 0.45),
         inset 12px 10px 26px rgba(255, 255, 255, 0.32),
@@ -582,7 +551,7 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      animation: continent-drift 24s linear infinite;
+      animation: continent-drift 24s linear infinite alternate;
     }
 
     .continent {
@@ -619,7 +588,8 @@
       filter: blur(2px);
     }
 
-    /* RUNNER ORBITING THE EARTH */
+    /* Läufer bewegt sich im Uhrzeigersinn um die Erde.
+       Das Lauf-Emoji zeigt dabei nach rechts – in Laufrichtung. */
 
     .runner-orbit {
       position: absolute;
@@ -640,11 +610,11 @@
       place-items: center;
       border: 1px solid rgba(255, 255, 255, 0.9);
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       box-shadow:
         0 10px 28px rgba(23, 77, 56, 0.18),
         0 0 0 7px rgba(255, 255, 255, 0.3);
-      transform: translateX(-50%) rotate(20deg);
+      transform: translateX(-50%);
     }
 
     .runner-emoji {
@@ -664,8 +634,8 @@
       padding: 10px 15px;
       border: 1px solid var(--border);
       border-radius: 999px;
-      color: var(--green-dark);
-      background: rgba(255, 255, 255, 0.94);
+      color: var(--dark);
+      background: rgba(255, 255, 255, 0.96);
       box-shadow: 0 8px 25px rgba(23, 77, 56, 0.07);
       font-size: 0.8rem;
       font-weight: 800;
@@ -674,64 +644,110 @@
     }
 
     @keyframes earth-float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-9px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-9px); }
     }
 
     @keyframes continent-drift {
-      from {
-        transform: translateX(-3%);
-      }
-      to {
-        transform: translateX(3%);
-      }
+      from { transform: translateX(-3%); }
+      to { transform: translateX(3%); }
     }
 
+    /* Positive Rotation = im Uhrzeigersinn:
+       Am oberen Punkt bewegt sich der Läufer nach rechts. */
     @keyframes runner-orbit {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     @keyframes runner-bounce {
-      from {
-        transform: translateY(0) rotate(-7deg);
-      }
-      to {
-        transform: translateY(-4px) rotate(7deg);
-      }
+      from { transform: translateY(0) rotate(-7deg); }
+      to { transform: translateY(-4px) rotate(7deg); }
     }
 
-    /* PROGRESS */
+    /* STATISTIK UND FORTSCHRITT */
 
     .progress-overview {
       margin-top: 20px;
     }
 
-    .progress-grid {
+    .progress-summary {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 15px;
+      align-items: stretch;
       margin-bottom: 25px;
     }
 
     .progress-card {
+      display: flex;
+      min-height: 126px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       padding: 22px 16px;
       border: 1px solid var(--border);
       border-radius: 20px;
       background: var(--white);
       text-align: center;
+      box-shadow: 0 8px 24px rgba(23, 77, 56, 0.035);
     }
 
     .progress-card .metric-number {
       font-size: clamp(1.4rem, 3vw, 2.1rem);
+    }
+
+    .progress-card-donation {
+      background: linear-gradient(145deg, #ffffff, #f0f7ed);
+    }
+
+    .progress-card-combined {
+      align-items: stretch;
+      justify-content: center;
+      padding: 18px 20px;
+      background: var(--light);
+    }
+
+    .combined-progress-heading {
+      margin-bottom: 13px;
+      color: var(--dark);
+      font-size: 0.8rem;
+      font-weight: 850;
+      text-align: center;
+    }
+
+    .combined-progress-values {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .combined-progress-value {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .combined-progress-value:last-child {
+      text-align: right;
+    }
+
+    .combined-progress-value strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--dark);
+      font-size: clamp(1.05rem, 2vw, 1.45rem);
+      font-weight: 950;
+      letter-spacing: -0.045em;
+      line-height: 1.2;
+    }
+
+    .combined-progress-value span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 700;
+      line-height: 1.35;
     }
 
     .progress-track {
@@ -797,8 +813,8 @@
       gap: 7px;
       padding: 7px 11px;
       border-radius: 999px;
-      color: var(--green-dark);
-      background: var(--green-light);
+      color: var(--dark);
+      background: var(--light);
       font-size: 0.73rem;
       font-weight: 850;
     }
@@ -874,12 +890,8 @@
       border: 1px solid #d7e8d6;
       border-radius: 30px;
       background:
-        radial-gradient(
-          circle at 100% 0%,
-          rgba(190, 225, 188, 0.5),
-          transparent 36%
-        ),
-        var(--green-light);
+        radial-gradient(circle at 100% 0%, rgba(190, 225, 188, 0.5), transparent 36%),
+        var(--light);
     }
 
     .charity-layout {
@@ -914,7 +926,7 @@
       padding: 8px 12px;
       border: 1px solid rgba(47, 118, 82, 0.15);
       border-radius: 999px;
-      color: var(--green-dark);
+      color: var(--dark);
       background: rgba(255, 255, 255, 0.75);
       font-size: 0.78rem;
       font-weight: 800;
@@ -952,7 +964,7 @@
     }
 
     .donation-stat strong {
-      color: var(--green-dark);
+      color: var(--dark);
       font-size: 1rem;
       text-align: right;
     }
@@ -963,7 +975,7 @@
       font-size: 0.76rem;
     }
 
-    /* HOW IT WORKS */
+    /* SO FUNKTIONIERT'S */
 
     .steps-grid {
       display: grid;
@@ -986,8 +998,8 @@
       margin-bottom: 20px;
       place-items: center;
       border-radius: 15px;
-      color: var(--green-dark);
-      background: var(--green-light);
+      color: var(--dark);
+      background: var(--light);
       font-size: 1.15rem;
       font-weight: 950;
     }
@@ -1003,7 +1015,7 @@
       font-size: 0.9rem;
     }
 
-    /* PROFILE / REGISTRATION */
+    /* PROFILE */
 
     .profile-panel {
       display: grid;
@@ -1013,7 +1025,7 @@
       padding: clamp(26px, 4vw, 42px);
       border-radius: 28px;
       color: var(--white);
-      background: var(--green-dark);
+      background: var(--dark);
     }
 
     .profile-panel h2 {
@@ -1029,14 +1041,14 @@
     }
 
     .profile-panel .btn-primary {
-      color: var(--green-dark);
+      color: var(--dark);
       background: var(--white);
       box-shadow: none;
       white-space: nowrap;
     }
 
     .profile-panel .btn-primary:hover {
-      background: var(--green-light);
+      background: var(--light);
     }
 
     /* FOOTER */
@@ -1055,7 +1067,7 @@
     }
 
     .footer-brand {
-      color: var(--green-dark);
+      color: var(--dark);
       font-size: 0.86rem;
       font-weight: 900;
     }
@@ -1105,7 +1117,7 @@
       place-items: center;
       border: 1px solid var(--border);
       border-radius: 50%;
-      color: var(--green-dark);
+      color: var(--dark);
       background: var(--white);
       cursor: pointer;
       font-size: 1.15rem;
@@ -1128,7 +1140,7 @@
     }
 
     .form-field label {
-      color: var(--green-dark);
+      color: var(--dark);
       font-size: 0.84rem;
       font-weight: 800;
     }
@@ -1159,8 +1171,8 @@
       margin-top: 15px;
       padding: 12px;
       border-radius: 12px;
-      color: var(--green-dark);
-      background: var(--green-light);
+      color: var(--dark);
+      background: var(--light);
       font-size: 0.85rem;
     }
 
@@ -1194,7 +1206,7 @@
       }
 
       .section {
-        padding: 66px 0;
+        padding: 64px 0;
       }
 
       .nav {
@@ -1204,7 +1216,7 @@
 
       .brand {
         gap: 6px;
-        font-size: 0.83rem;
+        font-size: 0.81rem;
       }
 
       .brand-runner {
@@ -1233,7 +1245,7 @@
       }
 
       .hero {
-        padding: 67px 0 60px;
+        padding: 62px 0 58px;
       }
 
       .hero h1 {
@@ -1261,20 +1273,17 @@
         width: 100%;
       }
 
-      .metric-grid,
-      .progress-grid {
+      .metric-grid {
         grid-template-columns: 1fr;
         gap: 10px;
       }
 
-      .metric-card,
-      .progress-card {
+      .metric-card {
         min-height: 0;
         padding: 18px 14px;
       }
 
-      .metric-number,
-      .progress-card .metric-number {
+      .metric-number {
         font-size: 1.65rem;
       }
 
@@ -1304,7 +1313,29 @@
       .earth-caption {
         bottom: 0;
         max-width: 92%;
-        font-size: 0.72rem;
+        font-size: 0.7rem;
+      }
+
+      .progress-summary {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .progress-card {
+        min-height: 0;
+        padding: 18px 14px;
+      }
+
+      .progress-card .metric-number {
+        font-size: 1.65rem;
+      }
+
+      .progress-card-combined {
+        padding: 20px;
+      }
+
+      .combined-progress-value strong {
+        font-size: 1.2rem;
       }
 
       .progress-foot {
@@ -1404,9 +1435,9 @@
       <div class="container">
         <div class="hero-inner">
 
-          <div class="hero-label">
-            <span aria-hidden="true">❄️</span>
-            01—24 DEZEMBER · DEINE CHALLENGE
+          <div class="hero-date" aria-label="Vom 1. bis 24. Dezember">
+            <span class="hero-snowflake" aria-hidden="true">❄️</span>
+            <span class="hero-date-text">1. bis 24. Dezember</span>
           </div>
 
           <h1>
@@ -1449,7 +1480,7 @@
       </div>
     </section>
 
-    <!-- EARTH / COMMUNITY -->
+    <!-- COMMUNITY UND ERDKUGEL -->
     <section class="community-section" id="challenge">
       <div class="container">
 
@@ -1464,6 +1495,7 @@
 
         <!-- Kennzahlen über der Erdkugel -->
         <div class="metric-grid" aria-label="Challenge-Ziele">
+
           <article class="metric-card">
             <div class="metric-number">24</div>
             <div class="metric-label">Dezembertage</div>
@@ -1479,9 +1511,10 @@
             <div class="metric-label">Pro bestätigtem Kilometer</div>
             <div class="metric-extra">Für Laureus Sport for Good</div>
           </article>
+
         </div>
 
-        <!-- Animierte 3D-artige Erde mit Läufer auf einer Umlaufbahn -->
+        <!-- 3D-artige Erde und Läufer -->
         <div
           class="earth-stage"
           role="img"
@@ -1491,24 +1524,14 @@
           <div class="earth-orbit"></div>
 
           <div class="earth">
-            <svg
-              class="continents"
-              viewBox="0 0 340 340"
-              aria-hidden="true"
-            >
+            <svg class="continents" viewBox="0 0 340 340" aria-hidden="true">
               <defs>
                 <clipPath id="earthClip">
                   <circle cx="170" cy="170" r="169"/>
                 </clipPath>
-
-                <linearGradient id="landGradient" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#e1f4d7"/>
-                  <stop offset="100%" stop-color="#9ed4a9"/>
-                </linearGradient>
               </defs>
 
               <g clip-path="url(#earthClip)">
-                <!-- Breiten- und Längengrade -->
                 <g class="earth-grid">
                   <ellipse cx="170" cy="170" rx="155" ry="52"/>
                   <ellipse cx="170" cy="170" rx="163" ry="100"/>
@@ -1521,79 +1544,62 @@
                 <!-- Nordamerika -->
                 <path
                   class="continent"
-                  fill="url(#landGradient)"
-                  d="M 37 73
-                     L 57 49 L 85 38 L 109 49
-                     L 126 68 L 117 85 L 101 90
-                     L 91 108 L 76 120 L 69 144
-                     L 55 137 L 51 116 L 36 100
-                     L 28 84 Z"
+                  d="M 37 73 L 57 49 L 85 38 L 109 49
+                     L 126 68 L 117 85 L 101 90 L 91 108
+                     L 76 120 L 69 144 L 55 137 L 51 116
+                     L 36 100 L 28 84 Z"
                 />
 
                 <path
                   class="continent-shadow"
-                  d="M 78 122 L 94 116 L 106 132
-                     L 116 148 L 109 167 L 97 161
-                     L 90 143 Z"
+                  d="M 78 122 L 94 116 L 106 132 L 116 148
+                     L 109 167 L 97 161 L 90 143 Z"
                 />
 
                 <!-- Südamerika -->
                 <path
                   class="continent"
-                  d="M 111 157
-                     L 131 160 L 144 177
-                     L 139 199 L 129 222
-                     L 125 251 L 112 280
-                     L 102 260 L 106 237
-                     L 96 216 L 98 192 L 89 177 Z"
+                  d="M 111 157 L 131 160 L 144 177 L 139 199
+                     L 129 222 L 125 251 L 112 280 L 102 260
+                     L 106 237 L 96 216 L 98 192 L 89 177 Z"
                 />
 
                 <!-- Europa und Asien -->
                 <path
                   class="continent"
-                  d="M 146 68
-                     L 162 56 L 183 59 L 197 49
-                     L 225 54 L 245 68 L 271 75
-                     L 290 93 L 280 110 L 257 112
-                     L 245 127 L 224 124 L 210 138
-                     L 194 128 L 177 135 L 166 117
+                  d="M 146 68 L 162 56 L 183 59 L 197 49
+                     L 225 54 L 245 68 L 271 75 L 290 93
+                     L 280 110 L 257 112 L 245 127 L 224 124
+                     L 210 138 L 194 128 L 177 135 L 166 117
                      L 151 109 L 143 90 Z"
                 />
 
                 <!-- Afrika -->
                 <path
                   class="continent"
-                  d="M 163 126
-                     L 190 126 L 207 144
-                     L 211 169 L 198 194
-                     L 185 220 L 173 235
-                     L 161 213 L 157 191
-                     L 144 172 L 147 149 Z"
+                  d="M 163 126 L 190 126 L 207 144 L 211 169
+                     L 198 194 L 185 220 L 173 235 L 161 213
+                     L 157 191 L 144 172 L 147 149 Z"
                 />
 
                 <!-- Indien und Südostasien -->
                 <path
                   class="continent"
-                  d="M 218 139
-                     L 236 145 L 247 163
-                     L 239 179 L 229 171
-                     L 223 155 Z"
+                  d="M 218 139 L 236 145 L 247 163
+                     L 239 179 L 229 171 L 223 155 Z"
                 />
 
                 <path
                   class="continent"
-                  d="M 247 174
-                     L 267 178 L 282 190
+                  d="M 247 174 L 267 178 L 282 190
                      L 276 202 L 260 195 Z"
                 />
 
                 <!-- Australien -->
                 <path
                   class="continent"
-                  d="M 250 220
-                     L 272 213 L 292 225
-                     L 287 244 L 269 254
-                     L 249 245 L 242 231 Z"
+                  d="M 250 220 L 272 213 L 292 225 L 287 244
+                     L 269 254 L 249 245 L 242 231 Z"
                 />
 
                 <!-- Grönland -->
@@ -1606,8 +1612,7 @@
                 <!-- Antarktis -->
                 <path
                   class="continent-shadow"
-                  d="M 30 298
-                     Q 170 320 310 298
+                  d="M 30 298 Q 170 320 310 298
                      L 328 322 L 12 322 Z"
                 />
               </g>
@@ -1616,7 +1621,7 @@
             <div class="earth-glint"></div>
           </div>
 
-          <!-- Der Läufer dreht sich mit der Umlaufbahn um die Erde -->
+          <!-- Die Umlaufbahn dreht sich im Uhrzeigersinn -->
           <div class="runner-orbit" aria-hidden="true">
             <div class="runner-marker">
               <span class="runner-emoji">🏃</span>
@@ -1629,35 +1634,48 @@
           </div>
         </div>
 
-        <!-- Aktueller Stand unter der Erde -->
+        <!-- Kilometer, Spenden und Fortschritt -->
         <div class="progress-overview">
-          <div class="progress-grid">
+
+          <div class="progress-summary">
 
             <article class="progress-card">
               <div class="metric-number" id="totalKm">0 km</div>
               <div class="metric-label">Gesammelte Kilometer</div>
             </article>
 
-            <article class="progress-card">
-              <div class="metric-number" id="progressPercent">0 %</div>
-              <div class="metric-label">Unser Fortschritt</div>
+            <article class="progress-card progress-card-donation">
+              <div class="metric-number" id="donationTotal">0,00 €</div>
+              <div class="metric-label">Bisher gesammelte Spendensumme</div>
+              <div class="metric-extra">0,01 € pro bestätigtem Kilometer</div>
             </article>
 
-            <article class="progress-card">
-              <div class="metric-number" id="remainingKm">40.000 km</div>
-              <div class="metric-label">Noch bis zum Ziel</div>
+            <article class="progress-card progress-card-combined">
+              <div class="combined-progress-heading">Unser Fortschritt</div>
+
+              <div class="combined-progress-values">
+                <div class="combined-progress-value">
+                  <strong id="progressPercent">0 %</strong>
+                  <span>Erreicht</span>
+                </div>
+
+                <div class="combined-progress-value">
+                  <strong id="remainingKm">40.000 km</strong>
+                  <span>Noch bis zum Ziel</span>
+                </div>
+              </div>
             </article>
 
           </div>
 
           <div
             class="progress-track"
+            id="progressBar"
             role="progressbar"
             aria-label="Fortschritt zum gemeinsamen Kilometerziel"
             aria-valuemin="0"
             aria-valuemax="100"
             aria-valuenow="0"
-            id="progressBar"
           >
             <div class="progress-fill" id="progressFill"></div>
           </div>
@@ -1666,6 +1684,7 @@
             <span>Unser gemeinsamer Weg</span>
             <span>40.000 km Ziel</span>
           </div>
+
         </div>
 
       </div>
@@ -1685,6 +1704,7 @@
         </div>
 
         <div class="leaderboard-wrap">
+
           <div class="leaderboard-header">
             <div>
               <h3>Die Kilometer-Challenge</h3>
@@ -1720,10 +1740,11 @@
           </div>
 
           <div class="leaderboard-note">
-            Hinweis: Die Tabelle ist aktuell eine Vorschau. Für ein gemeinsames,
+            Die Tabelle ist aktuell eine Vorschau. Für ein gemeinsames,
             dauerhaft gespeichertes Leaderboard müssen Nutzerprofile und
             bestätigte Laufdaten mit einer Datenbank verbunden werden.
           </div>
+
         </div>
 
       </div>
@@ -1743,14 +1764,8 @@
 
               <div class="charity-copy">
                 <p>
-                  Bei Run into Christmas zählt nicht nur die sportliche
-                  Leistung. Gemeinsam wollen wir mit unseren Kilometern
-                  auch etwas Gutes bewirken.
-                </p>
-
-                <p>
-                  Für jeden bestätigten Kilometer sind <strong>0,01 €</strong>
-                  für <strong>Laureus Sport for Good</strong> vorgesehen.
+                  Für jeden bestätigten Kilometer sind
+                  <strong>0,01 € für Laureus Sport for Good</strong> vorgesehen.
                   So wird aus jedem Lauf ein kleiner Beitrag zu einer
                   größeren gemeinsamen Idee.
                 </p>
@@ -1787,9 +1802,8 @@
               </div>
 
               <p class="donation-note">
-                Der Betrag von 400 € ergibt sich bei Erreichen des Kilometerziels
-                und einem Beitrag von 0,01 € pro bestätigtem Kilometer.
-                Freiwillige Zusatzspenden kommen gegebenenfalls hinzu.
+                Bei 40.000 bestätigten Kilometern ergibt sich ein vorgesehener
+                Beitrag von 400 €. Freiwillige Zusatzspenden können hinzukommen.
               </p>
             </aside>
 
@@ -1799,7 +1813,7 @@
       </div>
     </section>
 
-    <!-- SO FUNKTIONIERT ES -->
+    <!-- SO FUNKTIONIERT'S -->
     <section class="section section-soft" id="ablauf">
       <div class="container">
 
@@ -1878,14 +1892,13 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <a class="footer-brand" href="#start">🏃 RUN INTO CHRISTMAS</a>
-
       <p class="footer-note">
         Gemeinsam laufen. Gemeinsam bewegen. 💚
       </p>
     </div>
   </footer>
 
-  <!-- REGISTRIERUNGS-VORSCHAU -->
+  <!-- REGISTRIERUNGSVORSCHAU -->
   <div
     class="modal-backdrop"
     id="registrationModal"
@@ -1901,9 +1914,7 @@
         type="button"
         aria-label="Fenster schließen"
         data-close-modal
-      >
-        ×
-      </button>
+      >×</button>
 
       <span class="eyebrow">🏃 Run into Christmas</span>
 
@@ -1962,20 +1973,20 @@
 
   <script>
     /*
-      RUN INTO CHRISTMAS
-      Frontend-Demo:
-      Die Kilometerwerte beginnen bei null. Für echte gemeinsame
-      Laufdaten, Benutzerkonten und ein dauerhaftes Leaderboard wird
-      eine Backend- bzw. Datenbankanbindung benötigt.
+      RUN INTO CHRISTMAS – Frontend-Demo
+
+      Die Kennzahlen starten bei null.
+      Für echte, gemeinsame Laufdaten, bestätigte Kilometer, tatsächliche
+      Spenden und Nutzerkonten ist eine Backend-/Datenbankanbindung nötig.
     */
 
     const CHALLENGE_GOAL_KM = 40000;
+    const DONATION_PER_KM = 0.01;
 
-    // Diese Werte können später durch echte Daten aus einer Datenbank
-    // ersetzt werden.
     const challengeData = {
       totalKm: 0,
-      runners: []
+      runners: [],
+      additionalDonations: 0
     };
 
     function formatNumber(value, maximumFractionDigits = 1) {
@@ -1984,8 +1995,16 @@
       }).format(value);
     }
 
+    function formatCurrency(value) {
+      return new Intl.NumberFormat("de-DE", {
+        style: "currency",
+        currency: "EUR"
+      }).format(value);
+    }
+
     function renderProgress() {
       const totalKm = Math.max(0, challengeData.totalKm);
+
       const percentage = Math.min(
         100,
         (totalKm / CHALLENGE_GOAL_KM) * 100
@@ -1996,8 +2015,16 @@
         CHALLENGE_GOAL_KM - totalKm
       );
 
+      // Vorgesehener Kilometerbeitrag plus optionale Zusatzspenden.
+      const donationTotal =
+        totalKm * DONATION_PER_KM +
+        Math.max(0, challengeData.additionalDonations);
+
       document.getElementById("totalKm").textContent =
         `${formatNumber(totalKm)} km`;
+
+      document.getElementById("donationTotal").textContent =
+        formatCurrency(donationTotal);
 
       document.getElementById("progressPercent").textContent =
         `${formatNumber(percentage, 2)} %`;
@@ -2032,19 +2059,17 @@
         return;
       }
 
-      body.innerHTML = "";
+      body.replaceChildren();
 
       runners.forEach((runner, index) => {
         const row = document.createElement("tr");
 
         const rank = document.createElement("td");
-        rank.textContent = index === 0
-          ? "🥇"
-          : index === 1
-            ? "🥈"
-            : index === 2
-              ? "🥉"
-              : String(index + 1);
+        rank.textContent =
+          index === 0 ? "🥇" :
+          index === 1 ? "🥈" :
+          index === 2 ? "🥉" :
+          String(index + 1);
 
         const name = document.createElement("td");
         name.textContent = runner.name;
@@ -2107,7 +2132,7 @@
       }
     });
 
-    // Die Registrierung ist aktuell nur eine Vorschau.
+    // Registrierung ist vorerst nur eine Vorschau.
     document.getElementById("registrationForm").addEventListener(
       "submit",
       (event) => {
