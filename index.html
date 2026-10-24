@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -159,6 +160,7 @@ $("runForm").addEventListener("submit", async (event) => {
         user_id: currentUser.id,
         run_date: date,
         distance_km: Math.round(km * 100) / 100,
+        kilometers: Math.round(km * 100) / 100,
         proof_path: uploadedPath
       });
 
