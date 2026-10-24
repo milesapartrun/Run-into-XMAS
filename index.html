@@ -516,8 +516,6 @@
       filter: blur(2px);
     }
 
-    /* Läufer: gegen den Uhrzeigersinn und nach links ausgerichtet */
-
     .runner-orbit {
       position: absolute;
       z-index: 5;
@@ -796,7 +794,7 @@
       font-size: .78rem;
     }
 
-    /* Charity – neuer Spendenbereich */
+    /* Charity */
 
     .charity-panel {
       position: relative;
@@ -821,8 +819,6 @@
       margin-bottom: 0;
       color: #4c6958;
     }
-
-    /* NEU: kurze Charity-Stichpunkte */
 
     .charity-bullet-list {
       display: grid;
@@ -859,8 +855,6 @@
       margin-bottom: 20px;
       color: #4c6958;
     }
-
-    /* NEU: beide Laureus-Links ordentlich nebeneinander bzw. mobil untereinander */
 
     .charity-link-actions {
       display: flex;
@@ -1133,6 +1127,120 @@
 
     .profile-panel .btn-primary:hover { background: var(--light); }
 
+    /* NEU: Persönliche Übersicht lokaler Spendenmeldungen */
+
+    .personal-donations {
+      margin-top: 22px;
+      padding: clamp(22px, 3vw, 32px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .personal-donations h3 {
+      margin-bottom: 8px;
+      color: var(--dark);
+      font-size: 1.4rem;
+    }
+
+    .personal-donations-intro {
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .personal-donations-total {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding: 17px 19px;
+      border-radius: 16px;
+      background: var(--light);
+    }
+
+    .personal-donations-total span {
+      color: var(--dark);
+      font-size: .9rem;
+      font-weight: 800;
+    }
+
+    .personal-donations-total strong {
+      color: var(--dark);
+      font-size: 1.45rem;
+      font-weight: 950;
+    }
+
+    .personal-donation-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .personal-donation-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .personal-donation-item:last-child {
+      border-bottom: 0;
+    }
+
+    .personal-donation-details {
+      min-width: 0;
+    }
+
+    .personal-donation-details strong {
+      display: block;
+      color: var(--dark);
+      font-size: 1rem;
+    }
+
+    .personal-donation-details span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .delete-donation-btn {
+      flex-shrink: 0;
+      padding: 8px 12px;
+      border: 1px solid #e7caca;
+      border-radius: 999px;
+      color: #8b3434;
+      background: #fffafa;
+      cursor: pointer;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .delete-donation-btn:hover {
+      background: #fceeee;
+    }
+
+    .personal-donations-empty {
+      padding: 18px 0;
+      color: var(--muted);
+      font-size: .88rem;
+      text-align: center;
+    }
+
+    .personal-donations-note {
+      margin: 18px 0 0;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .76rem;
+      line-height: 1.6;
+    }
+
     /* Footer */
 
     .site-footer {
@@ -1181,7 +1289,7 @@
 
     .disclaimer p { margin: 0; }
 
-    /* Bestehendes Registrierungs-Modal */
+    /* Registrierungs-Modal */
 
     .modal-backdrop {
       position: fixed;
@@ -1397,6 +1505,10 @@
       }
 
       .profile-panel .btn { width: 100%; }
+
+      .personal-donation-item {
+        align-items: flex-start;
+      }
 
       .footer-inner {
         align-items: flex-start;
@@ -1665,7 +1777,7 @@
       </div>
     </section>
 
-    <!-- LEADERBOARD: unverändert -->
+    <!-- LEADERBOARD -->
     <section class="section section-soft" id="leaderboard">
       <div class="container">
 
@@ -1721,7 +1833,7 @@
       </div>
     </section>
 
-    <!-- CHARITY: Spendenlink und gemeinsamer Spendenstand -->
+    <!-- CHARITY -->
     <section class="section" id="charity">
       <div class="container">
         <div class="charity-panel">
@@ -1804,32 +1916,26 @@
             <button class="btn btn-primary" type="button" id="openDonationModal">
               + Zusatzspende melden
             </button>
-            <a
-              class="btn btn-secondary"
-              href="https://www.laureus.de/spenden"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Zur Spendenseite <span aria-hidden="true">↗</span>
-            </a>
           </div>
 
           <p class="donation-disclaimer">
             <strong>Hinweis zur Transparenz:</strong>
             Die Kilometer-Spende ist ein rechnerisch vorgesehener Betrag und
             keine Bestätigung einer bereits geleisteten Zahlung. Zusatzspenden
-            werden in dieser Version nur im Browser des jeweiligen Geräts
-            gespeichert. Sie werden nicht automatisch an andere Besucher
-            übertragen und nicht unabhängig überprüft. Der angezeigte
-            Gesamtstand ist deshalb kein verifizierter Gesamtbetrag tatsächlich
-            eingegangener Spenden.
+            werden auf Vertrauensbasis von den Läuferinnen und Läufern gemeldet.
+            Die angegebenen Beträge werden in dieser Version nicht automatisch
+            auf Zahlungseingang geprüft und sind daher nicht als verifizierte
+            Spenden zu verstehen. Die Meldungen werden vorerst nur im Browser
+            des jeweiligen Geräts gespeichert und nicht mit anderen Besuchern
+            geteilt. Der angezeigte Gesamtstand ist kein bestätigter Gesamtbetrag
+            tatsächlich eingegangener Spenden.
           </p>
 
         </div>
       </div>
     </section>
 
-    <!-- SO FUNKTIONIERT'S: unverändert -->
+    <!-- SO FUNKTIONIERT'S -->
     <section class="section section-soft" id="ablauf">
       <div class="container">
 
@@ -1874,7 +1980,7 @@
       </div>
     </section>
 
-    <!-- PROFIL: unverändert -->
+    <!-- PROFIL -->
     <section class="section" id="profil">
       <div class="container">
         <div class="profile-panel">
@@ -1893,12 +1999,44 @@
             Jetzt mitlaufen <span aria-hidden="true">→</span>
           </button>
         </div>
+
+        <!-- NEU: eigene lokal gespeicherte Zusatzspenden -->
+        <div class="personal-donations">
+          <h3>Deine gemeldeten Spenden</h3>
+          <p class="personal-donations-intro">
+            Hier siehst du die Zusatzspenden, die in diesem Browser gemeldet
+            wurden.
+          </p>
+
+          <div class="personal-donations-total">
+            <span>Bisher gemeldeter Betrag</span>
+            <strong id="personalDonationTotal">0,00 €</strong>
+          </div>
+
+          <div
+            class="personal-donation-list"
+            id="personalDonationList"
+            aria-live="polite"
+          >
+            <div class="personal-donations-empty">
+              Du hast hier noch keine Zusatzspenden gemeldet.
+            </div>
+          </div>
+
+          <p class="personal-donations-note">
+            * Die Beträge werden auf Vertrauensbasis angegeben und nicht
+            automatisch auf Zahlungseingang geprüft. Da es noch keine
+            Benutzerkonten gibt, bezieht sich diese Übersicht auf die
+            Meldungen in diesem Browser. Gelöschte Meldungen werden aus
+            dieser lokalen Übersicht und den angezeigten Summen entfernt.
+          </p>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- FOOTER: unverändert -->
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <a class="footer-brand" href="#start">🏃 RUN INTO CHRISTMAS</a>
@@ -1924,7 +2062,7 @@
     </div>
   </section>
 
-  <!-- REGISTRIERUNGSVORSCHAU: unverändert -->
+  <!-- REGISTRIERUNGSVORSCHAU -->
   <div
     class="modal-backdrop"
     id="registrationModal"
@@ -1994,7 +2132,7 @@
     </div>
   </div>
 
-  <!-- NEU: Meldeformular für freiwillige Zusatzspenden -->
+  <!-- Meldeformular für freiwillige Zusatzspenden -->
   <div
     class="donation-modal-backdrop"
     id="donationModal"
@@ -2021,7 +2159,7 @@
 
       <form id="donationForm">
         <div class="donation-form-field">
-          <label for="donationAmount">Gespendeter Betrag in Euro</label>
+          <label for="donationAmount">Gemeldeter Betrag in Euro</label>
           <input
             id="donationAmount"
             name="amount"
@@ -2045,7 +2183,8 @@
 
         <p class="donation-modal-note">
           Die Meldung wird aktuell nur in diesem Browser gespeichert.
-          Sie wird noch nicht mit anderen Geräten geteilt.
+          Sie wird noch nicht mit anderen Geräten geteilt und nicht
+          automatisch auf Zahlungseingang geprüft.
         </p>
 
         <div
@@ -2065,6 +2204,10 @@
       Die Kilometerwerte starten bei null. Für echte gemeinsame Laufdaten,
       bestätigte Kilometer, tatsächliche Spenden und Nutzerkonten ist eine
       Backend-/Datenbankanbindung erforderlich.
+
+      Zusatzspenden werden vorerst lokal in diesem Browser gespeichert.
+      Die persönliche Übersicht zeigt deshalb die Meldungen dieses Browsers,
+      nicht ein verifiziertes oder serverseitig einem Konto zugeordnetes Profil.
     */
 
     const CHALLENGE_GOAL_KM = 40000;
@@ -2089,14 +2232,68 @@
       }).format(value);
     }
 
+    function createDonationId() {
+      if (window.crypto && typeof window.crypto.randomUUID === "function") {
+        return window.crypto.randomUUID();
+      }
+
+      return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    }
+
     function getDonationReports() {
       try {
         const stored = localStorage.getItem(LOCAL_DONATIONS_KEY);
         const parsed = stored ? JSON.parse(stored) : [];
 
-        return Array.isArray(parsed) ? parsed : [];
+        if (!Array.isArray(parsed)) {
+          return [];
+        }
+
+        let changed = false;
+
+        const reports = parsed
+          .filter((report) => report && typeof report === "object")
+          .map((report) => {
+            if (!report.id) {
+              changed = true;
+              return {
+                ...report,
+                id: createDonationId()
+              };
+            }
+
+            return report;
+          });
+
+        // Bestehende Einträge ohne ID erhalten einmalig eine ID,
+        // damit sie in dieser Browser-Übersicht einzeln gelöscht werden können.
+        if (changed) {
+          try {
+            localStorage.setItem(
+              LOCAL_DONATIONS_KEY,
+              JSON.stringify(reports)
+            );
+          } catch (error) {
+            // Die vorhandenen Meldungen bleiben auch ohne ID weiterhin lesbar.
+          }
+        }
+
+        return reports;
       } catch (error) {
         return [];
+      }
+    }
+
+    function saveDonationReports(reports) {
+      try {
+        localStorage.setItem(
+          LOCAL_DONATIONS_KEY,
+          JSON.stringify(reports)
+        );
+
+        return true;
+      } catch (error) {
+        return false;
       }
     }
 
@@ -2154,7 +2351,7 @@
       // Zusatzspenden, die in diesem Browser gemeldet wurden.
       const additionalDonations = getAdditionalDonationTotal();
 
-      // Summe aus vorgesehenem Kilometerbeitrag und gemeldeten Zusatzspenden.
+      // Rechnerischer Kilometerbeitrag plus gemeldete Zusatzspenden.
       const combinedTotal = founderPlannedDonation + additionalDonations;
 
       document.getElementById("founderDonation").textContent =
@@ -2166,9 +2363,118 @@
       document.getElementById("combinedDonations").textContent =
         formatCurrency(combinedTotal);
 
-      // Spendensumme plus rechnerisches Ziel in der Community-Statistik.
       document.getElementById("donationTotal").textContent =
         `${formatCurrency(combinedTotal)} / 400,00 €`;
+
+      renderPersonalDonations();
+    }
+
+    function renderPersonalDonations() {
+      const reports = getDonationReports();
+      const list = document.getElementById("personalDonationList");
+      const totalElement = document.getElementById("personalDonationTotal");
+
+      const total = reports.reduce((sum, report) => {
+        const amount = Number(report.amount);
+
+        return sum + (
+          Number.isFinite(amount) && amount > 0
+            ? amount
+            : 0
+        );
+      }, 0);
+
+      totalElement.textContent = formatCurrency(total);
+      list.replaceChildren();
+
+      if (reports.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "personal-donations-empty";
+        empty.textContent =
+          "Du hast hier noch keine Zusatzspenden gemeldet.";
+
+        list.appendChild(empty);
+        return;
+      }
+
+      // Neueste Meldungen zuerst anzeigen.
+      const sortedReports = [...reports].sort((a, b) => {
+        return String(b.createdAt || "").localeCompare(
+          String(a.createdAt || "")
+        );
+      });
+
+      sortedReports.forEach((report) => {
+        const item = document.createElement("div");
+        item.className = "personal-donation-item";
+
+        const details = document.createElement("div");
+        details.className = "personal-donation-details";
+
+        const amount = document.createElement("strong");
+        amount.textContent = formatCurrency(Number(report.amount) || 0);
+
+        const date = document.createElement("span");
+
+        if (report.date) {
+          const dateParts = report.date.split("-");
+          date.textContent = dateParts.length === 3
+            ? `Gemeldetes Spendendatum: ${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`
+            : `Gemeldetes Spendendatum: ${report.date}`;
+        } else {
+          date.textContent = "Kein Spendendatum angegeben";
+        }
+
+        details.append(amount, date);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.type = "button";
+        deleteButton.className = "delete-donation-btn";
+        deleteButton.textContent = "Meldung löschen";
+        deleteButton.setAttribute(
+          "aria-label",
+          `Spendenmeldung über ${formatCurrency(Number(report.amount) || 0)} löschen`
+        );
+
+        deleteButton.addEventListener("click", () => {
+          deleteDonationReport(report.id);
+        });
+
+        item.append(details, deleteButton);
+        list.appendChild(item);
+      });
+    }
+
+    function deleteDonationReport(reportId) {
+      const reports = getDonationReports();
+      const reportToDelete = reports.find(
+        (report) => report.id === reportId
+      );
+
+      if (!reportToDelete) {
+        return;
+      }
+
+      const confirmed = window.confirm(
+        `Möchtest du die Spendenmeldung über ${formatCurrency(Number(reportToDelete.amount) || 0)} wirklich löschen? Der Betrag wird dann aus den angezeigten Zusatzspenden und dem gemeinsamen Spendenstand dieses Browsers herausgerechnet.`
+      );
+
+      if (!confirmed) {
+        return;
+      }
+
+      const updatedReports = reports.filter(
+        (report) => report.id !== reportId
+      );
+
+      if (!saveDonationReports(updatedReports)) {
+        window.alert(
+          "Die Meldung konnte nicht gelöscht werden. Bitte prüfe, ob dein Browser lokale Daten speichern darf."
+        );
+        return;
+      }
+
+      renderDonationTotals();
     }
 
     function renderLeaderboard() {
@@ -2222,7 +2528,7 @@
       });
     }
 
-    // Bestehendes Registrierungs-Modal
+    // Registrierungs-Modal
     const registrationModal = document.getElementById("registrationModal");
     const registrationNameInput = document.getElementById("runnerName");
 
@@ -2254,7 +2560,7 @@
       }
     });
 
-    // Bestehende Registrierungsvorschau
+    // Registrierungsvorschau
     document.getElementById("registrationForm").addEventListener(
       "submit",
       (event) => {
@@ -2271,7 +2577,7 @@
       }
     );
 
-    // Neues Zusatzspenden-Modal
+    // Zusatzspenden-Modal
     const donationModal = document.getElementById("donationModal");
     const donationAmountInput = document.getElementById("donationAmount");
 
@@ -2312,7 +2618,7 @@
       }
     });
 
-    // Zusatzspenden lokal speichern und Spendenanzeigen aktualisieren.
+    // Zusatzspenden lokal speichern und Anzeigen aktualisieren.
     document.getElementById("donationForm").addEventListener(
       "submit",
       (event) => {
@@ -2323,7 +2629,8 @@
         const message = document.getElementById("donationFormMessage");
 
         if (!Number.isFinite(amount) || amount <= 0) {
-          message.textContent = "Bitte gib einen gültigen Betrag größer als 0 € ein.";
+          message.textContent =
+            "Bitte gib einen gültigen Betrag größer als 0 € ein.";
           message.classList.add("is-visible");
           return;
         }
@@ -2331,17 +2638,13 @@
         const reports = getDonationReports();
 
         reports.push({
+          id: createDonationId(),
           amount: Math.round(amount * 100) / 100,
           date: date || "",
           createdAt: new Date().toISOString()
         });
 
-        try {
-          localStorage.setItem(
-            LOCAL_DONATIONS_KEY,
-            JSON.stringify(reports)
-          );
-        } catch (error) {
+        if (!saveDonationReports(reports)) {
           message.textContent =
             "Die Meldung konnte in diesem Browser nicht gespeichert werden.";
           message.classList.add("is-visible");
@@ -2352,12 +2655,21 @@
 
         message.textContent =
           "Danke! Deine Zusatzspende wurde in diesem Browser gespeichert. " +
-          "Sie ist noch nicht für andere Besucher sichtbar.";
+          "Sie wird in den angezeigten Zusatzspenden, im Gesamtstand und " +
+          "in der persönlichen Übersicht dieses Browsers berücksichtigt. " +
+          "Andere Besucher können die Meldung noch nicht sehen.";
 
         message.classList.add("is-visible");
         event.target.reset();
       }
     );
+
+    // Aktualisieren, wenn lokale Daten in einem anderen Tab geändert werden.
+    window.addEventListener("storage", (event) => {
+      if (event.key === LOCAL_DONATIONS_KEY) {
+        renderDonationTotals();
+      }
+    });
 
     renderProgress();
     renderLeaderboard();
