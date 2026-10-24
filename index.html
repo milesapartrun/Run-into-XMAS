@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -822,6 +821,28 @@
       color: #4c6958;
     }
 
+    /* NEU: kurze Charity-Stichpunkte */
+
+    .charity-bullet-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-align: left;
+    }
+
+    .charity-bullet-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #4c6958;
+    }
+
+    .charity-bullet-list li > span:first-child {
+      flex: 0 0 auto;
+    }
+
     .charity-donate-top {
       max-width: 720px;
       margin: 0 auto 28px;
@@ -920,37 +941,6 @@
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 20px;
-    }
-
-    .donation-target {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      margin-top: 20px;
-      padding: 20px 24px;
-      border: 1px solid #d7e8d6;
-      border-radius: 18px;
-      background: rgba(255,255,255,.7);
-    }
-
-    .donation-target strong {
-      display: block;
-      color: var(--dark);
-      font-size: 1.15rem;
-    }
-
-    .donation-target p {
-      margin: 3px 0 0;
-      color: var(--muted);
-      font-size: .88rem;
-    }
-
-    .donation-target-amount {
-      flex-shrink: 0;
-      color: var(--green);
-      font-size: 1.65rem;
-      font-weight: 950;
     }
 
     .donation-disclaimer {
@@ -1374,11 +1364,6 @@
 
       .donation-cards { grid-template-columns: 1fr; }
 
-      .donation-target {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
       .donation-actions {
         flex-direction: column;
       }
@@ -1620,7 +1605,7 @@
             </article>
 
             <article class="progress-card progress-card-donation">
-              <div class="metric-number" id="donationTotal">0,00 €</div>
+              <div class="metric-number" id="donationTotal">0,00 € / 400,00 €</div>
               <div class="metric-label">Bisher gesammelte Spendensumme</div>
               <div class="metric-extra">0,01 € pro bestätigtem Kilometer</div>
             </article>
@@ -1726,13 +1711,18 @@
           <div class="charity-heading">
             <span class="eyebrow">💚 Kilometer, die etwas bewegen</span>
             <h2>Laufen für einen guten Zweck</h2>
-            <p>
-              Für jeden bestätigten Kilometer sind 0,01 € für Laureus Sport
-              for Good vorgesehen. So wird aus jedem Lauf ein kleiner Beitrag
-              zu einer größeren gemeinsamen Idee.
-              Am 24. Dezember besteht außerdem die Möglichkeit einer
-              <strong>freiwilligen Zusatzspende am 24.12.</strong>
-            </p>
+            <div class="charity-copy">
+              <ul class="charity-bullet-list">
+                <li>
+                  <span aria-hidden="true">🏃</span>
+                  <span>Für jeden bestätigten gelaufenen Kilometer sind 0,01 € für Laureus Sport for Good vorgesehen.</span>
+                </li>
+                <li>
+                  <span aria-hidden="true">💚</span>
+                  <span>Am 24. Dezember besteht die Möglichkeit einer freiwilligen Zusatzspende.</span>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <div class="charity-donate-top">
@@ -1755,7 +1745,7 @@
 
             <article class="donation-summary-card">
               <div class="donation-summary-label">🏃 Kilometer-Spende</div>
-              <div class="donation-summary-value" id="founderDonation">0,00 €</div>
+              <div class="donation-summary-value" id="founderDonation">0,00 € / 400,00 €</div>
               <p>
                 Vom Gründer vorgesehener Betrag auf Basis der bestätigten
                 Gesamtkilometer: 0,01 € pro Kilometer.
@@ -1776,7 +1766,7 @@
           <div class="donation-total-panel">
             <div class="donation-total-label">Gemeinsamer Spendenstand</div>
             <div class="donation-total-value" id="combinedDonations">0,00 €</div>
-            <p>Kilometer-Spende (vorgesehen) + gemeldete Zusatzspenden</p>
+            <p>Kilometer-Spende + gemeldete Zusatzspenden</p>
           </div>
 
           <div class="donation-actions">
@@ -1791,14 +1781,6 @@
             >
               Zur Spendenseite <span aria-hidden="true">↗</span>
             </a>
-          </div>
-
-          <div class="donation-target">
-            <div>
-              <strong>Unser gemeinsames Kilometerziel</strong>
-              <p>40.000 km × 0,01 € pro Kilometer</p>
-            </div>
-            <div class="donation-target-amount">400,00 €</div>
           </div>
 
           <p class="donation-disclaimer">
@@ -2145,7 +2127,7 @@
       const combinedTotal = founderPlannedDonation + additionalDonations;
 
       document.getElementById("founderDonation").textContent =
-        formatCurrency(founderPlannedDonation);
+        `${formatCurrency(founderPlannedDonation)} / 400,00 €`;
 
       document.getElementById("communityDonations").textContent =
         formatCurrency(additionalDonations);
@@ -2153,9 +2135,9 @@
       document.getElementById("combinedDonations").textContent =
         formatCurrency(combinedTotal);
 
-      // Bestehende Spendensumme in der Community-Statistik aktualisieren.
+      // Spendensumme plus rechnerisches Ziel in der Community-Statistik.
       document.getElementById("donationTotal").textContent =
-        formatCurrency(combinedTotal);
+        `${formatCurrency(combinedTotal)} / 400,00 €`;
     }
 
     function renderLeaderboard() {
