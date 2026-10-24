@@ -3,823 +3,2679 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#102f25">
-  <meta name="description" content="Run into Christmas – gemeinsam laufen, Kilometer sammeln und Gutes bewegen.">
-  <title>Run into Christmas — Every kilometre counts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#174d38">
+  <meta name="description" content="Run into Christmas – gemeinsam Kilometer sammeln und Gutes bewegen.">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <title>🏃 Run into Christmas – Winter Running Challenge</title>
 
   <style>
     :root {
-      --forest:#102f25;
-      --forest2:#174b37;
-      --green:#39835b;
-      --mint:#b8efc5;
-      --cream:#f7f8f1;
-      --paper:#fff;
-      --ink:#183c2d;
-      --muted:#718278;
-      --line:#e1e9df;
-      --gold:#f0c979;
-      --danger:#a23b3b;
-      --radius:24px;
-      --shadow:0 22px 70px rgba(16,47,37,.10);
+      --dark: #174d38;
+      --green: #2f7652;
+      --medium: #75a984;
+      --light: #eaf4e9;
+      --pale: #f5f9f3;
+      --white: #fff;
+      --text: #183c2c;
+      --muted: #6b7f72;
+      --border: #dce9dc;
+      --shadow: 0 18px 50px rgba(23,77,56,.09);
+      --radius: 24px;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:100px}
-    body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
-    body.modal-open{overflow:hidden}
-    button,input{font:inherit}
-    button,a{-webkit-tap-highlight-color:transparent}
-    button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #80c99a;outline-offset:3px}
-    a{color:inherit;text-decoration:none}
-    button{cursor:pointer}
-    [hidden]{display:none!important}
-    .container{width:min(1160px,calc(100% - 40px));margin:auto}
-    .section{padding:90px 0}
-    .soft{background:var(--cream)}
-    .eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;color:var(--green);font-size:.75rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
-    h1,h2,h3,p{margin-top:0}
-    h1,h2,h3{line-height:1.1;letter-spacing:-.045em}
-    h2{font-size:clamp(2rem,4.5vw,3.4rem);margin-bottom:15px}
-    .muted{color:var(--muted)}
-    .section-head{text-align:center;max-width:750px;margin:0 auto 42px}
-    .section-head p{color:var(--muted);max-width:630px;margin:0 auto}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:12px 20px;border:1px solid transparent;border-radius:999px;font-weight:850;font-size:.9rem;transition:transform .2s,background .2s,box-shadow .2s}
-    .btn:hover{transform:translateY(-2px)}
-    .btn:disabled{opacity:.55;cursor:wait;transform:none}
-    .primary{color:#fff;background:var(--forest);box-shadow:0 8px 24px #102f2522}
-    .primary:hover{background:var(--green)}
-    .secondary{background:#fff;color:var(--forest);border-color:var(--line)}
-    .secondary:hover{background:#edf5eb}
-    .small-btn{padding:8px 12px;min-height:36px;font-size:.78rem}
-    .danger{color:var(--danger);background:#fff7f7;border-color:#efd8d8}
-    .site-header{position:sticky;top:0;z-index:50;background:#fffffff0;backdrop-filter:blur(18px);border-bottom:1px solid #e1e9dfbb}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:78px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:950;font-size:.96rem;letter-spacing:-.05em;color:var(--forest);white-space:nowrap}
-    .brand-icon{display:grid;place-items:center;width:40px;height:40px;border-radius:14px;color:#fff;background:var(--forest);font-size:1.35rem}
-    .brand span:last-child span{color:var(--green)}
-    .nav-right,.nav-links{display:flex;align-items:center;gap:20px}
-    .nav-links{font-size:.83rem;color:var(--muted);font-weight:750}
-    .nav-links a:hover{color:var(--forest)}
-    .nav-right>.btn{min-height:42px;padding:9px 16px}
-    .hero{position:relative;overflow:hidden;padding:94px 0 66px;background:radial-gradient(ellipse at 90% 15%,#cfe9d2aa,transparent 32%),linear-gradient(180deg,#fff 0%,#f5faf2 100%)}
-    .hero:before,.hero:after{content:"";position:absolute;border:1px solid #4e93621a;border-radius:50%;pointer-events:none}
-    .hero:before{width:520px;height:520px;right:-190px;top:-260px}
-    .hero:after{width:360px;height:360px;left:-220px;bottom:-220px}
-    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:36px}
-    .hero-copy{max-width:650px}
-    .season-pill{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;border:1px solid #dce9da;border-radius:999px;background:#ffffffbf;color:var(--forest);font-size:.77rem;font-weight:850;margin-bottom:23px}
-    .season-dot{width:8px;height:8px;background:#4f9b68;border-radius:50%;box-shadow:0 0 0 4px #4f9b681b}
-    .hero h1{font-size:clamp(3.5rem,7vw,6.4rem);font-weight:1000;letter-spacing:-.085em;line-height:.9;margin-bottom:24px;color:var(--forest)}
-    .hero h1 span{display:block;color:var(--green)}
-    .hero-sub{font-size:clamp(1.2rem,2vw,1.55rem);font-weight:800;letter-spacing:-.035em;margin-bottom:16px}
-    .hero-description{max-width:520px;color:var(--muted);font-size:1rem;margin-bottom:26px}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:11px}
-    .hero-proof{display:flex;align-items:center;gap:10px;margin-top:24px;color:var(--muted);font-size:.79rem}
-    .avatar-stack{display:flex;padding-left:5px}
-    .avatar-stack span{display:grid;place-items:center;width:28px;height:28px;margin-left:-5px;border:2px solid white;border-radius:50%;background:#e3f0df;font-size:.8rem}
-    .earth-stage{position:relative;display:grid;place-items:center;min-height:440px;isolation:isolate}
-    .earth-glow{position:absolute;width:min(460px,90vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#bce6bb99 0%,#d6edce44 45%,transparent 72%);z-index:-2}
-    .earth-orbit{position:absolute;width:min(430px,84vw);aspect-ratio:1;border:1px solid #43865a30;border-radius:50%;transform:scaleY(.72) rotate(-22deg);z-index:-1}
-    .earth-orbit:before{content:"";position:absolute;inset:17px;border:1px dashed #43865a38;border-radius:50%}
-    .earth{position:relative;width:min(310px,65vw);aspect-ratio:1;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 30% 24%,#e2f8dc 0%,#9dd7a4 12%,#62ac7b 35%,#2f7959 65%,#123c30 100%);box-shadow:inset -24px -18px 42px #092d254c,inset 10px 8px 25px #ffffff7a,0 30px 80px #235d3c35,0 0 0 12px #ffffff80,0 0 0 13px #40845418;animation:float 6s ease-in-out infinite}
-    .earth:after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(110deg,transparent 25%,#ffffff29 42%,transparent 55%,#001c1833 90%);pointer-events:none}
-    .continents{width:100%;height:100%;animation:drift 24s linear infinite alternate}
-    .continent{fill:#d7f0ca;stroke:#f2ffed80;stroke-width:1.3}
-    .continent-shadow{fill:#80c994;opacity:.85}
-    .grid-lines{fill:none;stroke:#e8ffe333;stroke-width:1}
-    .runner-orbit{position:absolute;width:min(405px,82vw);aspect-ratio:1;animation:orbit 12s linear infinite;pointer-events:none}
-    .runner-marker{position:absolute;top:2%;left:50%;display:grid;place-items:center;width:62px;height:62px;border-radius:50%;background:#fff;border:1px solid #ffffffc9;box-shadow:0 12px 35px #173d2a28,0 0 0 7px #ffffff54;transform:translateX(-50%)}
-    .runner-marker span{font-size:2rem;animation:bounce .5s ease-in-out infinite alternate}
-    .earth-label{position:absolute;bottom:1px;padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:#ffffffed;box-shadow:0 10px 30px #173d2a0c;font-size:.77rem;font-weight:850}
-    @keyframes float{50%{transform:translateY(-9px)}}
-    @keyframes drift{to{transform:translateX(3%)}}
-    @keyframes orbit{to{transform:rotate(-360deg)}}
-    @keyframes bounce{to{transform:translateY(-4px) rotate(-7deg)}}
-    .stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-    .stat-card{padding:23px;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:0 9px 28px #173d2a06}
-    .stat-top{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--muted);font-size:.78rem;font-weight:800}
-    .stat-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:#edf5eb;font-size:1.1rem}
-    .stat-number{font-size:clamp(1.7rem,3.3vw,2.6rem);font-weight:950;letter-spacing:-.06em;line-height:1.2;margin:14px 0 3px;color:var(--forest)}
-    .stat-foot{font-size:.76rem;color:var(--muted)}
-    .progress-panel{margin-top:18px;padding:24px;border:1px solid var(--line);border-radius:22px;background:#fff}
-    .progress-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:12px}
-    .progress-heading strong{font-size:.95rem}
-    .progress-heading span{font-size:.82rem;color:var(--muted);font-weight:800}
-    .progress-track{height:12px;overflow:hidden;border-radius:99px;background:#e8efe5}
-    .progress-fill{height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#9ad7a4,#337c52);transition:width .8s ease}
-    .progress-foot{display:flex;justify-content:space-between;gap:10px;margin-top:10px;color:var(--muted);font-size:.76rem}
-    .leaderboard{overflow:hidden;border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:var(--shadow)}
-    .leaderboard-head{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:23px;border-bottom:1px solid var(--line)}
-    .leaderboard-head h3{font-size:1.2rem;margin:0 0 5px}
-    .leaderboard-head p{font-size:.8rem;color:var(--muted);margin:0}
-    .live{display:flex;align-items:center;gap:7px;padding:7px 10px;border-radius:99px;background:#eaf5e9;color:var(--forest);font-size:.73rem;font-weight:850}
-    .live i{width:7px;height:7px;border-radius:50%;background:#4b9e63}
-    .table-scroll{overflow-x:auto}
-    table{width:100%;border-collapse:collapse;text-align:left}
-    th,td{padding:16px 20px;border-bottom:1px solid #edf1eb;white-space:nowrap}
-    th{background:#fafcf8;color:var(--muted);font-size:.7rem;letter-spacing:.05em;text-transform:uppercase}
-    td{font-size:.86rem;font-weight:700}
-    td:first-child{color:var(--green);font-weight:900}
-    tbody tr:last-child td{border-bottom:0}
-    .empty{padding:30px 18px;text-align:center;color:var(--muted);font-size:.88rem}
-    .leaderboard-note{padding:13px 20px;background:#fafcf8;border-top:1px solid var(--line);color:var(--muted);font-size:.75rem}
-    .charity-panel{padding:clamp(25px,5vw,48px);border-radius:30px;border:1px solid #d8e9d5;background:radial-gradient(circle at 95% 0%,#c7e8c6a6,transparent 38%),#eef6eb}
-    .charity-head{text-align:center;max-width:760px;margin:0 auto 28px}
-    .charity-head p{color:#536e5b}
-    .charity-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:11px}
-    .charity-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:30px}
-    .charity-stat{padding:20px;border:1px solid #dce9d8;border-radius:18px;background:#ffffffc9}
-    .charity-stat strong{display:block;font-size:1.55rem;color:var(--forest);letter-spacing:-.04em}
-    .charity-stat span{font-size:.78rem;color:#627768}
-    .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-    .step{padding:26px;border:1px solid var(--line);border-radius:22px;background:#fff}
-    .step-number{display:grid;place-items:center;width:43px;height:43px;border-radius:14px;background:#eaf4e8;color:var(--forest);font-weight:950;margin-bottom:18px}
-    .step h3{font-size:1.12rem;margin-bottom:10px}
-    .step p{margin:0;color:var(--muted);font-size:.88rem}
-    .cta-panel{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:clamp(25px,4vw,42px);border-radius:28px;background:var(--forest);color:#fff}
-    .cta-panel h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:10px}
-    .cta-panel p{max-width:650px;margin:0;color:#d2e4d6}
-    .cta-panel .btn{flex-shrink:0;background:#fff;color:var(--forest)}
-    .member-area{background:#f5f8f1}
-    .member-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:28px}
-    .member-top h2{margin-bottom:8px}
-    .member-top p{color:var(--muted);margin:0}
-    .member-card{padding:clamp(20px,3vw,30px);border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:0 10px 32px #173d2a08;margin-bottom:18px}
-    .member-card h3{font-size:1.2rem;margin-bottom:8px}
-    .member-card>p{color:var(--muted);font-size:.86rem}
-    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-    .field{display:grid;gap:7px;margin-top:14px}
-    .field label{font-size:.82rem;font-weight:850;color:var(--forest)}
-    .field input{width:100%;min-height:47px;padding:11px 13px;border:1px solid #dce7d9;border-radius:12px;background:#fbfdf9;color:var(--ink)}
-    .field input[type=file]{padding:10px}
-    .field-help{font-size:.75rem;color:var(--muted)}
-    .member-form-actions{margin-top:17px;display:flex;flex-wrap:wrap;gap:10px}
-    .message{display:none;margin-top:14px;padding:12px 14px;border-radius:12px;background:#eaf5e9;color:var(--forest);font-size:.84rem;overflow-wrap:anywhere}
-    .message.show{display:block}
-    .message.error{background:#fff0f0;color:#913c3c}
-    .run-list,.donation-list{display:grid;gap:10px}
-    .list-item{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}
-    .list-item:last-child{border-bottom:0}
-    .list-item strong{display:block;color:var(--forest)}
-    .list-item small{display:block;color:var(--muted);font-size:.77rem;margin-top:3px}
-    .list-actions{display:flex;align-items:center;flex-wrap:wrap;gap:7px}
-    .pill{display:inline-flex;padding:5px 9px;border-radius:99px;background:#edf5eb;color:var(--forest);font-size:.72rem;font-weight:850}
-    .site-footer{padding:28px 0;border-top:1px solid var(--line)}
-    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:15px}
-    .footer-brand{font-weight:950;font-size:.85rem;color:var(--forest)}
-    .footer-note{margin:0;font-size:.76rem;color:var(--muted)}
-    .disclaimer{padding:18px 0 25px;background:#f6f9f3;border-top:1px solid var(--line);color:var(--muted);font-size:.75rem}
-    .disclaimer strong{display:block;color:var(--forest);margin-bottom:5px}
-    .disclaimer p{margin:0}
-    .modal-backdrop{position:fixed;z-index:200;inset:0;display:none;align-items:center;justify-content:center;overflow:auto;padding:20px;background:#09261dcc;backdrop-filter:blur(8px)}
-    .modal-backdrop.open{display:flex}
-    .modal{position:relative;width:min(100%,470px);padding:30px;border-radius:26px;background:#fff;box-shadow:0 28px 100px #0003}
-    .modal-close{position:absolute;top:13px;right:13px;width:37px;height:37px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--forest);font-size:1.25rem}
-    .modal h2{font-size:1.9rem;margin:5px 36px 10px 0}
-    .modal p{color:var(--muted);font-size:.88rem}
-    .auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:5px;border-radius:15px;background:#f0f5ed;margin:20px 0}
-    .auth-tab{padding:10px;border:0;border-radius:11px;background:transparent;color:var(--muted);font-weight:850}
-    .auth-tab.active{background:#fff;color:var(--forest);box-shadow:0 2px 10px #173d2a0b}
-    .modal .btn.submit{width:100%;margin-top:20px}
-    .modal-foot{font-size:.74rem!important;margin:12px 0 0}
-    .modal-switch{margin-top:15px;text-align:center;font-size:.82rem;color:var(--muted)}
-    .text-button{border:0;background:none;color:var(--green);font-weight:850;text-decoration:underline}
-    .donation-modal .field{margin-top:14px}
-    @media(max-width:900px){
-      .hero-grid{grid-template-columns:1fr;text-align:center}
-      .hero-copy{margin:auto}
-      .hero-actions,.hero-proof{justify-content:center}
-      .hero-description{margin-left:auto;margin-right:auto}
-      .earth-stage{min-height:390px}
-      .nav-links{display:none}
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
     }
-    @media(max-width:650px){
-      .container{width:calc(100% - 30px)}
-      .section{padding:64px 0}
-      .nav{min-height:68px}
-      .brand{font-size:.78rem;gap:7px}
-      .brand-icon{width:34px;height:34px}
-      .nav-right{gap:7px}
-      .nav-right>.btn{font-size:.76rem;padding:8px 12px;min-height:38px}
-      .hero{padding:60px 0 40px}
-      .hero h1{font-size:clamp(3.1rem,14vw,4.8rem)}
-      .hero-actions{flex-direction:column}
-      .hero-actions .btn{width:100%}
-      .earth-stage{min-height:340px}
-      .earth{width:min(260px,66vw)}
-      .earth-orbit,.runner-orbit{width:min(350px,90vw)}
-      .runner-marker{width:52px;height:52px}
-      .runner-marker span{font-size:1.7rem}
-      .earth-label{font-size:.68rem;max-width:95%;white-space:nowrap}
-      .stat-grid,.charity-stats,.steps{grid-template-columns:1fr}
-      .stat-card{padding:19px}
-      .leaderboard-head{align-items:flex-start;padding:18px}
-      th,td{padding:13px 14px}
-      .cta-panel{align-items:stretch;flex-direction:column}
-      .cta-panel .btn{width:100%}
-      .member-top{flex-direction:column}
-      .member-top .btn{width:100%}
-      .form-grid{grid-template-columns:1fr;gap:0}
-      .list-item{align-items:flex-start;flex-direction:column}
-      .list-actions{width:100%}
-      .footer-inner{align-items:flex-start;flex-direction:column}
-      .modal{padding:25px 21px}
-      .progress-heading{align-items:flex-start;flex-direction:column;gap:4px}
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--white);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      line-height: 1.6;
     }
-    @media(prefers-reduced-motion:reduce){
-      *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    button:focus-visible, a:focus-visible, input:focus-visible {
+      outline: 3px solid #8bc59a;
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section { padding: 82px 0; }
+    .section-soft { background: var(--pale); }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      color: var(--green);
+      font-size: .78rem;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1, h2, h3 {
+      line-height: 1.12;
+      letter-spacing: -.035em;
+    }
+
+    h2 {
+      margin-bottom: 16px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+    }
+
+    .section-heading {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .section-heading h2 { margin-bottom: 12px; }
+
+    .section-intro {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    /* Header */
+
+    .site-header {
+      position: sticky;
+      z-index: 100;
+      top: 0;
+      border-bottom: 1px solid rgba(220,233,220,.85);
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      display: flex;
+      min-height: 82px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--dark);
+      font-size: 1rem;
+      font-weight: 950;
+      letter-spacing: -.045em;
+      white-space: nowrap;
+    }
+
+    .brand-runner { font-size: 1.3rem; line-height: 1; }
+    .brand-text span { color: var(--green); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 22px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover { color: var(--dark); }
+
+    .nav-festive {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: var(--pale);
+    }
+
+    .nav-tree { font-size: 1.8rem; line-height: 1; }
+    .nav-gift { font-size: 1.35rem; line-height: 1; }
+
+    .nav-challenge {
+      color: var(--dark);
+      font-size: .77rem;
+      font-weight: 850;
+      line-height: 1.35;
+    }
+
+    .nav-challenge span {
+      display: block;
+      color: var(--muted);
+      font-size: .7rem;
+      font-weight: 650;
+    }
+
+    /* Buttons */
+
+    .btn {
+      display: inline-flex;
+      min-height: 49px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 21px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: .91rem;
+      font-weight: 850;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      color: var(--white);
+      background: var(--dark);
+      box-shadow: 0 8px 22px rgba(23,77,56,.15);
+    }
+
+    .btn-primary:hover { background: var(--green); }
+
+    .btn-secondary {
+      border-color: var(--border);
+      color: var(--dark);
+      background: var(--white);
+    }
+
+    .btn-secondary:hover { background: var(--light); }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 82px 0 54px;
+      background:
+        radial-gradient(ellipse at 95% 5%, rgba(210,235,210,.52), transparent 36%),
+        linear-gradient(180deg, #fff 0%, #f8fbf6 100%);
+    }
+
+    .hero::before {
+      position: absolute;
+      top: -160px;
+      right: -160px;
+      width: 400px;
+      height: 400px;
+      border: 1px solid rgba(117,169,132,.13);
+      border-radius: 50%;
+      content: "";
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-date {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      margin-bottom: 26px;
+      color: var(--green);
+    }
+
+    .hero-snowflake { font-size: 1.55rem; line-height: 1.2; }
+
+    .hero-date-text {
+      color: var(--dark);
+      font-size: .85rem;
+      font-weight: 850;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      margin: 0 auto 16px;
+      color: var(--dark);
+      font-size: clamp(2.8rem, 7.4vw, 5.9rem);
+      font-weight: 950;
+      letter-spacing: -.075em;
+      line-height: .98;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--green);
+    }
+
+    .hero-subtitle {
+      margin-bottom: 29px;
+      color: var(--dark);
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-weight: 800;
+      letter-spacing: -.035em;
+    }
+
+    .hero-points {
+      display: grid;
+      width: fit-content;
+      max-width: 100%;
+      gap: 14px;
+      margin: 0 auto 32px;
+      padding: 0;
+      list-style: none;
+      text-align: left;
+    }
+
+    .hero-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: #385746;
+      font-size: .98rem;
+      font-weight: 650;
+    }
+
+    .hero-point-icon {
+      display: inline-flex;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9px;
+      background: var(--light);
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .hero-note {
+      margin: 23px 0 0;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    /* Community */
+
+    .community-section {
+      overflow: hidden;
+      padding: 60px 0 90px;
+      background:
+        radial-gradient(ellipse at 50% 45%, rgba(221,240,219,.72), transparent 55%),
+        var(--white);
+    }
+
+    .community-title {
+      max-width: 800px;
+      margin: 0 auto 12px;
+      color: var(--dark);
+      text-align: center;
+      font-size: clamp(2rem, 4.5vw, 3.45rem);
+      letter-spacing: -.055em;
+    }
+
+    .community-description {
+      max-width: 650px;
+      margin: 0 auto 32px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .metric-card {
+      display: flex;
+      min-height: 126px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 22px 16px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(255,255,255,.92);
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(23,77,56,.035);
+    }
+
+    .metric-number {
+      margin-bottom: 6px;
+      color: var(--dark);
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      font-weight: 950;
+      letter-spacing: -.055em;
+      line-height: 1.1;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: .85rem;
+      font-weight: 700;
+    }
+
+    .metric-extra {
+      margin-top: 5px;
+      color: var(--green);
+      font-size: .76rem;
+      font-weight: 750;
+    }
+
+    /* Earth */
+
+    .earth-stage {
+      position: relative;
+      display: grid;
+      min-height: 420px;
+      place-items: center;
+      margin: 14px auto 8px;
+      isolation: isolate;
+    }
+
+    .earth-halo {
+      position: absolute;
+      z-index: -2;
+      width: min(530px, 90vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(177,222,176,.48), rgba(216,238,211,.22) 43%, transparent 72%);
+    }
+
+    .earth-orbit {
+      position: absolute;
+      z-index: -1;
+      width: min(490px, 88vw);
+      aspect-ratio: 1;
+      border: 1px solid rgba(47,118,82,.17);
+      border-radius: 50%;
+      transform: rotate(-20deg) scaleY(.76);
+    }
+
+    .earth-orbit::before,
+    .earth-orbit::after {
+      position: absolute;
+      inset: 13px;
+      border: 1px dashed rgba(47,118,82,.16);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .earth-orbit::after {
+      inset: 32px;
+      border-style: solid;
+      opacity: .6;
+    }
+
+    .earth {
+      position: relative;
+      width: min(340px, 70vw);
+      aspect-ratio: 1;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 29% 24%, rgba(255,255,255,.96), rgba(201,239,216,.78) 8%, transparent 26%),
+        radial-gradient(circle at 33% 28%, #a8dcb6 0%, #6ab18a 30%, #39856a 55%, #205d49 77%, #153e35 100%);
+      box-shadow:
+        inset -24px -18px 42px rgba(8,47,38,.45),
+        inset 12px 10px 26px rgba(255,255,255,.32),
+        0 26px 70px rgba(26,91,62,.2),
+        0 0 0 12px rgba(255,255,255,.45),
+        0 0 0 13px rgba(47,118,82,.09);
+      animation: earth-float 6s ease-in-out infinite;
+    }
+
+    .earth::before {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      border-radius: 50%;
+      background: linear-gradient(110deg, transparent 18%, rgba(255,255,255,.16) 38%, transparent 55%, rgba(0,0,0,.17) 88%);
+      content: "";
+      pointer-events: none;
+    }
+
+    .earth::after {
+      position: absolute;
+      z-index: 3;
+      inset: 0;
+      border: 1px solid rgba(255,255,255,.38);
+      border-radius: 50%;
+      box-shadow: inset 0 0 22px rgba(255,255,255,.15);
+      content: "";
+      pointer-events: none;
+    }
+
+    .continents {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      animation: continent-drift 24s linear infinite alternate;
+    }
+
+    .continent {
+      fill: #d0ebc9;
+      stroke: rgba(238,250,232,.5);
+      stroke-width: 1.2;
+    }
+
+    .continent-shadow {
+      fill: #85c99a;
+      opacity: .78;
+    }
+
+    .earth-grid {
+      fill: none;
+      stroke: rgba(231,250,235,.24);
+      stroke-width: 1;
+    }
+
+    .earth-glint {
+      position: absolute;
+      z-index: 4;
+      top: 18%;
+      left: 24%;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,.9), rgba(255,255,255,.12) 42%, transparent 70%);
+      filter: blur(2px);
+    }
+
+    .runner-orbit {
+      position: absolute;
+      z-index: 5;
+      width: min(460px, 88vw);
+      aspect-ratio: 1;
+      pointer-events: none;
+      animation: runner-orbit 12s linear infinite;
+    }
+
+    .runner-marker {
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      display: grid;
+      width: 64px;
+      height: 64px;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.9);
+      border-radius: 50%;
+      background: rgba(255,255,255,.96);
+      box-shadow: 0 10px 28px rgba(23,77,56,.18), 0 0 0 7px rgba(255,255,255,.3);
+      transform: translateX(-50%);
+    }
+
+    .runner-emoji {
+      display: inline-block;
+      font-size: 2.15rem;
+      line-height: 1;
+      animation: runner-bounce 0.55s ease-in-out infinite alternate;
+    }
+
+    .earth-caption {
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 15px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--dark);
+      background: rgba(255,255,255,.96);
+      box-shadow: 0 8px 25px rgba(23,77,56,.07);
+      font-size: .8rem;
+      font-weight: 800;
+      white-space: nowrap;
+      transform: translateX(-50%);
+    }
+
+    @keyframes earth-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-9px); }
+    }
+
+    @keyframes continent-drift {
+      from { transform: translateX(-3%); }
+      to { transform: translateX(3%); }
+    }
+
+    @keyframes runner-orbit {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+
+    @keyframes runner-bounce {
+      from { transform: scaleX(-1) translateY(0) rotate(7deg); }
+      to { transform: scaleX(-1) translateY(-4px) rotate(-7deg); }
+    }
+
+    /* Statistik und Fortschritt */
+
+    .progress-overview { margin-top: 20px; }
+
+    .progress-summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+      align-items: stretch;
+      margin-bottom: 25px;
+    }
+
+    .progress-card {
+      display: flex;
+      min-height: 126px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 22px 16px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--white);
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(23,77,56,.035);
+    }
+
+    .progress-card .metric-number {
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
+    }
+
+    .progress-card-donation {
+      background: linear-gradient(145deg, #fff, #f0f7ed);
+    }
+
+    .progress-card-combined {
+      align-items: stretch;
+      justify-content: center;
+      padding: 18px 20px;
+      background: var(--light);
+    }
+
+    .combined-progress-heading {
+      margin-bottom: 13px;
+      color: var(--dark);
+      font-size: .8rem;
+      font-weight: 850;
+      text-align: center;
+    }
+
+    .combined-progress-values {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .combined-progress-value {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .combined-progress-value:last-child { text-align: right; }
+
+    .combined-progress-value strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--dark);
+      font-size: clamp(1.05rem, 2vw, 1.45rem);
+      font-weight: 950;
+      letter-spacing: -.045em;
+      line-height: 1.2;
+    }
+
+    .combined-progress-value span {
+      display: block;
+      color: var(--muted);
+      font-size: .72rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .progress-track {
+      overflow: hidden;
+      width: 100%;
+      height: 13px;
+      border-radius: 999px;
+      background: #e4eee3;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #75b88a, #286d4b);
+      transition: width 900ms ease;
+    }
+
+    .progress-foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+    /* Leaderboard */
+
+    .leaderboard-wrap {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .leaderboard-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .leaderboard-header h3 {
+      margin-bottom: 5px;
+      font-size: 1.25rem;
+    }
+
+    .leaderboard-header p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: .84rem;
+    }
+
+    .live-label {
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      color: var(--dark);
+      background: var(--light);
+      font-size: .73rem;
+      font-weight: 850;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #58a66d;
+    }
+
+    .leaderboard-scroll { overflow-x: auto; }
+
+    .leaderboard-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .leaderboard-table th,
+    .leaderboard-table td {
+      padding: 16px 22px;
+      border-bottom: 1px solid #edf2eb;
+      white-space: nowrap;
+    }
+
+    .leaderboard-table th {
+      color: var(--muted);
+      background: #fbfdf9;
+      font-size: .73rem;
+      font-weight: 850;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .leaderboard-table td {
+      font-size: .87rem;
+      font-weight: 650;
+    }
+
+    .leaderboard-table tr:last-child td { border-bottom: 0; }
+
+    .leaderboard-table td:first-child {
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .leaderboard-empty {
+      padding: 35px 20px;
+      color: var(--muted);
+      text-align: center;
+      font-size: .9rem;
+    }
+
+    .leaderboard-note {
+      padding: 15px 22px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      background: #fbfdf9;
+      font-size: .78rem;
+    }
+
+    /* Charity */
+
+    .charity-panel {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(24px, 4vw, 42px);
+      border: 1px solid #d7e8d6;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(190,225,188,.5), transparent 36%),
+        var(--light);
+    }
+
+    .charity-heading {
+      max-width: 760px;
+      margin: 0 auto 30px;
+      text-align: center;
+    }
+
+    .charity-heading h2 { margin-bottom: 12px; }
+
+    .charity-heading p {
+      margin-bottom: 0;
+      color: #4c6958;
+    }
+
+    .charity-bullet-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-align: left;
+    }
+
+    .charity-bullet-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #4c6958;
+    }
+
+    .charity-bullet-list li > span:first-child {
+      flex: 0 0 auto;
+    }
+
+    .charity-donate-top {
+      max-width: 720px;
+      margin: 0 auto 28px;
+      text-align: center;
+    }
+
+    .charity-donate-top h3 {
+      margin-bottom: 9px;
+      font-size: clamp(1.35rem, 3vw, 1.9rem);
+    }
+
+    .charity-donate-top p {
+      margin-bottom: 20px;
+      color: #4c6958;
+    }
+
+    .charity-link-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .donate-link {
+      min-width: min(100%, 290px);
+      padding: 15px 25px;
+      border-radius: 14px;
+      color: var(--white);
+      background: var(--dark);
+      box-shadow: 0 8px 22px rgba(23,77,56,.15);
+    }
+
+    .donate-link:hover { background: var(--green); }
+
+    .donation-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .donation-summary-card {
+      min-width: 0;
+      padding: 24px;
+      border: 1px solid #d7e8d6;
+      border-radius: 20px;
+      background: rgba(255,255,255,.86);
+    }
+
+    .donation-summary-label {
+      margin-bottom: 12px;
+      color: var(--green);
+      font-size: .92rem;
+      font-weight: 850;
+    }
+
+    .donation-summary-value {
+      margin-bottom: 10px;
+      color: var(--dark);
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 950;
+      line-height: 1.1;
+      letter-spacing: -.06em;
+      overflow-wrap: anywhere;
+    }
+
+    .donation-summary-card p {
+      margin-bottom: 0;
+      color: #4c6958;
+      font-size: .88rem;
+    }
+
+    .donation-total-panel {
+      padding: 28px 20px;
+      border-radius: 20px;
+      color: var(--white);
+      background: var(--dark);
+      text-align: center;
+    }
+
+    .donation-total-label {
+      margin-bottom: 5px;
+      font-weight: 750;
+    }
+
+    .donation-total-value {
+      margin-bottom: 8px;
+      font-size: clamp(2.4rem, 6vw, 3.5rem);
+      font-weight: 950;
+      line-height: 1.1;
+      letter-spacing: -.06em;
+    }
+
+    .donation-total-panel p {
+      margin: 0;
+      color: #e4f3e8;
+      font-size: .85rem;
+    }
+
+    .donation-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .donation-disclaimer {
+      margin: 18px 0 0;
+      color: #587060;
+      font-size: .78rem;
+      line-height: 1.6;
+    }
+
+    /* Formular für Zusatzspenden */
+
+    .donation-modal-backdrop {
+      position: fixed;
+      z-index: 300;
+      inset: 0;
+      display: none;
+      overflow-y: auto;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(13,38,26,.58);
+      backdrop-filter: blur(5px);
+    }
+
+    .donation-modal-backdrop.is-open { display: flex; }
+
+    .donation-modal {
+      position: relative;
+      width: min(100%, 470px);
+      padding: 30px;
+      border-radius: 24px;
+      background: var(--white);
+      box-shadow: 0 25px 90px rgba(0,0,0,.2);
+    }
+
+    .donation-modal h3 {
+      margin: 0 35px 10px 0;
+      color: var(--dark);
+      font-size: 1.65rem;
+    }
+
+    .donation-modal-description {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .donation-modal-close {
+      position: absolute;
+      top: 13px;
+      right: 13px;
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--dark);
+      background: var(--white);
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .donation-form-field {
+      display: grid;
+      gap: 7px;
+      margin-top: 17px;
+    }
+
+    .donation-form-field label {
+      color: var(--dark);
+      font-size: .84rem;
+      font-weight: 800;
+    }
+
+    .donation-form-field input {
+      width: 100%;
+      min-height: 47px;
+      padding: 11px 13px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      background: #fbfdf9;
+    }
+
+    .donation-modal .btn {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .donation-modal-note {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: .76rem;
+    }
+
+    .donation-form-message {
+      display: none;
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 12px;
+      color: var(--dark);
+      background: var(--light);
+      font-size: .84rem;
+    }
+
+    .donation-form-message.is-visible { display: block; }
+
+    /* Ablauf */
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .step-card {
+      padding: 27px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: var(--white);
+      box-shadow: 0 10px 30px rgba(23,77,56,.035);
+    }
+
+    .step-number {
+      display: grid;
+      width: 46px;
+      height: 46px;
+      margin-bottom: 20px;
+      place-items: center;
+      border-radius: 15px;
+      color: var(--dark);
+      background: var(--light);
+      font-size: 1.15rem;
+      font-weight: 950;
+    }
+
+    .step-card h3 {
+      margin-bottom: 11px;
+      font-size: 1.14rem;
+    }
+
+    .step-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    /* Profil */
+
+    .profile-panel {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 28px;
+      padding: clamp(26px, 4vw, 42px);
+      border-radius: 28px;
+      color: var(--white);
+      background: var(--dark);
+    }
+
+    .profile-panel h2 {
+      margin-bottom: 12px;
+      color: var(--white);
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+    }
+
+    .profile-panel p {
+      max-width: 650px;
+      margin-bottom: 0;
+      color: rgba(255,255,255,.78);
+    }
+
+    .profile-panel .btn-primary {
+      color: var(--dark);
+      background: var(--white);
+      box-shadow: none;
+      white-space: nowrap;
+    }
+
+    .profile-panel .btn-primary:hover { background: var(--light); }
+
+    /* NEU: Persönliche Übersicht lokaler Spendenmeldungen */
+
+    .personal-donations {
+      margin-top: 22px;
+      padding: clamp(22px, 3vw, 32px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .personal-donations h3 {
+      margin-bottom: 8px;
+      color: var(--dark);
+      font-size: 1.4rem;
+    }
+
+    .personal-donations-intro {
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .personal-donations-total {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding: 17px 19px;
+      border-radius: 16px;
+      background: var(--light);
+    }
+
+    .personal-donations-total span {
+      color: var(--dark);
+      font-size: .9rem;
+      font-weight: 800;
+    }
+
+    .personal-donations-total strong {
+      color: var(--dark);
+      font-size: 1.45rem;
+      font-weight: 950;
+    }
+
+    .personal-donation-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .personal-donation-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .personal-donation-item:last-child {
+      border-bottom: 0;
+    }
+
+    .personal-donation-details {
+      min-width: 0;
+    }
+
+    .personal-donation-details strong {
+      display: block;
+      color: var(--dark);
+      font-size: 1rem;
+    }
+
+    .personal-donation-details span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .delete-donation-btn {
+      flex-shrink: 0;
+      padding: 8px 12px;
+      border: 1px solid #e7caca;
+      border-radius: 999px;
+      color: #8b3434;
+      background: #fffafa;
+      cursor: pointer;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .delete-donation-btn:hover {
+      background: #fceeee;
+    }
+
+    .personal-donations-empty {
+      padding: 18px 0;
+      color: var(--muted);
+      font-size: .88rem;
+      text-align: center;
+    }
+
+    .personal-donations-note {
+      margin: 18px 0 0;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .76rem;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+
+    .site-footer {
+      padding: 29px 0;
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .footer-brand {
+      color: var(--dark);
+      font-size: .86rem;
+      font-weight: 900;
+    }
+
+    .footer-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: .78rem;
+      text-align: right;
+    }
+
+    /* Rechtlicher Hinweis */
+
+    .disclaimer {
+      padding: 20px 0 25px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      background: var(--pale);
+      font-size: .76rem;
+      line-height: 1.65;
+    }
+
+    .disclaimer strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--dark);
+      font-size: .79rem;
+    }
+
+    .disclaimer p { margin: 0; }
+
+    /* Registrierungs-Modal */
+
+    .modal-backdrop {
+      position: fixed;
+      z-index: 200;
+      inset: 0;
+      display: none;
+      overflow-y: auto;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(13,38,26,.58);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-backdrop.is-open { display: flex; }
+
+    .modal {
+      position: relative;
+      width: min(100%, 480px);
+      padding: 31px;
+      border-radius: 26px;
+      background: var(--white);
+      box-shadow: 0 25px 90px rgba(0,0,0,.2);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--dark);
+      background: var(--white);
+      cursor: pointer;
+      font-size: 1.15rem;
+    }
+
+    .modal h2 {
+      margin: 8px 35px 12px 0;
+      font-size: 1.8rem;
+    }
+
+    .modal-description {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 7px;
+      margin-top: 17px;
+    }
+
+    .form-field label {
+      color: var(--dark);
+      font-size: .84rem;
+      font-weight: 800;
+    }
+
+    .form-field input {
+      width: 100%;
+      min-height: 47px;
+      padding: 11px 13px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      background: #fbfdf9;
+    }
+
+    .modal .btn {
+      width: 100%;
+      margin-top: 22px;
+    }
+
+    .modal-footnote {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: .75rem;
+    }
+
+    .form-message {
+      display: none;
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 12px;
+      color: var(--dark);
+      background: var(--light);
+      font-size: .85rem;
+    }
+
+    .form-message.is-visible { display: block; }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .nav-links { gap: 13px; }
+      .nav-challenge { display: none; }
+    }
+
+    @media (max-width: 680px) {
+      .container { width: min(100% - 30px, 1160px); }
+      .section { padding: 64px 0; }
+
+      .nav {
+        min-height: 70px;
+        gap: 10px;
+      }
+
+      .brand { gap: 6px; font-size: .81rem; }
+      .brand-runner { font-size: 1.1rem; }
+      .nav-right { gap: 8px; }
+      .nav-links { display: none; }
+
+      .nav-festive { gap: 5px; padding: 7px 9px; }
+      .nav-tree { font-size: 1.5rem; }
+      .nav-gift { font-size: 1.1rem; }
+
+      .hero { padding: 62px 0 44px; }
+      .hero h1 { font-size: clamp(2.65rem, 12vw, 4.3rem); }
+
+      .hero-points {
+        width: 100%;
+        max-width: 390px;
+        gap: 13px;
+      }
+
+      .hero-points li { font-size: .91rem; }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        max-width: 360px;
+        margin: 0 auto;
+      }
+
+      .hero-actions .btn { width: 100%; }
+
+      .metric-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .metric-card { min-height: 0; padding: 18px 14px; }
+      .metric-number { font-size: 1.65rem; }
+
+      .earth-stage {
+        min-height: 350px;
+        margin-top: 7px;
+      }
+
+      .earth { width: min(270px, 67vw); }
+
+      .earth-orbit,
+      .runner-orbit {
+        width: min(365px, 91vw);
+      }
+
+      .runner-marker { width: 53px; height: 53px; }
+      .runner-emoji { font-size: 1.8rem; }
+
+      .earth-caption {
+        bottom: 0;
+        max-width: 92%;
+        font-size: .7rem;
+      }
+
+      .progress-summary {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .progress-card { min-height: 0; padding: 18px 14px; }
+      .progress-card .metric-number { font-size: 1.65rem; }
+      .progress-card-combined { padding: 20px; }
+      .combined-progress-value strong { font-size: 1.2rem; }
+      .progress-foot { font-size: .72rem; }
+
+      .leaderboard-header {
+        align-items: flex-start;
+        padding: 19px;
+      }
+
+      .leaderboard-table th,
+      .leaderboard-table td {
+        padding: 14px 16px;
+      }
+
+      .donation-cards { grid-template-columns: 1fr; }
+
+      .charity-link-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .charity-link-actions .btn { width: 100%; }
+
+      .donation-actions {
+        flex-direction: column;
+      }
+
+      .donation-actions .btn { width: 100%; }
+
+      .steps-grid { grid-template-columns: 1fr; }
+      .step-card { padding: 23px; }
+
+      .profile-panel {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .profile-panel .btn { width: 100%; }
+
+      .personal-donation-item {
+        align-items: flex-start;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .footer-note { text-align: left; }
+      .modal { padding: 26px 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
     }
   </style>
 </head>
+
 <body>
-<header class="site-header">
-  <div class="container nav">
-    <a class="brand" href="#start" aria-label="Run into Christmas Startseite">
-      <span class="brand-icon">🏃</span>
-      <span>RUN INTO <span>CHRISTMAS</span></span>
-    </a>
-    <div class="nav-right">
-      <nav class="nav-links" aria-label="Hauptnavigation">
-        <a href="#challenge">Challenge</a>
-        <a href="#leaderboard">Leaderboard</a>
-        <a href="#charity">Charity</a>
-        <a href="#ablauf">Ablauf</a>
-      </nav>
-      <button class="btn primary" id="authNavButton" type="button">Mitlaufen →</button>
-    </div>
-  </div>
-</header>
 
-<main>
-  <section class="hero" id="start">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <div class="season-pill"><span class="season-dot"></span> 1. BIS 24. DEZEMBER · WINTER CHALLENGE</div>
-        <h1>RUN INTO <span>CHRISTMAS.</span></h1>
-        <p class="hero-sub">Jeder Kilometer zählt.</p>
-        <p class="hero-description">Wir laufen gemeinsam Richtung Weihnachten. Sammle Kilometer, motiviere andere und mach Bewegung zu etwas, das verbindet.</p>
-        <div class="hero-actions">
-          <button class="btn primary" type="button" data-open-auth>Jetzt mitlaufen <span>→</span></button>
-          <a class="btn secondary" href="#challenge">Challenge entdecken ↓</a>
-        </div>
-        <div class="hero-proof">
-          <div class="avatar-stack" aria-hidden="true"><span>🏃</span><span>🎄</span><span>💚</span></div>
-          <span>Eine Community. Ein gemeinsames Ziel: 40.000 km.</span>
-        </div>
-      </div>
+  <header class="site-header">
+    <div class="container nav">
 
-      <div class="earth-stage" role="img" aria-label="Animierte grüne Erde mit laufendem Weihnachtsläufer">
-        <div class="earth-glow"></div><div class="earth-orbit"></div>
-        <div class="earth">
-          <svg class="continents" viewBox="0 0 340 340" aria-hidden="true">
-            <g class="grid-lines">
-              <ellipse cx="170" cy="170" rx="155" ry="52"/><ellipse cx="170" cy="170" rx="163" ry="100"/>
-              <ellipse cx="170" cy="170" rx="105" ry="165"/><ellipse cx="170" cy="170" rx="54" ry="165"/>
-              <path d="M8 170H332M170 5V335"/>
-            </g>
-            <path class="continent" d="M37 73L57 49 85 38 109 49 126 68 117 85 101 90 91 108 76 120 69 144 55 137 51 116 36 100 28 84Z"/>
-            <path class="continent-shadow" d="M78 122L94 116 106 132 116 148 109 167 97 161 90 143Z"/>
-            <path class="continent" d="M111 157L131 160 144 177 139 199 129 222 125 251 112 280 102 260 106 237 96 216 98 192 89 177Z"/>
-            <path class="continent" d="M146 68L162 56 183 59 197 49 225 54 245 68 271 75 290 93 280 110 257 112 245 127 224 124 210 138 194 128 177 135 166 117 151 109 143 90Z"/>
-            <path class="continent" d="M163 126L190 126 207 144 211 169 198 194 185 220 173 235 161 213 157 191 144 172 147 149Z"/>
-            <path class="continent" d="M218 139L236 145 247 163 239 179 229 171 223 155Z"/>
-            <path class="continent" d="M247 174L267 178 282 190 276 202 260 195Z"/>
-            <path class="continent" d="M250 220L272 213 292 225 287 244 269 254 249 245 242 231Z"/>
-            <path class="continent-shadow" d="M30 298Q170 320 310 298L328 322H12Z"/>
-          </svg>
-        </div>
-        <div class="runner-orbit" aria-hidden="true"><div class="runner-marker"><span>🏃</span></div></div>
-        <div class="earth-label">🌍 Ein Team. Eine Erde. 40.000 Kilometer.</div>
-      </div>
-    </div>
-  </section>
+      <a class="brand" href="#start" aria-label="Run into Christmas – Startseite">
+        <span class="brand-runner" aria-hidden="true">🏃</span>
+        <span class="brand-text">RUN INTO <span>CHRISTMAS</span></span>
+      </a>
 
-  <section class="section" id="challenge">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">🌱 Eine Community. Ein gemeinsames Ziel.</span>
-        <h2>Gemeinsam bewegen wir mehr.</h2>
-        <p>Jeder Lauf zählt. Sieh live, wie weit unsere Community schon gekommen ist.</p>
-      </div>
-      <div class="stat-grid">
-        <article class="stat-card">
-          <div class="stat-top"><span>Gemeinsam gelaufen</span><span class="stat-icon">👟</span></div>
-          <div class="stat-number" id="totalKm">0 km</div>
-          <div class="stat-foot">Kilometer aller eingereichten Läufe</div>
-        </article>
-        <article class="stat-card">
-          <div class="stat-top"><span>Rechnerischer Spendenbeitrag</span><span class="stat-icon">💚</span></div>
-          <div class="stat-number" id="donationTotal">0,00 €</div>
-          <div class="stat-foot">0,01 € je eingereichtem Kilometer · keine Zahlungsbestätigung</div>
-        </article>
-        <article class="stat-card">
-          <div class="stat-top"><span>Unser Ziel</span><span class="stat-icon">🎯</span></div>
-          <div class="stat-number" id="progressPercent">0 %</div>
-          <div class="stat-foot"><span id="remainingKm">40.000 km</span> noch bis zum Ziel</div>
-        </article>
-      </div>
-      <div class="progress-panel">
-        <div class="progress-heading"><strong>🌍 Unser gemeinsamer Weg</strong><span id="progressText">0 von 40.000 km</span></div>
-        <div class="progress-track" id="progressBar" role="progressbar" aria-label="Fortschritt zum Kilometerziel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill" id="progressFill"></div></div>
-        <div class="progress-foot"><span>Jeder Kilometer bringt uns näher.</span><span>40.000 km</span></div>
-      </div>
-    </div>
-  </section>
+      <div class="nav-right">
+        <nav class="nav-links" aria-label="Hauptnavigation">
+          <a href="#challenge">Challenge</a>
+          <a href="#leaderboard">Leaderboard</a>
+          <a href="#charity">Charity</a>
+          <a href="#ablauf">So funktioniert's</a>
+        </nav>
 
-  <section class="section soft" id="leaderboard">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">🏆 Gemeinsam motiviert bleiben</span>
-        <h2>Das Leaderboard.</h2>
-        <p>Die Community-Rangliste wird aus den eingereichten Läufen geladen.</p>
-      </div>
-      <div class="leaderboard">
-        <div class="leaderboard-head"><div><h3>Die Kilometer-Challenge</h3><p>Sortiert nach Gesamtkilometern</p></div><span class="live"><i></i> LIVE</span></div>
-        <div class="table-scroll">
-          <table>
-            <thead><tr><th>Platz</th><th>Läufer/in</th><th>Gesamt-km</th><th>Läufe</th><th>Ø km / Lauf</th></tr></thead>
-            <tbody id="leaderboardBody"><tr><td colspan="5" class="empty">Lade Community-Daten …</td></tr></tbody>
-          </table>
-        </div>
-        <div class="leaderboard-note">Angezeigt werden der Vorname und der erste Buchstabe des Nachnamens. Laufnachweise bleiben privat.</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="charity">
-    <div class="container">
-      <div class="charity-panel">
-        <div class="charity-head">
-          <span class="eyebrow">💚 Kilometer, die etwas bewegen</span>
-          <h2>Laufen für einen guten Zweck.</h2>
-          <p>Für jeden eingereichten Kilometer sind rechnerisch 0,01 € für Laureus Sport for Good vorgesehen. Freiwillige Spenden kannst du zusätzlich melden.</p>
-        </div>
-        <div class="charity-actions">
-          <a class="btn primary" href="https://www.laureus.de/spenden" target="_blank" rel="noopener noreferrer">🎁 Jetzt an Laureus spenden ↗</a>
-          <a class="btn secondary" href="https://www.laureus.de" target="_blank" rel="noopener noreferrer">Laureus kennenlernen ↗</a>
-          <button class="btn secondary" id="openDonationModal" type="button">+ Zusatzspende melden</button>
-        </div>
-        <div class="charity-stats">
-          <div class="charity-stat"><strong id="founderDonation">0,00 €</strong><span>Rechnerischer Kilometerbeitrag</span></div>
-          <div class="charity-stat"><strong id="communityDonations">0,00 €</strong><span>Gemeldete Zusatzspenden</span></div>
-          <div class="charity-stat"><strong id="combinedDonations">0,00 €</strong><span>Rechnerische Summe der Meldungen</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section soft" id="ablauf">
-    <div class="container">
-      <div class="section-head"><span class="eyebrow">👟 Einfach mitmachen</span><h2>Drei Schritte. Ein gemeinsames Ziel.</h2><p>Du brauchst keine Bestzeit. Jeder Kilometer zählt.</p></div>
-      <div class="steps">
-        <article class="step"><div class="step-number">01</div><h3>Registrieren</h3><p>Erstelle dein Konto und bestätige deine E-Mail-Adresse.</p></article>
-        <article class="step"><div class="step-number">02</div><h3>Lauf hochladen</h3><p>Trage deine Kilometer ein und lade einen Bildnachweis hoch.</p></article>
-        <article class="step"><div class="step-number">03</div><h3>Gemeinsam wachsen</h3><p>Deine Kilometer fließen in die Community-Statistik und Rangliste ein.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="profil">
-    <div class="container">
-      <div class="cta-panel">
-        <div><span class="eyebrow" style="color:#b8efc5">Deine Challenge beginnt hier</span><h2>Bereit, Kilometer zu sammeln?</h2><p>Erstelle dein Konto, halte deine Läufe fest und werde Teil der Run into Christmas Community.</p></div>
-        <button class="btn" type="button" data-open-auth>Jetzt mitlaufen →</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="section member-area" id="memberArea" hidden>
-    <div class="container">
-      <div class="member-top">
-        <div><span class="eyebrow">🔒 Dein persönlicher Bereich</span><h2>Willkommen, <span id="memberName">Runner</span>.</h2><p>Deine Kilometer. Deine Läufe. Deine Übersicht.</p></div>
-        <button class="btn secondary" id="memberLogout" type="button">Abmelden ↗</button>
-      </div>
-      <div class="stat-grid">
-        <article class="stat-card"><div class="stat-top"><span>Deine Kilometer</span><span class="stat-icon">👟</span></div><div class="stat-number" id="memberKm">0 km</div><div class="stat-foot">Insgesamt eingereicht</div></article>
-        <article class="stat-card"><div class="stat-top"><span>Deine Läufe</span><span class="stat-icon">📅</span></div><div class="stat-number" id="memberRunCount">0</div><div class="stat-foot">Gespeicherte Laufeinträge</div></article>
-        <article class="stat-card"><div class="stat-top"><span>Deine Spendenmeldungen</span><span class="stat-icon">💚</span></div><div class="stat-number" id="memberDonationTotal">0,00 €</div><div class="stat-foot">Von dir gemeldete Beträge</div></article>
-      </div>
-
-      <div class="member-card" style="margin-top:20px">
-        <span class="eyebrow">🏃 Neuer Eintrag</span><h3>Deinen Lauf einreichen</h3>
-        <p>Gib die gelaufenen Kilometer und das Datum an und lade einen Screenshot oder ein Foto als Nachweis hoch.</p>
-        <form id="runForm">
-          <div class="form-grid">
-            <div class="field"><label for="runKm">Gelaufene Kilometer</label><input id="runKm" type="number" min="0.1" max="500" step="0.1" placeholder="z. B. 5,4" required></div>
-            <div class="field"><label for="runDate">Laufdatum</label><input id="runDate" type="date" required></div>
+        <div class="nav-festive" aria-label="Weihnachtliche Laufchallenge">
+          <span class="nav-tree" aria-hidden="true">🎄</span>
+          <span class="nav-gift" aria-hidden="true">🎁</span>
+          <div class="nav-challenge">
+            24 Tage
+            <span>Winter Running Challenge</span>
           </div>
-          <div class="field"><label for="runProof">Laufnachweis als Bild</label><input id="runProof" type="file" accept="image/jpeg,image/png,image/webp" required><span class="field-help">JPG, PNG oder WebP · maximal 5 MB · nur für dich sichtbar</span></div>
-          <div class="member-form-actions"><button class="btn primary" id="runSubmit" type="submit">Lauf speichern ↑</button></div>
-          <div class="message" id="runMessage" role="status" aria-live="polite"></div>
-        </form>
+        </div>
       </div>
 
-      <div class="member-card"><span class="eyebrow">📈 Deine Aktivität</span><h3>Deine Laufhistorie</h3><p>Alle eingereichten Läufe mit Datum, Kilometerzahl und deinem privaten Nachweis.</p><div id="memberRuns" class="run-list"><div class="empty">Läufe werden geladen …</div></div></div>
+    </div>
+  </header>
 
-      <div class="member-card"><span class="eyebrow">💚 Deine Unterstützung</span><h3>Deine Zusatzspenden</h3><p>Du kannst deine eigenen Spendenmeldungen hier ansehen und löschen.</p><div id="memberDonations" class="donation-list"><div class="empty">Spenden werden geladen …</div></div></div>
-      <div class="message" id="memberMessage" role="status" aria-live="polite"></div>
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="start">
+      <div class="container">
+        <div class="hero-inner">
+
+          <div class="hero-date" aria-label="Vom 1. bis 24. Dezember">
+            <span class="hero-snowflake" aria-hidden="true">❄️</span>
+            <span class="hero-date-text">1. bis 24. Dezember</span>
+          </div>
+
+          <h1>RUN INTO <span>CHRISTMAS.</span></h1>
+
+          <p class="hero-subtitle">Jeder Kilometer zählt.</p>
+
+          <ul class="hero-points">
+            <li>
+              <span class="hero-point-icon" aria-hidden="true">🏃</span>
+              <span>Sammle Kilometer vom 1. bis zum 24. Dezember.</span>
+            </li>
+            <li>
+              <span class="hero-point-icon" aria-hidden="true">🏆</span>
+              <span>Miss dich mit anderen auf unserem Leaderboard.</span>
+            </li>
+            <li>
+              <span class="hero-point-icon" aria-hidden="true">🌍</span>
+              <span>Lauf für die Community und unterstütze Laureus Sport for Good.</span>
+            </li>
+          </ul>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="button" data-open-modal>
+              Jetzt mitlaufen <span aria-hidden="true">→</span>
+            </button>
+            <a class="btn btn-secondary" href="#challenge">
+              Challenge entdecken <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+
+          <p class="hero-note">
+            24 Tage. Gemeinsam Kilometer sammeln. Gemeinsam etwas bewegen.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ERDE UND COMMUNITY -->
+    <section class="community-section" id="challenge">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">🌱 Eine Community. Ein gemeinsames Ziel.</span>
+          <h2 class="community-title">🌍 Gemeinsam umrunden wir die Erde</h2>
+          <p class="community-description">
+            Jeder Lauf bringt uns unserem Ziel näher. Sammle Kilometer,
+            motiviere andere und werde Teil unserer gemeinsamen Challenge.
+          </p>
+        </div>
+
+        <div class="metric-grid" aria-label="Challenge-Ziele">
+          <article class="metric-card">
+            <div class="metric-number">24</div>
+            <div class="metric-label">Dezembertage</div>
+          </article>
+
+          <article class="metric-card">
+            <div class="metric-number">40.000 km</div>
+            <div class="metric-label">Unser gemeinsames Ziel</div>
+          </article>
+
+          <article class="metric-card">
+            <div class="metric-number">0,01 €</div>
+            <div class="metric-label">Pro bestätigtem Kilometer</div>
+            <div class="metric-extra">Für Laureus Sport for Good</div>
+          </article>
+        </div>
+
+        <div
+          class="earth-stage"
+          role="img"
+          aria-label="Eine grüne, dreidimensional wirkende Erde mit einem Läufer, der gegen den Uhrzeigersinn um die Erde läuft."
+        >
+          <div class="earth-halo"></div>
+          <div class="earth-orbit"></div>
+
+          <div class="earth">
+            <svg class="continents" viewBox="0 0 340 340" aria-hidden="true">
+              <defs>
+                <clipPath id="earthClip">
+                  <circle cx="170" cy="170" r="169"/>
+                </clipPath>
+              </defs>
+
+              <g clip-path="url(#earthClip)">
+                <g class="earth-grid">
+                  <ellipse cx="170" cy="170" rx="155" ry="52"/>
+                  <ellipse cx="170" cy="170" rx="163" ry="100"/>
+                  <ellipse cx="170" cy="170" rx="105" ry="165"/>
+                  <ellipse cx="170" cy="170" rx="54" ry="165"/>
+                  <path d="M 8 170 H 332"/>
+                  <path d="M 170 5 V 335"/>
+                </g>
+
+                <path class="continent"
+                  d="M 37 73 L 57 49 L 85 38 L 109 49 L 126 68
+                     L 117 85 L 101 90 L 91 108 L 76 120 L 69 144
+                     L 55 137 L 51 116 L 36 100 L 28 84 Z"/>
+
+                <path class="continent-shadow"
+                  d="M 78 122 L 94 116 L 106 132 L 116 148
+                     L 109 167 L 97 161 L 90 143 Z"/>
+
+                <path class="continent"
+                  d="M 111 157 L 131 160 L 144 177 L 139 199
+                     L 129 222 L 125 251 L 112 280 L 102 260
+                     L 106 237 L 96 216 L 98 192 L 89 177 Z"/>
+
+                <path class="continent"
+                  d="M 146 68 L 162 56 L 183 59 L 197 49 L 225 54
+                     L 245 68 L 271 75 L 290 93 L 280 110 L 257 112
+                     L 245 127 L 224 124 L 210 138 L 194 128 L 177 135
+                     L 166 117 L 151 109 L 143 90 Z"/>
+
+                <path class="continent"
+                  d="M 163 126 L 190 126 L 207 144 L 211 169
+                     L 198 194 L 185 220 L 173 235 L 161 213
+                     L 157 191 L 144 172 L 147 149 Z"/>
+
+                <path class="continent"
+                  d="M 218 139 L 236 145 L 247 163 L 239 179
+                     L 229 171 L 223 155 Z"/>
+
+                <path class="continent"
+                  d="M 247 174 L 267 178 L 282 190 L 276 202 L 260 195 Z"/>
+
+                <path class="continent"
+                  d="M 250 220 L 272 213 L 292 225 L 287 244
+                     L 269 254 L 249 245 L 242 231 Z"/>
+
+                <path class="continent"
+                  d="M 119 27 L 141 18 L 155 30 L 148 48 L 128 51 L 116 41 Z"/>
+
+                <path class="continent-shadow"
+                  d="M 30 298 Q 170 320 310 298 L 328 322 L 12 322 Z"/>
+              </g>
+            </svg>
+            <div class="earth-glint"></div>
+          </div>
+
+          <div class="runner-orbit" aria-hidden="true">
+            <div class="runner-marker">
+              <span class="runner-emoji">🏃</span>
+            </div>
+          </div>
+
+          <div class="earth-caption">
+            <span aria-hidden="true">🏃</span>
+            Ein Team. Eine Erde. 40.000 Kilometer.
+          </div>
+        </div>
+
+        <div class="progress-overview">
+          <div class="progress-summary">
+
+            <article class="progress-card">
+              <div class="metric-number" id="totalKm">0 km</div>
+              <div class="metric-label">Gesammelte Kilometer</div>
+            </article>
+
+            <article class="progress-card progress-card-donation">
+              <div class="metric-number" id="donationTotal">0,00 € / 400,00 €</div>
+              <div class="metric-label">Bisher gesammelte Spendensumme</div>
+              <div class="metric-extra">0,01 € pro bestätigtem Kilometer</div>
+            </article>
+
+            <article class="progress-card progress-card-combined">
+              <div class="combined-progress-heading">Unser Fortschritt</div>
+              <div class="combined-progress-values">
+                <div class="combined-progress-value">
+                  <strong id="progressPercent">0 %</strong>
+                  <span>Erreicht</span>
+                </div>
+                <div class="combined-progress-value">
+                  <strong id="remainingKm">40.000 km</strong>
+                  <span>Noch bis zum Ziel</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <div
+            class="progress-track"
+            id="progressBar"
+            role="progressbar"
+            aria-label="Fortschritt zum gemeinsamen Kilometerziel"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          >
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+
+          <div class="progress-foot">
+            <span>Unser gemeinsamer Weg</span>
+            <span>40.000 km Ziel</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LEADERBOARD -->
+    <section class="section section-soft" id="leaderboard">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">🏆 Gemeinsam motiviert bleiben</span>
+          <h2>Unser Leaderboard</h2>
+          <p class="section-intro">
+            Jeder Kilometer zählt. Verfolge deine Laufleistung und lass dich
+            von der Community zu neuen Zielen motivieren.
+          </p>
+        </div>
+
+        <div class="leaderboard-wrap">
+          <div class="leaderboard-header">
+            <div>
+              <h3>Die Kilometer-Challenge</h3>
+              <p>Sortiert nach bestätigten Gesamtkilometern</p>
+            </div>
+            <span class="live-label">
+              <span class="live-dot"></span>
+              Dezember-Challenge
+            </span>
+          </div>
+
+          <div class="leaderboard-scroll">
+            <table class="leaderboard-table">
+              <thead>
+                <tr>
+                  <th>Platz</th>
+                  <th>Läufer/in</th>
+                  <th>Gesamt-km</th>
+                  <th>Lauftage</th>
+                  <th>Ø km / Lauftag</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboardBody">
+                <tr>
+                  <td colspan="5" class="leaderboard-empty">
+                    Noch keine bestätigten Läufe. Sei dabei und mach den Anfang! 🏃
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="leaderboard-note">
+            Die Tabelle ist aktuell eine Vorschau. Für ein gemeinsames,
+            dauerhaft gespeichertes Leaderboard müssen Nutzerprofile und
+            bestätigte Laufdaten mit einer Datenbank verbunden werden.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CHARITY -->
+    <section class="section" id="charity">
+      <div class="container">
+        <div class="charity-panel">
+
+          <div class="charity-heading">
+            <span class="eyebrow">💚 Kilometer, die etwas bewegen</span>
+            <h2>Laufen für einen guten Zweck</h2>
+            <div class="charity-copy">
+              <ul class="charity-bullet-list">
+                <li>
+                  <span aria-hidden="true">🏃</span>
+                  <span>Für jeden bestätigten gelaufenen Kilometer sind 0,01 € für Laureus Sport for Good vorgesehen.</span>
+                </li>
+                <li>
+                  <span aria-hidden="true">💚</span>
+                  <span>Am 24. Dezember besteht die Möglichkeit einer freiwilligen Zusatzspende.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="charity-donate-top">
+            <h3>💚 Gemeinsam laufen. Gemeinsam helfen.</h3>
+            <p>
+              Du möchtest Laureus Sport for Good direkt unterstützen?
+              Über die folgenden Links kannst du spenden oder mehr über die
+              Arbeit der Organisation erfahren.
+            </p>
+
+            <div class="charity-link-actions">
+              <a
+                class="btn donate-link"
+                href="https://www.laureus.de/spenden"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🎁 Jetzt an Laureus spenden <span aria-hidden="true">↗</span>
+              </a>
+
+              <a
+                class="btn btn-secondary"
+                href="https://www.laureus.de"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ℹ️ Was macht Laureus Sport for Good? <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="donation-cards">
+
+            <article class="donation-summary-card">
+              <div class="donation-summary-label">🏃 Kilometer-Spende</div>
+              <div class="donation-summary-value" id="founderDonation">0,00 € / 400,00 €</div>
+              <p>
+                Vom Gründer vorgesehener Betrag auf Basis der bestätigten
+                Gesamtkilometer: 0,01 € pro Kilometer.
+              </p>
+            </article>
+
+            <article class="donation-summary-card">
+              <div class="donation-summary-label">💚 Zusatzspenden</div>
+              <div class="donation-summary-value" id="communityDonations">0,00 €</div>
+              <p>
+                Freiwillige Zusatzspenden aus der Community, die über das
+                Meldeformular eingetragen wurden.
+              </p>
+            </article>
+
+          </div>
+
+          <div class="donation-total-panel">
+            <div class="donation-total-label">Gemeinsamer Spendenstand</div>
+            <div class="donation-total-value" id="combinedDonations">0,00 €</div>
+            <p>Kilometer-Spende + gemeldete Zusatzspenden</p>
+          </div>
+
+          <div class="donation-actions">
+            <button class="btn btn-primary" type="button" id="openDonationModal">
+              + Zusatzspende melden
+            </button>
+          </div>
+
+          <p class="donation-disclaimer">
+            <strong>Hinweis zur Transparenz:</strong>
+            Die Kilometer-Spende ist ein rechnerisch vorgesehener Betrag und
+            keine Bestätigung einer bereits geleisteten Zahlung. Zusatzspenden
+            werden auf Vertrauensbasis von den Läuferinnen und Läufern gemeldet.
+            Die angegebenen Beträge werden in dieser Version nicht automatisch
+            auf Zahlungseingang geprüft und sind daher nicht als verifizierte
+            Spenden zu verstehen. Die Meldungen werden vorerst nur im Browser
+            des jeweiligen Geräts gespeichert und nicht mit anderen Besuchern
+            geteilt. Der angezeigte Gesamtstand ist kein bestätigter Gesamtbetrag
+            tatsächlich eingegangener Spenden.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SO FUNKTIONIERT'S -->
+    <section class="section section-soft" id="ablauf">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">👟 Einfach mitmachen</span>
+          <h2>So funktioniert's</h2>
+          <p class="section-intro">
+            Du brauchst keine Bestzeit und keine besondere Ausrüstung.
+            Jeder Kilometer bringt uns gemeinsam weiter.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-number">01</div>
+            <h3>Mitmachen</h3>
+            <p>
+              Erstelle dein Profil und werde Teil der Run into Christmas
+              Community.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">02</div>
+            <h3>Kilometer sammeln</h3>
+            <p>
+              Laufe vom 1. bis zum 24. Dezember und dokumentiere deine
+              Laufkilometer.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">03</div>
+            <h3>Gemeinsam Gutes tun</h3>
+            <p>
+              Verfolge unseren Fortschritt, motiviere andere und hilf mit,
+              unser gemeinsames Ziel zu erreichen.
+            </p>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROFIL -->
+    <section class="section" id="profil">
+      <div class="container">
+        <div class="profile-panel">
+          <div>
+            <span class="eyebrow" style="color:#b9e1c1;">
+              Deine Challenge beginnt hier
+            </span>
+            <h2>Bereit, Kilometer zu sammeln?</h2>
+            <p>
+              Schnür deine Laufschuhe, werde Teil der Community und lauf
+              mit uns Richtung Weihnachten. Jeder Kilometer zählt.
+            </p>
+          </div>
+
+          <button class="btn btn-primary" type="button" data-open-modal>
+            Jetzt mitlaufen <span aria-hidden="true">→</span>
+          </button>
+        </div>
+
+        <!-- NEU: eigene lokal gespeicherte Zusatzspenden -->
+        <div class="personal-donations">
+          <h3>Deine gemeldeten Spenden</h3>
+          <p class="personal-donations-intro">
+            Hier siehst du die Zusatzspenden, die in diesem Browser gemeldet
+            wurden.
+          </p>
+
+          <div class="personal-donations-total">
+            <span>Bisher gemeldeter Betrag</span>
+            <strong id="personalDonationTotal">0,00 €</strong>
+          </div>
+
+          <div
+            class="personal-donation-list"
+            id="personalDonationList"
+            aria-live="polite"
+          >
+            <div class="personal-donations-empty">
+              Du hast hier noch keine Zusatzspenden gemeldet.
+            </div>
+          </div>
+
+          <p class="personal-donations-note">
+            * Die Beträge werden auf Vertrauensbasis angegeben und nicht
+            automatisch auf Zahlungseingang geprüft. Da es noch keine
+            Benutzerkonten gibt, bezieht sich diese Übersicht auf die
+            Meldungen in diesem Browser. Gelöschte Meldungen werden aus
+            dieser lokalen Übersicht und den angezeigten Summen entfernt.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="footer-brand" href="#start">🏃 RUN INTO CHRISTMAS</a>
+      <p class="footer-note">Gemeinsam laufen. Gemeinsam bewegen. 💚</p>
+    </div>
+  </footer>
+
+  <!-- PRIVATER / UNABHÄNGIGER SPENDENHINWEIS -->
+  <section class="disclaimer" aria-label="Hinweis zur Spendenaktion">
+    <div class="container">
+      <strong>Hinweis zur Spendenaktion</strong>
+      <p>
+        „Run into Christmas“ ist eine privat organisierte Lauf- und Spendenaktion.
+        Sie steht in keiner offiziellen Verbindung zu Instagram, Laureus Sport for
+        Good oder anderen Drittpersonen bzw. Organisationen und wird von diesen
+        nicht veranstaltet, gesponsert oder offiziell unterstützt, sofern nicht
+        ausdrücklich anders angegeben. Instagram und Laureus Sport for Good werden
+        hier ausschließlich zur Beschreibung der jeweiligen Plattform bzw. des
+        vorgesehenen Spendenzwecks genannt. Die Anzeige eines errechneten
+        Spendenbetrags ist keine Bestätigung eines bereits eingegangenen oder
+        überwiesenen Spendenbetrags.
+      </p>
     </div>
   </section>
-</main>
 
-<footer class="site-footer"><div class="container footer-inner"><a class="footer-brand" href="#start">🏃 RUN INTO CHRISTMAS</a><p class="footer-note">Gemeinsam laufen. Gemeinsam bewegen. 💚</p></div></footer>
-<section class="disclaimer"><div class="container"><strong>Hinweis zur Spendenaktion</strong><p>„Run into Christmas“ ist eine privat organisierte Lauf- und Spendenaktion und steht in keiner offiziellen Verbindung zu Laureus Sport for Good, sofern nicht ausdrücklich anders angegeben. Der rechnerische Kilometerbeitrag und gemeldete Zusatzspenden bestätigen keine tatsächlich eingegangene oder überwiesene Zahlung. Laufdaten beruhen auf den Einreichungen der Teilnehmenden und werden nicht automatisch auf ihre Richtigkeit geprüft.</p></div></section>
+  <!-- REGISTRIERUNGSVORSCHAU -->
+  <div
+    class="modal-backdrop"
+    id="registrationModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+    aria-hidden="true"
+  >
+    <div class="modal">
+      <button
+        class="modal-close"
+        type="button"
+        aria-label="Fenster schließen"
+        data-close-modal
+      >×</button>
 
-<!-- Konto: Registrierung und Login -->
-<div class="modal-backdrop" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle" aria-hidden="true">
-  <div class="modal">
-    <button class="modal-close" type="button" data-close-auth aria-label="Fenster schließen">×</button>
-    <span class="eyebrow">🏃 Run into Christmas</span>
-    <h2 id="authTitle">Werde Teil der Challenge.</h2>
-    <p id="authDescription">Erstelle dein Konto und bestätige anschließend deine E-Mail-Adresse.</p>
-    <div class="auth-tabs"><button class="auth-tab active" type="button" id="registerTab">Registrieren</button><button class="auth-tab" type="button" id="loginTab">Anmelden</button></div>
-    <form id="authForm">
-      <div id="nameFields" class="form-grid">
-        <div class="field"><label for="firstName">Vorname</label><input id="firstName" autocomplete="given-name" maxlength="80" required></div>
-        <div class="field"><label for="lastName">Nachname</label><input id="lastName" autocomplete="family-name" maxlength="80" required></div>
-      </div>
-      <div class="field"><label for="authEmail">E-Mail-Adresse</label><input id="authEmail" type="email" autocomplete="email" required></div>
-      <div class="field"><label for="authPassword">Passwort (mindestens 8 Zeichen)</label><input id="authPassword" type="password" minlength="8" autocomplete="new-password" required></div>
-      <button class="btn primary submit" id="authSubmit" type="submit">Konto erstellen →</button>
-      <div class="message" id="authMessage" role="status" aria-live="polite"></div>
-    </form>
-    <div class="modal-switch" id="forgotWrap" hidden><button class="text-button" id="forgotPassword" type="button">Passwort vergessen?</button></div>
-    <p class="modal-foot">Mit der Registrierung erhältst du ein persönliches Konto. Deine Laufnachweise sind privat und werden nicht öffentlich angezeigt.</p>
+      <span class="eyebrow">🏃 Run into Christmas</span>
+      <h2 id="modalTitle">Lauf mit uns!</h2>
+
+      <p class="modal-description">
+        Schön, dass du dabei sein möchtest! Dieses Formular ist aktuell
+        eine Vorschau. Es wird noch kein Profil angelegt und es werden
+        keine Daten dauerhaft gespeichert.
+      </p>
+
+      <form id="registrationForm">
+        <div class="form-field">
+          <label for="runnerName">Dein Name oder Laufname</label>
+          <input
+            id="runnerName"
+            name="runnerName"
+            type="text"
+            placeholder="z. B. Christmas Runner"
+            autocomplete="nickname"
+            required
+          >
+        </div>
+
+        <div class="form-field">
+          <label for="runnerEmail">Deine E-Mail-Adresse</label>
+          <input
+            id="runnerEmail"
+            name="runnerEmail"
+            type="email"
+            placeholder="du@beispiel.de"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <button class="btn btn-primary" type="submit">
+          Teilnahme vorbereiten
+        </button>
+
+        <p class="modal-footnote">
+          Deine Eingaben werden von dieser Vorschau nicht an einen Server
+          übermittelt.
+        </p>
+
+        <div
+          class="form-message"
+          id="formMessage"
+          role="status"
+          aria-live="polite"
+        ></div>
+      </form>
+    </div>
   </div>
-</div>
 
-<!-- Zusatzspende -->
-<div class="modal-backdrop" id="donationModal" role="dialog" aria-modal="true" aria-labelledby="donationTitle" aria-hidden="true">
-  <div class="modal donation-modal">
-    <button class="modal-close" id="closeDonationModal" type="button" aria-label="Fenster schließen">×</button>
-    <span class="eyebrow">💚 Community Support</span><h2 id="donationTitle">Zusatzspende melden.</h2>
-    <p>Trage den Betrag und optional das Datum ein. Es handelt sich um eine Meldung, nicht um einen Zahlungsnachweis.</p>
-    <form id="donationForm">
-      <div class="field"><label for="donationAmount">Betrag in Euro</label><input id="donationAmount" type="number" min="0.01" max="1000000" step="0.01" placeholder="10,00" required></div>
-      <div class="field"><label for="donationDate">Datum (optional)</label><input id="donationDate" type="date"></div>
-      <button class="btn primary submit" id="donationSubmit" type="submit">Spendenmeldung speichern</button>
-      <div class="message" id="donationMessage" role="status" aria-live="polite"></div>
-    </form>
+  <!-- Meldeformular für freiwillige Zusatzspenden -->
+  <div
+    class="donation-modal-backdrop"
+    id="donationModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="donationModalTitle"
+    aria-hidden="true"
+  >
+    <div class="donation-modal">
+      <button
+        class="donation-modal-close"
+        type="button"
+        aria-label="Fenster schließen"
+        id="closeDonationModal"
+      >×</button>
+
+      <span class="eyebrow">💚 Run into Christmas</span>
+      <h3 id="donationModalTitle">Zusatzspende melden</h3>
+
+      <p class="donation-modal-description">
+        Danke, dass du die Challenge unterstützen möchtest!
+        Trage hier den Betrag deiner freiwilligen Zusatzspende ein.
+      </p>
+
+      <form id="donationForm">
+        <div class="donation-form-field">
+          <label for="donationAmount">Gemeldeter Betrag in Euro</label>
+          <input
+            id="donationAmount"
+            name="amount"
+            type="number"
+            min="0.01"
+            max="1000000"
+            step="0.01"
+            placeholder="z. B. 10,00"
+            required
+          >
+        </div>
+
+        <div class="donation-form-field">
+          <label for="donationDate">Datum der Spende (optional)</label>
+          <input id="donationDate" name="date" type="date">
+        </div>
+
+        <button class="btn btn-primary" type="submit">
+          Zusatzspende speichern
+        </button>
+
+        <p class="donation-modal-note">
+          Die Meldung wird aktuell nur in diesem Browser gespeichert.
+          Sie wird noch nicht mit anderen Geräten geteilt und nicht
+          automatisch auf Zahlungseingang geprüft.
+        </p>
+
+        <div
+          class="donation-form-message"
+          id="donationFormMessage"
+          role="status"
+          aria-live="polite"
+        ></div>
+      </form>
+    </div>
   </div>
-</div>
 
-<script>
-(() => {
-  "use strict";
+  <script>
+    /*
+      RUN INTO CHRISTMAS – Frontend-Demo.
 
-  const SUPABASE_URL = "https://lkahgvejwyivoncxmcbk.supabase.co";
-  const SUPABASE_KEY = "sb_publishable_E6pNuvXYKSCBfdf3W4hkvA_g2Xg54ob";
-  const GOAL_KM = 40000;
-  const EURO_PER_KM = 0.01;
+      Die Kilometerwerte starten bei null. Für echte gemeinsame Laufdaten,
+      bestätigte Kilometer, tatsächliche Spenden und Nutzerkonten ist eine
+      Backend-/Datenbankanbindung erforderlich.
 
-  const $ = id => document.getElementById(id);
-  const fmt = n => new Intl.NumberFormat("de-DE",{maximumFractionDigits:1}).format(Number(n)||0);
-  const money = n => new Intl.NumberFormat("de-DE",{style:"currency",currency:"EUR"}).format(Number(n)||0);
-  const db = window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-  let user = null;
-  let authMode = "register";
-  let authBusy = false;
+      Zusatzspenden werden vorerst lokal in diesem Browser gespeichert.
+      Die persönliche Übersicht zeigt deshalb die Meldungen dieses Browsers,
+      nicht ein verifiziertes oder serverseitig einem Konto zugeordnetes Profil.
+    */
 
-  function message(id,text,error=false){
-    const el=$(id);
-    el.textContent=text;
-    el.classList.add("show");
-    el.classList.toggle("error",error);
-  }
-  function clearMessage(id){
-    const el=$(id);
-    el.textContent="";
-    el.classList.remove("show","error");
-  }
-  function escapeText(value){return String(value??"");}
+    const CHALLENGE_GOAL_KM = 40000;
+    const DONATION_PER_KM = 0.01;
+    const LOCAL_DONATIONS_KEY = "runIntoChristmasDonationReports";
 
-  function openAuth(mode="register"){
-    setAuthMode(mode);
-    $("authModal").classList.add("open");
-    $("authModal").setAttribute("aria-hidden","false");
-    document.body.classList.add("modal-open");
-  }
-  function closeAuth(){
-    $("authModal").classList.remove("open");
-    $("authModal").setAttribute("aria-hidden","true");
-    document.body.classList.remove("modal-open");
-  }
-  function openDonation(){
-    if(!user){openAuth("login");message("authMessage","Bitte melde dich an, um eine Spendenmeldung deinem Konto zuzuordnen.");return;}
-    $("donationModal").classList.add("open");
-    $("donationModal").setAttribute("aria-hidden","false");
-    document.body.classList.add("modal-open");
-  }
-  function closeDonation(){
-    $("donationModal").classList.remove("open");
-    $("donationModal").setAttribute("aria-hidden","true");
-    document.body.classList.remove("modal-open");
-  }
+    const challengeData = {
+      totalKm: 0,
+      runners: []
+    };
 
-  document.querySelectorAll("[data-open-auth]").forEach(b=>b.addEventListener("click",()=>openAuth(user?"login":"register")));
-  document.querySelectorAll("[data-close-auth]").forEach(b=>b.addEventListener("click",closeAuth));
-  $("authModal").addEventListener("click",e=>{if(e.target===$("authModal"))closeAuth();});
-  $("openDonationModal").addEventListener("click",openDonation);
-  $("closeDonationModal").addEventListener("click",closeDonation);
-  $("donationModal").addEventListener("click",e=>{if(e.target===$("donationModal"))closeDonation();});
-  document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeAuth();closeDonation();}});
+    function formatNumber(value, maximumFractionDigits = 1) {
+      return new Intl.NumberFormat("de-DE", {
+        maximumFractionDigits
+      }).format(value);
+    }
 
-  function setAuthMode(mode){
-    authMode=mode;
-    const registering=mode==="register";
-    $("nameFields").hidden=!registering;
-    $("firstName").required=registering;
-    $("lastName").required=registering;
-    $("authPassword").autocomplete=registering?"new-password":"current-password";
-    $("authTitle").textContent=registering?"Werde Teil der Challenge.":"Willkommen zurück.";
-    $("authDescription").textContent=registering?"Erstelle dein Konto und bestätige anschließend deine E-Mail-Adresse.":"Melde dich an, um deine Läufe und Spenden zu verwalten.";
-    $("authSubmit").textContent=registering?"Konto erstellen →":"Anmelden →";
-    $("registerTab").classList.toggle("active",registering);
-    $("loginTab").classList.toggle("active",!registering);
-    $("forgotWrap").hidden=registering;
-    clearMessage("authMessage");
-  }
-  $("registerTab").addEventListener("click",()=>setAuthMode("register"));
-  $("loginTab").addEventListener("click",()=>setAuthMode("login"));
+    function formatCurrency(value) {
+      return new Intl.NumberFormat("de-DE", {
+        style: "currency",
+        currency: "EUR"
+      }).format(value);
+    }
 
-  $("authForm").addEventListener("submit",async e=>{
-    e.preventDefault();
-    if(authBusy)return;
-    authBusy=true;
-    $("authSubmit").disabled=true;
-    clearMessage("authMessage");
-    const email=$("authEmail").value.trim();
-    const password=$("authPassword").value;
-    try{
-      if(authMode==="register"){
-        const first=$("firstName").value.trim();
-        const last=$("lastName").value.trim();
-        if(!first||!last)throw new Error("Bitte gib Vorname und Nachname ein.");
-        const {data,error}=await db.auth.signUp({
-          email,password,
-          options:{
-            data:{first_name:first,last_name:last},
-            emailRedirectTo:window.location.origin+window.location.pathname
-          }
-        });
-        if(error)throw error;
-        if(data.session){
-          message("authMessage","Dein Konto wurde erstellt. Du bist angemeldet.");
-          await refreshSession();
-        }else{
-          message("authMessage","Fast geschafft! Bitte öffne die Bestätigungs-E-Mail und klicke auf den Bestätigungslink. Danach kannst du dich anmelden.");
-        }
-      }else{
-        const {error}=await db.auth.signInWithPassword({email,password});
-        if(error)throw error;
-        closeAuth();
-        await refreshSession();
-        $("memberArea").scrollIntoView({behavior:"smooth"});
+    function createDonationId() {
+      if (window.crypto && typeof window.crypto.randomUUID === "function") {
+        return window.crypto.randomUUID();
       }
-    }catch(err){
-      message("authMessage",humanError(err),true);
-    }finally{
-      authBusy=false;
-      $("authSubmit").disabled=false;
+
+      return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
     }
-  });
 
-  $("forgotPassword").addEventListener("click",async()=>{
-    const email=$("authEmail").value.trim();
-    if(!email){message("authMessage","Bitte trage zuerst deine E-Mail-Adresse ein.",true);return;}
-    const {error}=await db.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin+window.location.pathname});
-    if(error)message("authMessage",humanError(error),true);
-    else message("authMessage","Falls ein Konto mit dieser Adresse besteht, wurde eine E-Mail zum Zurücksetzen des Passworts angefordert.");
-  });
+    function getDonationReports() {
+      try {
+        const stored = localStorage.getItem(LOCAL_DONATIONS_KEY);
+        const parsed = stored ? JSON.parse(stored) : [];
 
-  function humanError(err){
-    const text=String(err?.message||"Unbekannter Fehler");
-    if(/invalid login credentials/i.test(text))return "E-Mail-Adresse oder Passwort ist falsch. Prüfe auch, ob du deine E-Mail-Adresse bestätigt hast.";
-    if(/email not confirmed/i.test(text))return "Bitte bestätige zuerst deine E-Mail-Adresse über den Link in der Bestätigungs-E-Mail.";
-    if(/user already registered/i.test(text))return "Diese E-Mail-Adresse ist bereits registriert. Melde dich stattdessen an.";
-    if(/password should be at least/i.test(text))return "Das Passwort ist zu kurz. Verwende mindestens 8 Zeichen.";
-    return text;
-  }
+        if (!Array.isArray(parsed)) {
+          return [];
+        }
 
-  async function refreshSession(){
-    const {data,error}=await db.auth.getSession();
-    if(error)console.error(error);
-    user=data?.session?.user||null;
-    $("memberArea").hidden=!user;
-    $("authNavButton").textContent=user?"Mein Bereich ↘":"Mitlaufen →";
-    $("authNavButton").onclick=()=>user? $("memberArea").scrollIntoView({behavior:"smooth"}):openAuth("register");
-    if(user){
-      const {data:profile}=await db.from("profiles").select("first_name,last_name").eq("id",user.id).maybeSingle();
-      const first=profile?.first_name||user.user_metadata?.first_name||"Runner";
-      $("memberName").textContent=first;
-      closeAuth();
-      await loadMemberData();
-    }else{
-      $("memberKm").textContent="0 km";
-      $("memberRunCount").textContent="0";
-      $("memberDonationTotal").textContent="0,00 €";
-      $("memberRuns").innerHTML='<div class="empty">Melde dich an, um deine Läufe zu sehen.</div>';
-      $("memberDonations").innerHTML='<div class="empty">Melde dich an, um deine Spendenmeldungen zu sehen.</div>';
+        let changed = false;
+
+        const reports = parsed
+          .filter((report) => report && typeof report === "object")
+          .map((report) => {
+            if (!report.id) {
+              changed = true;
+              return {
+                ...report,
+                id: createDonationId()
+              };
+            }
+
+            return report;
+          });
+
+        // Bestehende Einträge ohne ID erhalten einmalig eine ID,
+        // damit sie in dieser Browser-Übersicht einzeln gelöscht werden können.
+        if (changed) {
+          try {
+            localStorage.setItem(
+              LOCAL_DONATIONS_KEY,
+              JSON.stringify(reports)
+            );
+          } catch (error) {
+            // Die vorhandenen Meldungen bleiben auch ohne ID weiterhin lesbar.
+          }
+        }
+
+        return reports;
+      } catch (error) {
+        return [];
+      }
     }
-  }
 
-  db.auth.onAuthStateChange((event,session)=>{
-    setTimeout(()=>refreshSession(),0);
-  });
+    function saveDonationReports(reports) {
+      try {
+        localStorage.setItem(
+          LOCAL_DONATIONS_KEY,
+          JSON.stringify(reports)
+        );
 
-  $("memberLogout").addEventListener("click",async()=>{
-    const {error}=await db.auth.signOut();
-    if(error){message("memberMessage",humanError(error),true);return;}
-    user=null;
-    await refreshSession();
-    window.scrollTo({top:0,behavior:"smooth"});
-  });
-
-  async function loadMemberData(){
-    if(!user)return;
-    clearMessage("memberMessage");
-    const [runsResult,donationsResult]=await Promise.all([
-      db.from("runs").select("id,kilometers,proof_path,created_at,run_date").eq("user_id",user.id).order("created_at",{ascending:false}),
-      db.from("donation_reports").select("id,amount,donation_date,created_at").eq("user_id",user.id).order("created_at",{ascending:false})
-    ]);
-
-    if(runsResult.error)message("memberMessage","Läufe konnten nicht geladen werden: "+humanError(runsResult.error),true);
-    const runs=runsResult.data||[];
-    $("memberKm").textContent=fmt(runs.reduce((s,r)=>s+Number(r.kilometers),0))+" km";
-    $("memberRunCount").textContent=String(runs.length);
-    renderRuns(runs);
-
-    if(donationsResult.error){
-      message("memberMessage","Spenden konnten nicht geladen werden: "+humanError(donationsResult.error),true);
-      return;
+        return true;
+      } catch (error) {
+        return false;
+      }
     }
-    const donations=donationsResult.data||[];
-    $("memberDonationTotal").textContent=money(donations.reduce((s,d)=>s+Number(d.amount),0));
-    renderDonations(donations);
-  }
 
-  function makeButton(text,cls,fn){
-    const b=document.createElement("button");
-    b.type="button";b.className="btn small-btn "+cls;b.textContent=text;b.addEventListener("click",fn);
-    return b;
-  }
+    function getAdditionalDonationTotal() {
+      return getDonationReports().reduce((total, report) => {
+        const amount = Number(report.amount);
 
-  function renderRuns(runs){
-    const list=$("memberRuns");list.replaceChildren();
-    if(!runs.length){list.innerHTML='<div class="empty">Du hast noch keine Läufe eingereicht. Zeit für deinen ersten Kilometer! 🏃</div>';return;}
-    runs.forEach(run=>{
-      const item=document.createElement("div");item.className="list-item";
-      const info=document.createElement("div");
-      const title=document.createElement("strong");title.textContent=fmt(run.kilometers)+" km";
-      const date=document.createElement("small");
-      const rawDate=run.run_date||run.created_at;
-      date.textContent=new Date(rawDate+(String(rawDate).length===10?"T12:00:00":"")).toLocaleDateString("de-DE",{day:"2-digit",month:"long",year:"numeric"});
-      info.append(title,date);
-      const actions=document.createElement("div");actions.className="list-actions";
-      actions.append(makeButton("Nachweis ansehen","secondary",async()=>{
-        const {data,error}=await db.storage.from("run-proofs").createSignedUrl(run.proof_path,60);
-        if(error){message("memberMessage","Bild konnte nicht geöffnet werden: "+humanError(error),true);return;}
-        window.open(data.signedUrl,"_blank","noopener,noreferrer");
-      }));
-      actions.append(makeButton("Lauf löschen","danger",async()=>{
-        if(!confirm("Diesen Lauf und den dazugehörigen Nachweis wirklich löschen?"))return;
-        const {error}=await db.from("runs").delete().eq("id",run.id);
-        if(error){message("memberMessage",humanError(error),true);return;}
-        await db.storage.from("run-proofs").remove([run.proof_path]);
-        await loadMemberData();await loadPublicData();
-      }));
-      item.append(info,actions);list.append(item);
-    });
-  }
+        return total + (
+          Number.isFinite(amount) && amount > 0
+            ? amount
+            : 0
+        );
+      }, 0);
+    }
 
-  function renderDonations(donations){
-    const list=$("memberDonations");list.replaceChildren();
-    if(!donations.length){list.innerHTML='<div class="empty">Du hast noch keine Zusatzspenden gemeldet.</div>';return;}
-    donations.forEach(d=>{
-      const item=document.createElement("div");item.className="list-item";
-      const info=document.createElement("div");
-      const amount=document.createElement("strong");amount.textContent=money(d.amount);
-      const date=document.createElement("small");
-      date.textContent=d.donation_date?"Spendendatum: "+new Date(d.donation_date+"T12:00:00").toLocaleDateString("de-DE"):"Kein Spendendatum angegeben";
-      info.append(amount,date);
-      const del=makeButton("Meldung löschen","danger",async()=>{
-        if(!confirm("Diese Spendenmeldung wirklich löschen?"))return;
-        const {error}=await db.from("donation_reports").delete().eq("id",d.id);
-        if(error){message("memberMessage",humanError(error),true);return;}
-        await loadMemberData();await loadPublicData();
+    function renderProgress() {
+      const totalKm = Math.max(0, challengeData.totalKm);
+
+      const percentage = Math.min(
+        100,
+        (totalKm / CHALLENGE_GOAL_KM) * 100
+      );
+
+      const remainingKm = Math.max(
+        0,
+        CHALLENGE_GOAL_KM - totalKm
+      );
+
+      document.getElementById("totalKm").textContent =
+        `${formatNumber(totalKm)} km`;
+
+      document.getElementById("progressPercent").textContent =
+        `${formatNumber(percentage, 2)} %`;
+
+      document.getElementById("remainingKm").textContent =
+        `${formatNumber(remainingKm)} km`;
+
+      document.getElementById("progressFill").style.width =
+        `${percentage}%`;
+
+      document.getElementById("progressBar").setAttribute(
+        "aria-valuenow",
+        String(percentage)
+      );
+
+      renderDonationTotals();
+    }
+
+    function renderDonationTotals() {
+      const totalKm = Math.max(0, challengeData.totalKm);
+
+      // Rechnerisch vorgesehener Kilometerbeitrag des Gründers.
+      const founderPlannedDonation = totalKm * DONATION_PER_KM;
+
+      // Zusatzspenden, die in diesem Browser gemeldet wurden.
+      const additionalDonations = getAdditionalDonationTotal();
+
+      // Rechnerischer Kilometerbeitrag plus gemeldete Zusatzspenden.
+      const combinedTotal = founderPlannedDonation + additionalDonations;
+
+      document.getElementById("founderDonation").textContent =
+        `${formatCurrency(founderPlannedDonation)} / 400,00 €`;
+
+      document.getElementById("communityDonations").textContent =
+        formatCurrency(additionalDonations);
+
+      document.getElementById("combinedDonations").textContent =
+        formatCurrency(combinedTotal);
+
+      document.getElementById("donationTotal").textContent =
+        `${formatCurrency(combinedTotal)} / 400,00 €`;
+
+      renderPersonalDonations();
+    }
+
+    function renderPersonalDonations() {
+      const reports = getDonationReports();
+      const list = document.getElementById("personalDonationList");
+      const totalElement = document.getElementById("personalDonationTotal");
+
+      const total = reports.reduce((sum, report) => {
+        const amount = Number(report.amount);
+
+        return sum + (
+          Number.isFinite(amount) && amount > 0
+            ? amount
+            : 0
+        );
+      }, 0);
+
+      totalElement.textContent = formatCurrency(total);
+      list.replaceChildren();
+
+      if (reports.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "personal-donations-empty";
+        empty.textContent =
+          "Du hast hier noch keine Zusatzspenden gemeldet.";
+
+        list.appendChild(empty);
+        return;
+      }
+
+      // Neueste Meldungen zuerst anzeigen.
+      const sortedReports = [...reports].sort((a, b) => {
+        return String(b.createdAt || "").localeCompare(
+          String(a.createdAt || "")
+        );
       });
-      item.append(info,del);list.append(item);
+
+      sortedReports.forEach((report) => {
+        const item = document.createElement("div");
+        item.className = "personal-donation-item";
+
+        const details = document.createElement("div");
+        details.className = "personal-donation-details";
+
+        const amount = document.createElement("strong");
+        amount.textContent = formatCurrency(Number(report.amount) || 0);
+
+        const date = document.createElement("span");
+
+        if (report.date) {
+          const dateParts = report.date.split("-");
+          date.textContent = dateParts.length === 3
+            ? `Gemeldetes Spendendatum: ${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`
+            : `Gemeldetes Spendendatum: ${report.date}`;
+        } else {
+          date.textContent = "Kein Spendendatum angegeben";
+        }
+
+        details.append(amount, date);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.type = "button";
+        deleteButton.className = "delete-donation-btn";
+        deleteButton.textContent = "Meldung löschen";
+        deleteButton.setAttribute(
+          "aria-label",
+          `Spendenmeldung über ${formatCurrency(Number(report.amount) || 0)} löschen`
+        );
+
+        deleteButton.addEventListener("click", () => {
+          deleteDonationReport(report.id);
+        });
+
+        item.append(details, deleteButton);
+        list.appendChild(item);
+      });
+    }
+
+    function deleteDonationReport(reportId) {
+      const reports = getDonationReports();
+      const reportToDelete = reports.find(
+        (report) => report.id === reportId
+      );
+
+      if (!reportToDelete) {
+        return;
+      }
+
+      const confirmed = window.confirm(
+        `Möchtest du die Spendenmeldung über ${formatCurrency(Number(reportToDelete.amount) || 0)} wirklich löschen? Der Betrag wird dann aus den angezeigten Zusatzspenden und dem gemeinsamen Spendenstand dieses Browsers herausgerechnet.`
+      );
+
+      if (!confirmed) {
+        return;
+      }
+
+      const updatedReports = reports.filter(
+        (report) => report.id !== reportId
+      );
+
+      if (!saveDonationReports(updatedReports)) {
+        window.alert(
+          "Die Meldung konnte nicht gelöscht werden. Bitte prüfe, ob dein Browser lokale Daten speichern darf."
+        );
+        return;
+      }
+
+      renderDonationTotals();
+    }
+
+    function renderLeaderboard() {
+      const body = document.getElementById("leaderboardBody");
+
+      const runners = [...challengeData.runners].sort(
+        (a, b) => b.totalKm - a.totalKm
+      );
+
+      if (runners.length === 0) {
+        body.innerHTML = `
+          <tr>
+            <td colspan="5" class="leaderboard-empty">
+              Noch keine bestätigten Läufe. Sei dabei und mach den Anfang! 🏃
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      body.replaceChildren();
+
+      runners.forEach((runner, index) => {
+        const row = document.createElement("tr");
+
+        const rank = document.createElement("td");
+        rank.textContent =
+          index === 0 ? "🥇" :
+          index === 1 ? "🥈" :
+          index === 2 ? "🥉" :
+          String(index + 1);
+
+        const name = document.createElement("td");
+        name.textContent = runner.name;
+
+        const total = document.createElement("td");
+        total.textContent = `${formatNumber(runner.totalKm)} km`;
+
+        const days = document.createElement("td");
+        days.textContent = String(runner.activeDays);
+
+        const average = document.createElement("td");
+        const averageKm = runner.activeDays > 0
+          ? runner.totalKm / runner.activeDays
+          : 0;
+
+        average.textContent = `${formatNumber(averageKm)} km`;
+
+        row.append(rank, name, total, days, average);
+        body.appendChild(row);
+      });
+    }
+
+    // Registrierungs-Modal
+    const registrationModal = document.getElementById("registrationModal");
+    const registrationNameInput = document.getElementById("runnerName");
+
+    function openRegistrationModal() {
+      registrationModal.classList.add("is-open");
+      registrationModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+
+      window.setTimeout(() => registrationNameInput.focus(), 50);
+    }
+
+    function closeRegistrationModal() {
+      registrationModal.classList.remove("is-open");
+      registrationModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll("[data-open-modal]").forEach((button) => {
+      button.addEventListener("click", openRegistrationModal);
     });
-  }
 
-  $("runDate").value=new Date().toISOString().slice(0,10);
-  $("runForm").addEventListener("submit",async e=>{
-    e.preventDefault();
-    if(!user){openAuth("login");return;}
-    const km=Number($("runKm").value);
-    const date=$("runDate").value;
-    const file=$("runProof").files[0];
-    if(!Number.isFinite(km)||km<=0||km>500){message("runMessage","Bitte gib eine Kilometerzahl zwischen 0,1 und 500 ein.",true);return;}
-    if(!date){message("runMessage","Bitte wähle das Laufdatum aus.",true);return;}
-    if(!file||!["image/jpeg","image/png","image/webp"].includes(file.type)||file.size>5*1024*1024){message("runMessage","Bitte wähle ein JPG-, PNG- oder WebP-Bild bis 5 MB.",true);return;}
-
-    $("runSubmit").disabled=true;clearMessage("runMessage");
-    let path=null;
-    try{
-      const ext=file.type==="image/png"?"png":file.type==="image/webp"?"webp":"jpg";
-      path=user.id+"/"+crypto.randomUUID()+"."+ext;
-      const {error:uploadError}=await db.storage.from("run-proofs").upload(path,file,{contentType:file.type,upsert:false});
-      if(uploadError)throw uploadError;
-      const {error:insertError}=await db.from("runs").insert({user_id:user.id,kilometers:km,proof_path:path,run_date:date});
-      if(insertError){await db.storage.from("run-proofs").remove([path]);path=null;throw insertError;}
-      e.target.reset();$("runDate").value=new Date().toISOString().slice(0,10);
-      message("runMessage","Dein Lauf wurde gespeichert. Die Kilometer fließen in die gemeinsame Statistik ein.");
-      await loadMemberData();await loadPublicData();
-    }catch(err){message("runMessage","Der Lauf konnte nicht gespeichert werden: "+humanError(err),true);}
-    finally{$("runSubmit").disabled=false;}
-  });
-
-  $("donationForm").addEventListener("submit",async e=>{
-    e.preventDefault();
-    if(!user){openAuth("login");return;}
-    const amount=Number($("donationAmount").value);
-    const date=$("donationDate").value||null;
-    if(!Number.isFinite(amount)||amount<=0||amount>1000000){message("donationMessage","Bitte gib einen gültigen Betrag ein.",true);return;}
-    $("donationSubmit").disabled=true;
-    try{
-      const {error}=await db.from("donation_reports").insert({user_id:user.id,amount:Math.round(amount*100)/100,donation_date:date});
-      if(error)throw error;
-      e.target.reset();
-      message("donationMessage","Deine Spendenmeldung wurde gespeichert.");
-      await loadMemberData();await loadPublicData();
-    }catch(err){message("donationMessage","Speichern fehlgeschlagen: "+humanError(err),true);}
-    finally{$("donationSubmit").disabled=false;}
-  });
-
-  async function loadPublicData(){
-    const statsResult=await db.rpc("public_run_stats");
-    if(statsResult.error){
-      console.error("public_run_stats:",statsResult.error);
-      $("leaderboardBody").innerHTML='<tr><td colspan="5" class="empty">Die Statistik ist momentan nicht verfügbar. Bitte Datenbankfunktionen prüfen.</td></tr>';
-      return;
-    }
-    const stats=Array.isArray(statsResult.data)?statsResult.data[0]:statsResult.data;
-    const total=Math.max(0,Number(stats?.total_kilometers)||0);
-    const percent=Math.min(100,total/GOAL_KM*100);
-    const planned=total*EURO_PER_KM;
-    $("totalKm").textContent=fmt(total)+" km";
-    $("donationTotal").textContent=money(planned);
-    $("progressPercent").textContent=fmt(percent)+" %";
-    $("remainingKm").textContent=fmt(Math.max(0,GOAL_KM-total))+" km";
-    $("progressText").textContent=fmt(total)+" von 40.000 km";
-    $("progressFill").style.width=percent+"%";
-    $("progressBar").setAttribute("aria-valuenow",String(percent));
-    $("founderDonation").textContent=money(planned);
-
-    const leaderboardResult=await db.rpc("public_leaderboard");
-    if(leaderboardResult.error){
-      console.error("public_leaderboard:",leaderboardResult.error);
-      $("leaderboardBody").innerHTML='<tr><td colspan="5" class="empty">Die Rangliste ist momentan nicht verfügbar.</td></tr>';
-      return;
-    }
-    const leaders=leaderboardResult.data||[];
-    const body=$("leaderboardBody");body.replaceChildren();
-    let extraDonationTotal=0;
-
-    const {data:myDonations}=user?await db.from("donation_reports").select("amount").eq("user_id",user.id):{data:[]};
-    extraDonationTotal=(myDonations||[]).reduce((s,d)=>s+Number(d.amount),0);
-    $("communityDonations").textContent=user?money(extraDonationTotal):"—";
-    $("combinedDonations").textContent=money(planned+extraDonationTotal);
-
-    if(!leaders.length){
-      const row=document.createElement("tr");const cell=document.createElement("td");
-      cell.colSpan=5;cell.className="empty";cell.textContent="Noch keine Läufe eingereicht. Mach den Anfang! 🏃";
-      row.append(cell);body.append(row);return;
-    }
-    leaders.forEach((r,i)=>{
-      const row=document.createElement("tr");
-      const rank=document.createElement("td");rank.textContent=i===0?"🥇":i===1?"🥈":i===2?"🥉":String(i+1);
-      const name=document.createElement("td");name.textContent=escapeText(r.display_name);
-      const km=document.createElement("td");km.textContent=fmt(r.total_kilometers)+" km";
-      const count=document.createElement("td");count.textContent=String(r.run_count);
-      const avg=document.createElement("td");avg.textContent=Number(r.run_count)>0?fmt(Number(r.total_kilometers)/Number(r.run_count))+" km":"0 km";
-      row.append(rank,name,km,count,avg);body.append(row);
+    document.querySelectorAll("[data-close-modal]").forEach((button) => {
+      button.addEventListener("click", closeRegistrationModal);
     });
-  }
 
-  async function init(){
-    await loadPublicData();
-    await refreshSession();
-    if(new URLSearchParams(location.search).get("error_description")){
-      openAuth("login");
-      message("authMessage","Die E-Mail-Bestätigung oder Anmeldung konnte nicht abgeschlossen werden. Bitte prüfe den Link und versuche es erneut.",true);
+    registrationModal.addEventListener("click", (event) => {
+      if (event.target === registrationModal) {
+        closeRegistrationModal();
+      }
+    });
+
+    // Registrierungsvorschau
+    document.getElementById("registrationForm").addEventListener(
+      "submit",
+      (event) => {
+        event.preventDefault();
+
+        const message = document.getElementById("formMessage");
+
+        message.textContent =
+          "Danke für dein Interesse! Die Registrierung ist vorbereitet. " +
+          "Sobald die Website mit einer Datenbank verbunden ist, können " +
+          "Profile und Laufdaten dauerhaft gespeichert werden.";
+
+        message.classList.add("is-visible");
+      }
+    );
+
+    // Zusatzspenden-Modal
+    const donationModal = document.getElementById("donationModal");
+    const donationAmountInput = document.getElementById("donationAmount");
+
+    function openDonationModal() {
+      donationModal.classList.add("is-open");
+      donationModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+
+      window.setTimeout(() => donationAmountInput.focus(), 50);
     }
-  }
-  init().catch(err=>console.error("Initialisierung fehlgeschlagen:",err));
-})();
-</script>
+
+    function closeDonationModal() {
+      donationModal.classList.remove("is-open");
+      donationModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("openDonationModal").addEventListener(
+      "click",
+      openDonationModal
+    );
+
+    document.getElementById("closeDonationModal").addEventListener(
+      "click",
+      closeDonationModal
+    );
+
+    donationModal.addEventListener("click", (event) => {
+      if (event.target === donationModal) {
+        closeDonationModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeRegistrationModal();
+        closeDonationModal();
+      }
+    });
+
+    // Zusatzspenden lokal speichern und Anzeigen aktualisieren.
+    document.getElementById("donationForm").addEventListener(
+      "submit",
+      (event) => {
+        event.preventDefault();
+
+        const amount = Number(donationAmountInput.value);
+        const date = document.getElementById("donationDate").value;
+        const message = document.getElementById("donationFormMessage");
+
+        if (!Number.isFinite(amount) || amount <= 0) {
+          message.textContent =
+            "Bitte gib einen gültigen Betrag größer als 0 € ein.";
+          message.classList.add("is-visible");
+          return;
+        }
+
+        const reports = getDonationReports();
+
+        reports.push({
+          id: createDonationId(),
+          amount: Math.round(amount * 100) / 100,
+          date: date || "",
+          createdAt: new Date().toISOString()
+        });
+
+        if (!saveDonationReports(reports)) {
+          message.textContent =
+            "Die Meldung konnte in diesem Browser nicht gespeichert werden.";
+          message.classList.add("is-visible");
+          return;
+        }
+
+        renderDonationTotals();
+
+        message.textContent =
+          "Danke! Deine Zusatzspende wurde in diesem Browser gespeichert. " +
+          "Sie wird in den angezeigten Zusatzspenden, im Gesamtstand und " +
+          "in der persönlichen Übersicht dieses Browsers berücksichtigt. " +
+          "Andere Besucher können die Meldung noch nicht sehen.";
+
+        message.classList.add("is-visible");
+        event.target.reset();
+      }
+    );
+
+    // Aktualisieren, wenn lokale Daten in einem anderen Tab geändert werden.
+    window.addEventListener("storage", (event) => {
+      if (event.key === LOCAL_DONATIONS_KEY) {
+        renderDonationTotals();
+      }
+    });
+
+    renderProgress();
+    renderLeaderboard();
+  </script>
+
 </body>
 </html>
+
+Ich habe mit Superbase alles gemacht. Wir müssen jetzt die Seite hier anpassen, genauso wie ich es dir gesagt habe. Es soll ein Bereich geben, dass man sich anmelden kann, dass man sich registrieren, erstmal, dass man sich registrieren kann mit Vorname, Nachname, E-Mail. Dann, dass man sich anmelden kann und abmelden kann. Und in seinem Bereich soll man dann noch sehen, wie viele Kilometer man schon gelaufen ist, an welchen Tagen man gelaufen ist. Und auch seine Spenden, die man gemacht hat, wenn man denn welche gemacht hat. Und die soll man dort auch löschen können. Und das Ganze soll mit der Hauptseite verknüpft sein
