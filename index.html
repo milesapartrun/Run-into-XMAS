@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -212,7 +213,7 @@
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 82px 0 76px;
+      padding: 82px 0 54px;
       background:
         radial-gradient(ellipse at 95% 5%, rgba(210,235,210,.52), transparent 36%),
         linear-gradient(180deg, #fff 0%, #f8fbf6 100%);
@@ -329,7 +330,7 @@
 
     .community-section {
       overflow: hidden;
-      padding: 82px 0 90px;
+      padding: 60px 0 90px;
       background:
         radial-gradient(ellipse at 50% 45%, rgba(221,240,219,.72), transparent 55%),
         var(--white);
@@ -859,6 +860,16 @@
       color: #4c6958;
     }
 
+    /* NEU: beide Laureus-Links ordentlich nebeneinander bzw. mobil untereinander */
+
+    .charity-link-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
     .donate-link {
       min-width: min(100%, 290px);
       padding: 15px 25px;
@@ -1292,7 +1303,7 @@
       .nav-tree { font-size: 1.5rem; }
       .nav-gift { font-size: 1.1rem; }
 
-      .hero { padding: 62px 0 58px; }
+      .hero { padding: 62px 0 44px; }
       .hero h1 { font-size: clamp(2.65rem, 12vw, 4.3rem); }
 
       .hero-points {
@@ -1363,6 +1374,13 @@
       }
 
       .donation-cards { grid-template-columns: 1fr; }
+
+      .charity-link-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .charity-link-actions .btn { width: 100%; }
 
       .donation-actions {
         flex-direction: column;
@@ -1729,16 +1747,29 @@
             <h3>💚 Gemeinsam laufen. Gemeinsam helfen.</h3>
             <p>
               Du möchtest Laureus Sport for Good direkt unterstützen?
-              Über den folgenden Link gelangst du zur Spendenseite.
+              Über die folgenden Links kannst du spenden oder mehr über die
+              Arbeit der Organisation erfahren.
             </p>
-            <a
-              class="btn donate-link"
-              href="https://www.laureus.de/spenden"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              🎁 Jetzt an Laureus spenden <span aria-hidden="true">↗</span>
-            </a>
+
+            <div class="charity-link-actions">
+              <a
+                class="btn donate-link"
+                href="https://www.laureus.de/spenden"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🎁 Jetzt an Laureus spenden <span aria-hidden="true">↗</span>
+              </a>
+
+              <a
+                class="btn btn-secondary"
+                href="https://www.laureus.de"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ℹ️ Was macht Laureus Sport for Good? <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>
 
           <div class="donation-cards">
