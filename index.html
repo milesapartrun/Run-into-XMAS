@@ -4,13 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#174d38">
+  <meta name="description" content="Run into Christmas – gemeinsam Kilometer sammeln und Gutes bewegen.">
 
   <title>🏃 Run into Christmas – Winter Running Challenge</title>
-
-  <meta
-    name="description"
-    content="Sammle vom 1. bis 24. Dezember Laufkilometer, motiviere die Community und unterstütze Laureus Sport for Good."
-  >
 
   <style>
     :root {
@@ -19,17 +15,15 @@
       --medium: #75a984;
       --light: #eaf4e9;
       --pale: #f5f9f3;
-      --white: #ffffff;
+      --white: #fff;
       --text: #183c2c;
       --muted: #6b7f72;
       --border: #dce9dc;
-      --shadow: 0 18px 50px rgba(23, 77, 56, 0.09);
+      --shadow: 0 18px 50px rgba(23,77,56,.09);
       --radius: 24px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html {
       scroll-behavior: smooth;
@@ -45,24 +39,11 @@
       line-height: 1.6;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
 
-    button,
-    input {
-      font: inherit;
-    }
-
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    button:focus-visible,
-    a:focus-visible,
-    input:focus-visible {
+    button:focus-visible, a:focus-visible, input:focus-visible {
       outline: 3px solid #8bc59a;
       outline-offset: 4px;
     }
@@ -72,13 +53,8 @@
       margin: 0 auto;
     }
 
-    .section {
-      padding: 82px 0;
-    }
-
-    .section-soft {
-      background: var(--pale);
-    }
+    .section { padding: 82px 0; }
+    .section-soft { background: var(--pale); }
 
     .eyebrow {
       display: inline-flex;
@@ -86,24 +62,17 @@
       gap: 8px;
       margin-bottom: 14px;
       color: var(--green);
-      font-size: 0.78rem;
+      font-size: .78rem;
       font-weight: 850;
-      letter-spacing: 0.12em;
+      letter-spacing: .12em;
       text-transform: uppercase;
     }
 
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
+    h1, h2, h3, p { margin-top: 0; }
 
-    h1,
-    h2,
-    h3 {
+    h1, h2, h3 {
       line-height: 1.12;
-      letter-spacing: -0.035em;
+      letter-spacing: -.035em;
     }
 
     h2 {
@@ -116,9 +85,7 @@
       text-align: center;
     }
 
-    .section-heading h2 {
-      margin-bottom: 12px;
-    }
+    .section-heading h2 { margin-bottom: 12px; }
 
     .section-intro {
       max-width: 650px;
@@ -127,14 +94,14 @@
       font-size: 1rem;
     }
 
-    /* HEADER */
+    /* Header */
 
     .site-header {
       position: sticky;
       z-index: 100;
       top: 0;
-      border-bottom: 1px solid rgba(220, 233, 220, 0.85);
-      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid rgba(220,233,220,.85);
+      background: rgba(255,255,255,.94);
       backdrop-filter: blur(14px);
     }
 
@@ -153,18 +120,12 @@
       color: var(--dark);
       font-size: 1rem;
       font-weight: 950;
-      letter-spacing: -0.045em;
+      letter-spacing: -.045em;
       white-space: nowrap;
     }
 
-    .brand-runner {
-      font-size: 1.3rem;
-      line-height: 1;
-    }
-
-    .brand-text span {
-      color: var(--green);
-    }
+    .brand-runner { font-size: 1.3rem; line-height: 1; }
+    .brand-text span { color: var(--green); }
 
     .nav-right {
       display: flex;
@@ -178,13 +139,11 @@
       align-items: center;
       gap: 22px;
       color: var(--muted);
-      font-size: 0.86rem;
+      font-size: .86rem;
       font-weight: 700;
     }
 
-    .nav-links a:hover {
-      color: var(--dark);
-    }
+    .nav-links a:hover { color: var(--dark); }
 
     .nav-festive {
       display: flex;
@@ -196,19 +155,12 @@
       background: var(--pale);
     }
 
-    .nav-tree {
-      font-size: 1.8rem;
-      line-height: 1;
-    }
-
-    .nav-gift {
-      font-size: 1.35rem;
-      line-height: 1;
-    }
+    .nav-tree { font-size: 1.8rem; line-height: 1; }
+    .nav-gift { font-size: 1.35rem; line-height: 1; }
 
     .nav-challenge {
       color: var(--dark);
-      font-size: 0.77rem;
+      font-size: .77rem;
       font-weight: 850;
       line-height: 1.35;
     }
@@ -216,11 +168,11 @@
     .nav-challenge span {
       display: block;
       color: var(--muted);
-      font-size: 0.7rem;
+      font-size: .7rem;
       font-weight: 650;
     }
 
-    /* BUTTONS */
+    /* Buttons */
 
     .btn {
       display: inline-flex;
@@ -232,24 +184,20 @@
       border: 1px solid transparent;
       border-radius: 999px;
       cursor: pointer;
-      font-size: 0.91rem;
+      font-size: .91rem;
       font-weight: 850;
       transition: transform 180ms ease, background 180ms ease;
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-    }
+    .btn:hover { transform: translateY(-2px); }
 
     .btn-primary {
       color: var(--white);
       background: var(--dark);
-      box-shadow: 0 8px 22px rgba(23, 77, 56, 0.15);
+      box-shadow: 0 8px 22px rgba(23,77,56,.15);
     }
 
-    .btn-primary:hover {
-      background: var(--green);
-    }
+    .btn-primary:hover { background: var(--green); }
 
     .btn-secondary {
       border-color: var(--border);
@@ -257,19 +205,17 @@
       background: var(--white);
     }
 
-    .btn-secondary:hover {
-      background: var(--light);
-    }
+    .btn-secondary:hover { background: var(--light); }
 
-    /* HERO */
+    /* Hero */
 
     .hero {
       position: relative;
       overflow: hidden;
       padding: 82px 0 76px;
       background:
-        radial-gradient(ellipse at 95% 5%, rgba(210, 235, 210, 0.52), transparent 36%),
-        linear-gradient(180deg, #ffffff 0%, #f8fbf6 100%);
+        radial-gradient(ellipse at 95% 5%, rgba(210,235,210,.52), transparent 36%),
+        linear-gradient(180deg, #fff 0%, #f8fbf6 100%);
     }
 
     .hero::before {
@@ -278,7 +224,7 @@
       right: -160px;
       width: 400px;
       height: 400px;
-      border: 1px solid rgba(117, 169, 132, 0.13);
+      border: 1px solid rgba(117,169,132,.13);
       border-radius: 50%;
       content: "";
       pointer-events: none;
@@ -301,16 +247,13 @@
       color: var(--green);
     }
 
-    .hero-snowflake {
-      font-size: 1.55rem;
-      line-height: 1.2;
-    }
+    .hero-snowflake { font-size: 1.55rem; line-height: 1.2; }
 
     .hero-date-text {
       color: var(--dark);
-      font-size: 0.85rem;
+      font-size: .85rem;
       font-weight: 850;
-      letter-spacing: 0.1em;
+      letter-spacing: .1em;
       text-transform: uppercase;
     }
 
@@ -320,8 +263,8 @@
       color: var(--dark);
       font-size: clamp(2.8rem, 7.4vw, 5.9rem);
       font-weight: 950;
-      letter-spacing: -0.075em;
-      line-height: 0.98;
+      letter-spacing: -.075em;
+      line-height: .98;
     }
 
     .hero h1 span {
@@ -334,7 +277,7 @@
       color: var(--dark);
       font-size: clamp(1.25rem, 2.5vw, 1.75rem);
       font-weight: 800;
-      letter-spacing: -0.035em;
+      letter-spacing: -.035em;
     }
 
     .hero-points {
@@ -353,7 +296,7 @@
       align-items: flex-start;
       gap: 12px;
       color: #385746;
-      font-size: 0.98rem;
+      font-size: .98rem;
       font-weight: 650;
     }
 
@@ -379,16 +322,16 @@
     .hero-note {
       margin: 23px 0 0;
       color: var(--muted);
-      font-size: 0.82rem;
+      font-size: .82rem;
     }
 
-    /* COMMUNITY */
+    /* Community */
 
     .community-section {
       overflow: hidden;
       padding: 82px 0 90px;
       background:
-        radial-gradient(ellipse at 50% 45%, rgba(221, 240, 219, 0.72), transparent 55%),
+        radial-gradient(ellipse at 50% 45%, rgba(221,240,219,.72), transparent 55%),
         var(--white);
     }
 
@@ -398,7 +341,7 @@
       color: var(--dark);
       text-align: center;
       font-size: clamp(2rem, 4.5vw, 3.45rem);
-      letter-spacing: -0.055em;
+      letter-spacing: -.055em;
     }
 
     .community-description {
@@ -423,9 +366,9 @@
       padding: 22px 16px;
       border: 1px solid var(--border);
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255,255,255,.92);
       text-align: center;
-      box-shadow: 0 8px 24px rgba(23, 77, 56, 0.035);
+      box-shadow: 0 8px 24px rgba(23,77,56,.035);
     }
 
     .metric-number {
@@ -433,24 +376,24 @@
       color: var(--dark);
       font-size: clamp(1.35rem, 3vw, 2rem);
       font-weight: 950;
-      letter-spacing: -0.055em;
+      letter-spacing: -.055em;
       line-height: 1.1;
     }
 
     .metric-label {
       color: var(--muted);
-      font-size: 0.85rem;
+      font-size: .85rem;
       font-weight: 700;
     }
 
     .metric-extra {
       margin-top: 5px;
       color: var(--green);
-      font-size: 0.76rem;
+      font-size: .76rem;
       font-weight: 750;
     }
 
-    /* EARTH */
+    /* Earth */
 
     .earth-stage {
       position: relative;
@@ -467,12 +410,7 @@
       width: min(530px, 90vw);
       aspect-ratio: 1;
       border-radius: 50%;
-      background: radial-gradient(
-        circle,
-        rgba(177, 222, 176, 0.48) 0%,
-        rgba(216, 238, 211, 0.22) 43%,
-        transparent 72%
-      );
+      background: radial-gradient(circle, rgba(177,222,176,.48), rgba(216,238,211,.22) 43%, transparent 72%);
     }
 
     .earth-orbit {
@@ -480,16 +418,16 @@
       z-index: -1;
       width: min(490px, 88vw);
       aspect-ratio: 1;
-      border: 1px solid rgba(47, 118, 82, 0.17);
+      border: 1px solid rgba(47,118,82,.17);
       border-radius: 50%;
-      transform: rotate(-20deg) scaleY(0.76);
+      transform: rotate(-20deg) scaleY(.76);
     }
 
     .earth-orbit::before,
     .earth-orbit::after {
       position: absolute;
       inset: 13px;
-      border: 1px dashed rgba(47, 118, 82, 0.16);
+      border: 1px dashed rgba(47,118,82,.16);
       border-radius: 50%;
       content: "";
     }
@@ -497,7 +435,7 @@
     .earth-orbit::after {
       inset: 32px;
       border-style: solid;
-      opacity: 0.6;
+      opacity: .6;
     }
 
     .earth {
@@ -505,17 +443,17 @@
       width: min(340px, 70vw);
       aspect-ratio: 1;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255,255,255,.8);
       border-radius: 50%;
       background:
-        radial-gradient(circle at 29% 24%, rgba(255, 255, 255, 0.96), rgba(201, 239, 216, 0.78) 8%, transparent 26%),
+        radial-gradient(circle at 29% 24%, rgba(255,255,255,.96), rgba(201,239,216,.78) 8%, transparent 26%),
         radial-gradient(circle at 33% 28%, #a8dcb6 0%, #6ab18a 30%, #39856a 55%, #205d49 77%, #153e35 100%);
       box-shadow:
-        inset -24px -18px 42px rgba(8, 47, 38, 0.45),
-        inset 12px 10px 26px rgba(255, 255, 255, 0.32),
-        0 26px 70px rgba(26, 91, 62, 0.2),
-        0 0 0 12px rgba(255, 255, 255, 0.45),
-        0 0 0 13px rgba(47, 118, 82, 0.09);
+        inset -24px -18px 42px rgba(8,47,38,.45),
+        inset 12px 10px 26px rgba(255,255,255,.32),
+        0 26px 70px rgba(26,91,62,.2),
+        0 0 0 12px rgba(255,255,255,.45),
+        0 0 0 13px rgba(47,118,82,.09);
       animation: earth-float 6s ease-in-out infinite;
     }
 
@@ -524,13 +462,7 @@
       z-index: 2;
       inset: 0;
       border-radius: 50%;
-      background: linear-gradient(
-        110deg,
-        transparent 18%,
-        rgba(255, 255, 255, 0.16) 38%,
-        transparent 55%,
-        rgba(0, 0, 0, 0.17) 88%
-      );
+      background: linear-gradient(110deg, transparent 18%, rgba(255,255,255,.16) 38%, transparent 55%, rgba(0,0,0,.17) 88%);
       content: "";
       pointer-events: none;
     }
@@ -539,9 +471,9 @@
       position: absolute;
       z-index: 3;
       inset: 0;
-      border: 1px solid rgba(255, 255, 255, 0.38);
+      border: 1px solid rgba(255,255,255,.38);
       border-radius: 50%;
-      box-shadow: inset 0 0 22px rgba(255, 255, 255, 0.15);
+      box-shadow: inset 0 0 22px rgba(255,255,255,.15);
       content: "";
       pointer-events: none;
     }
@@ -556,18 +488,18 @@
 
     .continent {
       fill: #d0ebc9;
-      stroke: rgba(238, 250, 232, 0.5);
+      stroke: rgba(238,250,232,.5);
       stroke-width: 1.2;
     }
 
     .continent-shadow {
       fill: #85c99a;
-      opacity: 0.78;
+      opacity: .78;
     }
 
     .earth-grid {
       fill: none;
-      stroke: rgba(231, 250, 235, 0.24);
+      stroke: rgba(231,250,235,.24);
       stroke-width: 1;
     }
 
@@ -579,17 +511,11 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: radial-gradient(
-        circle,
-        rgba(255, 255, 255, 0.9),
-        rgba(255, 255, 255, 0.12) 42%,
-        transparent 70%
-      );
+      background: radial-gradient(circle, rgba(255,255,255,.9), rgba(255,255,255,.12) 42%, transparent 70%);
       filter: blur(2px);
     }
 
-    /* Läufer bewegt sich im Uhrzeigersinn um die Erde.
-       Das Lauf-Emoji zeigt dabei nach rechts – in Laufrichtung. */
+    /* Läufer: gegen den Uhrzeigersinn und nach links ausgerichtet */
 
     .runner-orbit {
       position: absolute;
@@ -608,12 +534,10 @@
       width: 64px;
       height: 64px;
       place-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255,255,255,.9);
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow:
-        0 10px 28px rgba(23, 77, 56, 0.18),
-        0 0 0 7px rgba(255, 255, 255, 0.3);
+      background: rgba(255,255,255,.96);
+      box-shadow: 0 10px 28px rgba(23,77,56,.18), 0 0 0 7px rgba(255,255,255,.3);
       transform: translateX(-50%);
     }
 
@@ -635,9 +559,9 @@
       border: 1px solid var(--border);
       border-radius: 999px;
       color: var(--dark);
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 8px 25px rgba(23, 77, 56, 0.07);
-      font-size: 0.8rem;
+      background: rgba(255,255,255,.96);
+      box-shadow: 0 8px 25px rgba(23,77,56,.07);
+      font-size: .8rem;
       font-weight: 800;
       white-space: nowrap;
       transform: translateX(-50%);
@@ -653,23 +577,23 @@
       to { transform: translateX(3%); }
     }
 
-    /* Positive Rotation = im Uhrzeigersinn:
-       Am oberen Punkt bewegt sich der Läufer nach rechts. */
+    /* Negative rotation: gegen den Uhrzeigersinn.
+       Oben auf der Umlaufbahn bewegt sich der Läufer nach links. */
     @keyframes runner-orbit {
       from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      to { transform: rotate(-360deg); }
     }
 
+    /* Spiegelung des Emojis: Blickrichtung nach links.
+       Die Spiegelung bleibt während des Hüpfeffekts erhalten. */
     @keyframes runner-bounce {
-      from { transform: translateY(0) rotate(-7deg); }
-      to { transform: translateY(-4px) rotate(7deg); }
+      from { transform: scaleX(-1) translateY(0) rotate(7deg); }
+      to { transform: scaleX(-1) translateY(-4px) rotate(-7deg); }
     }
 
-    /* STATISTIK UND FORTSCHRITT */
+    /* Statistik und Fortschritt */
 
-    .progress-overview {
-      margin-top: 20px;
-    }
+    .progress-overview { margin-top: 20px; }
 
     .progress-summary {
       display: grid;
@@ -690,7 +614,7 @@
       border-radius: 20px;
       background: var(--white);
       text-align: center;
-      box-shadow: 0 8px 24px rgba(23, 77, 56, 0.035);
+      box-shadow: 0 8px 24px rgba(23,77,56,.035);
     }
 
     .progress-card .metric-number {
@@ -698,7 +622,7 @@
     }
 
     .progress-card-donation {
-      background: linear-gradient(145deg, #ffffff, #f0f7ed);
+      background: linear-gradient(145deg, #fff, #f0f7ed);
     }
 
     .progress-card-combined {
@@ -711,7 +635,7 @@
     .combined-progress-heading {
       margin-bottom: 13px;
       color: var(--dark);
-      font-size: 0.8rem;
+      font-size: .8rem;
       font-weight: 850;
       text-align: center;
     }
@@ -728,9 +652,7 @@
       min-width: 0;
     }
 
-    .combined-progress-value:last-child {
-      text-align: right;
-    }
+    .combined-progress-value:last-child { text-align: right; }
 
     .combined-progress-value strong {
       display: block;
@@ -738,14 +660,14 @@
       color: var(--dark);
       font-size: clamp(1.05rem, 2vw, 1.45rem);
       font-weight: 950;
-      letter-spacing: -0.045em;
+      letter-spacing: -.045em;
       line-height: 1.2;
     }
 
     .combined-progress-value span {
       display: block;
       color: var(--muted);
-      font-size: 0.72rem;
+      font-size: .72rem;
       font-weight: 700;
       line-height: 1.35;
     }
@@ -772,11 +694,11 @@
       gap: 12px;
       margin-top: 10px;
       color: var(--muted);
-      font-size: 0.8rem;
+      font-size: .8rem;
       font-weight: 700;
     }
 
-    /* LEADERBOARD */
+    /* Leaderboard */
 
     .leaderboard-wrap {
       overflow: hidden;
@@ -803,7 +725,7 @@
     .leaderboard-header p {
       margin-bottom: 0;
       color: var(--muted);
-      font-size: 0.84rem;
+      font-size: .84rem;
     }
 
     .live-label {
@@ -815,7 +737,7 @@
       border-radius: 999px;
       color: var(--dark);
       background: var(--light);
-      font-size: 0.73rem;
+      font-size: .73rem;
       font-weight: 850;
     }
 
@@ -826,9 +748,7 @@
       background: #58a66d;
     }
 
-    .leaderboard-scroll {
-      overflow-x: auto;
-    }
+    .leaderboard-scroll { overflow-x: auto; }
 
     .leaderboard-table {
       width: 100%;
@@ -846,20 +766,18 @@
     .leaderboard-table th {
       color: var(--muted);
       background: #fbfdf9;
-      font-size: 0.73rem;
+      font-size: .73rem;
       font-weight: 850;
-      letter-spacing: 0.04em;
+      letter-spacing: .04em;
       text-transform: uppercase;
     }
 
     .leaderboard-table td {
-      font-size: 0.87rem;
+      font-size: .87rem;
       font-weight: 650;
     }
 
-    .leaderboard-table tr:last-child td {
-      border-bottom: 0;
-    }
+    .leaderboard-table tr:last-child td { border-bottom: 0; }
 
     .leaderboard-table td:first-child {
       color: var(--green);
@@ -870,7 +788,7 @@
       padding: 35px 20px;
       color: var(--muted);
       text-align: center;
-      font-size: 0.9rem;
+      font-size: .9rem;
     }
 
     .leaderboard-note {
@@ -878,10 +796,10 @@
       border-top: 1px solid var(--border);
       color: var(--muted);
       background: #fbfdf9;
-      font-size: 0.78rem;
+      font-size: .78rem;
     }
 
-    /* CHARITY */
+    /* Charity */
 
     .charity-panel {
       position: relative;
@@ -890,13 +808,13 @@
       border: 1px solid #d7e8d6;
       border-radius: 30px;
       background:
-        radial-gradient(circle at 100% 0%, rgba(190, 225, 188, 0.5), transparent 36%),
+        radial-gradient(circle at 100% 0%, rgba(190,225,188,.5), transparent 36%),
         var(--light);
     }
 
     .charity-layout {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.2fr .8fr;
       align-items: center;
       gap: 40px;
     }
@@ -911,9 +829,7 @@
       color: #4c6958;
     }
 
-    .charity-copy p {
-      margin-bottom: 13px;
-    }
+    .charity-copy p { margin-bottom: 13px; }
 
     .charity-badges {
       display: flex;
@@ -924,20 +840,20 @@
 
     .charity-badge {
       padding: 8px 12px;
-      border: 1px solid rgba(47, 118, 82, 0.15);
+      border: 1px solid rgba(47,118,82,.15);
       border-radius: 999px;
       color: var(--dark);
-      background: rgba(255, 255, 255, 0.75);
-      font-size: 0.78rem;
+      background: rgba(255,255,255,.75);
+      font-size: .78rem;
       font-weight: 800;
     }
 
     .donation-card {
       padding: 27px;
-      border: 1px solid rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(255,255,255,.95);
       border-radius: 24px;
-      background: rgba(255, 255, 255, 0.92);
-      box-shadow: 0 16px 38px rgba(23, 77, 56, 0.07);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 16px 38px rgba(23,77,56,.07);
     }
 
     .donation-card h3 {
@@ -954,13 +870,11 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .donation-stat:last-of-type {
-      border-bottom: 0;
-    }
+    .donation-stat:last-of-type { border-bottom: 0; }
 
     .donation-stat span {
       color: var(--muted);
-      font-size: 0.82rem;
+      font-size: .82rem;
     }
 
     .donation-stat strong {
@@ -972,10 +886,10 @@
     .donation-note {
       margin: 18px 0 0;
       color: var(--muted);
-      font-size: 0.76rem;
+      font-size: .76rem;
     }
 
-    /* SO FUNKTIONIERT'S */
+    /* Ablauf */
 
     .steps-grid {
       display: grid;
@@ -988,7 +902,7 @@
       border: 1px solid var(--border);
       border-radius: 22px;
       background: var(--white);
-      box-shadow: 0 10px 30px rgba(23, 77, 56, 0.035);
+      box-shadow: 0 10px 30px rgba(23,77,56,.035);
     }
 
     .step-number {
@@ -1012,10 +926,10 @@
     .step-card p {
       margin-bottom: 0;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: .9rem;
     }
 
-    /* PROFILE */
+    /* Profil */
 
     .profile-panel {
       display: grid;
@@ -1037,7 +951,7 @@
     .profile-panel p {
       max-width: 650px;
       margin-bottom: 0;
-      color: rgba(255, 255, 255, 0.78);
+      color: rgba(255,255,255,.78);
     }
 
     .profile-panel .btn-primary {
@@ -1047,11 +961,9 @@
       white-space: nowrap;
     }
 
-    .profile-panel .btn-primary:hover {
-      background: var(--light);
-    }
+    .profile-panel .btn-primary:hover { background: var(--light); }
 
-    /* FOOTER */
+    /* Footer */
 
     .site-footer {
       padding: 29px 0;
@@ -1068,18 +980,38 @@
 
     .footer-brand {
       color: var(--dark);
-      font-size: 0.86rem;
+      font-size: .86rem;
       font-weight: 900;
     }
 
     .footer-note {
       margin: 0;
       color: var(--muted);
-      font-size: 0.78rem;
+      font-size: .78rem;
       text-align: right;
     }
 
-    /* MODAL */
+    /* Rechtlicher Hinweis */
+
+    .disclaimer {
+      padding: 20px 0 25px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      background: var(--pale);
+      font-size: .76rem;
+      line-height: 1.65;
+    }
+
+    .disclaimer strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--dark);
+      font-size: .79rem;
+    }
+
+    .disclaimer p { margin: 0; }
+
+    /* Modal */
 
     .modal-backdrop {
       position: fixed;
@@ -1090,13 +1022,11 @@
       align-items: center;
       justify-content: center;
       padding: 22px;
-      background: rgba(13, 38, 26, 0.58);
+      background: rgba(13,38,26,.58);
       backdrop-filter: blur(5px);
     }
 
-    .modal-backdrop.is-open {
-      display: flex;
-    }
+    .modal-backdrop.is-open { display: flex; }
 
     .modal {
       position: relative;
@@ -1104,7 +1034,7 @@
       padding: 31px;
       border-radius: 26px;
       background: var(--white);
-      box-shadow: 0 25px 90px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 25px 90px rgba(0,0,0,.2);
     }
 
     .modal-close {
@@ -1130,7 +1060,7 @@
 
     .modal-description {
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: .9rem;
     }
 
     .form-field {
@@ -1141,7 +1071,7 @@
 
     .form-field label {
       color: var(--dark);
-      font-size: 0.84rem;
+      font-size: .84rem;
       font-weight: 800;
     }
 
@@ -1163,7 +1093,7 @@
     .modal-footnote {
       margin: 13px 0 0;
       color: var(--muted);
-      font-size: 0.75rem;
+      font-size: .75rem;
     }
 
     .form-message {
@@ -1173,84 +1103,40 @@
       border-radius: 12px;
       color: var(--dark);
       background: var(--light);
-      font-size: 0.85rem;
+      font-size: .85rem;
     }
 
-    .form-message.is-visible {
-      display: block;
-    }
+    .form-message.is-visible { display: block; }
 
-    /* RESPONSIVE */
+    /* Responsive */
 
     @media (max-width: 900px) {
-      .nav-links {
-        gap: 13px;
-      }
-
-      .nav-challenge {
-        display: none;
-      }
-
-      .charity-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .donation-card {
-        max-width: 520px;
-      }
+      .nav-links { gap: 13px; }
+      .nav-challenge { display: none; }
+      .charity-layout { grid-template-columns: 1fr; }
+      .donation-card { max-width: 520px; }
     }
 
     @media (max-width: 680px) {
-      .container {
-        width: min(100% - 30px, 1160px);
-      }
-
-      .section {
-        padding: 64px 0;
-      }
+      .container { width: min(100% - 30px, 1160px); }
+      .section { padding: 64px 0; }
 
       .nav {
         min-height: 70px;
         gap: 10px;
       }
 
-      .brand {
-        gap: 6px;
-        font-size: 0.81rem;
-      }
+      .brand { gap: 6px; font-size: .81rem; }
+      .brand-runner { font-size: 1.1rem; }
+      .nav-right { gap: 8px; }
+      .nav-links { display: none; }
 
-      .brand-runner {
-        font-size: 1.1rem;
-      }
+      .nav-festive { gap: 5px; padding: 7px 9px; }
+      .nav-tree { font-size: 1.5rem; }
+      .nav-gift { font-size: 1.1rem; }
 
-      .nav-right {
-        gap: 8px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .nav-festive {
-        gap: 5px;
-        padding: 7px 9px;
-      }
-
-      .nav-tree {
-        font-size: 1.5rem;
-      }
-
-      .nav-gift {
-        font-size: 1.1rem;
-      }
-
-      .hero {
-        padding: 62px 0 58px;
-      }
-
-      .hero h1 {
-        font-size: clamp(2.65rem, 12vw, 4.3rem);
-      }
+      .hero { padding: 62px 0 58px; }
+      .hero h1 { font-size: clamp(2.65rem, 12vw, 4.3rem); }
 
       .hero-points {
         width: 100%;
@@ -1258,9 +1144,7 @@
         gap: 13px;
       }
 
-      .hero-points li {
-        font-size: 0.91rem;
-      }
+      .hero-points li { font-size: .91rem; }
 
       .hero-actions {
         flex-direction: column;
@@ -1269,51 +1153,35 @@
         margin: 0 auto;
       }
 
-      .hero-actions .btn {
-        width: 100%;
-      }
+      .hero-actions .btn { width: 100%; }
 
       .metric-grid {
         grid-template-columns: 1fr;
         gap: 10px;
       }
 
-      .metric-card {
-        min-height: 0;
-        padding: 18px 14px;
-      }
-
-      .metric-number {
-        font-size: 1.65rem;
-      }
+      .metric-card { min-height: 0; padding: 18px 14px; }
+      .metric-number { font-size: 1.65rem; }
 
       .earth-stage {
         min-height: 350px;
         margin-top: 7px;
       }
 
-      .earth {
-        width: min(270px, 67vw);
-      }
+      .earth { width: min(270px, 67vw); }
 
       .earth-orbit,
       .runner-orbit {
         width: min(365px, 91vw);
       }
 
-      .runner-marker {
-        width: 53px;
-        height: 53px;
-      }
-
-      .runner-emoji {
-        font-size: 1.8rem;
-      }
+      .runner-marker { width: 53px; height: 53px; }
+      .runner-emoji { font-size: 1.8rem; }
 
       .earth-caption {
         bottom: 0;
         max-width: 92%;
-        font-size: 0.7rem;
+        font-size: .7rem;
       }
 
       .progress-summary {
@@ -1321,26 +1189,11 @@
         gap: 10px;
       }
 
-      .progress-card {
-        min-height: 0;
-        padding: 18px 14px;
-      }
-
-      .progress-card .metric-number {
-        font-size: 1.65rem;
-      }
-
-      .progress-card-combined {
-        padding: 20px;
-      }
-
-      .combined-progress-value strong {
-        font-size: 1.2rem;
-      }
-
-      .progress-foot {
-        font-size: 0.72rem;
-      }
+      .progress-card { min-height: 0; padding: 18px 14px; }
+      .progress-card .metric-number { font-size: 1.65rem; }
+      .progress-card-combined { padding: 20px; }
+      .combined-progress-value strong { font-size: 1.2rem; }
+      .progress-foot { font-size: .72rem; }
 
       .leaderboard-header {
         align-items: flex-start;
@@ -1352,35 +1205,23 @@
         padding: 14px 16px;
       }
 
-      .steps-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .step-card {
-        padding: 23px;
-      }
+      .steps-grid { grid-template-columns: 1fr; }
+      .step-card { padding: 23px; }
 
       .profile-panel {
         grid-template-columns: 1fr;
         gap: 22px;
       }
 
-      .profile-panel .btn {
-        width: 100%;
-      }
+      .profile-panel .btn { width: 100%; }
 
       .footer-inner {
         align-items: flex-start;
         flex-direction: column;
       }
 
-      .footer-note {
-        text-align: left;
-      }
-
-      .modal {
-        padding: 26px 22px;
-      }
+      .footer-note { text-align: left; }
+      .modal { padding: 26px 22px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1388,9 +1229,9 @@
       *::before,
       *::after {
         scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
+        animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        transition-duration: .01ms !important;
       }
     }
   </style>
@@ -1398,7 +1239,6 @@
 
 <body>
 
-  <!-- HEADER -->
   <header class="site-header">
     <div class="container nav">
 
@@ -1440,10 +1280,7 @@
             <span class="hero-date-text">1. bis 24. Dezember</span>
           </div>
 
-          <h1>
-            RUN INTO
-            <span>CHRISTMAS.</span>
-          </h1>
+          <h1>RUN INTO <span>CHRISTMAS.</span></h1>
 
           <p class="hero-subtitle">Jeder Kilometer zählt.</p>
 
@@ -1466,7 +1303,6 @@
             <button class="btn btn-primary" type="button" data-open-modal>
               Jetzt mitlaufen <span aria-hidden="true">→</span>
             </button>
-
             <a class="btn btn-secondary" href="#challenge">
               Challenge entdecken <span aria-hidden="true">↓</span>
             </a>
@@ -1480,7 +1316,7 @@
       </div>
     </section>
 
-    <!-- COMMUNITY UND ERDKUGEL -->
+    <!-- ERDE UND COMMUNITY -->
     <section class="community-section" id="challenge">
       <div class="container">
 
@@ -1493,9 +1329,7 @@
           </p>
         </div>
 
-        <!-- Kennzahlen über der Erdkugel -->
         <div class="metric-grid" aria-label="Challenge-Ziele">
-
           <article class="metric-card">
             <div class="metric-number">24</div>
             <div class="metric-label">Dezembertage</div>
@@ -1511,14 +1345,12 @@
             <div class="metric-label">Pro bestätigtem Kilometer</div>
             <div class="metric-extra">Für Laureus Sport for Good</div>
           </article>
-
         </div>
 
-        <!-- 3D-artige Erde und Läufer -->
         <div
           class="earth-stage"
           role="img"
-          aria-label="Eine grüne, dreidimensional wirkende Erde mit einem Läufer, der die Erde auf einer Umlaufbahn umrundet."
+          aria-label="Eine grüne, dreidimensional wirkende Erde mit einem Läufer, der gegen den Uhrzeigersinn um die Erde läuft."
         >
           <div class="earth-halo"></div>
           <div class="earth-orbit"></div>
@@ -1541,87 +1373,53 @@
                   <path d="M 170 5 V 335"/>
                 </g>
 
-                <!-- Nordamerika -->
-                <path
-                  class="continent"
-                  d="M 37 73 L 57 49 L 85 38 L 109 49
-                     L 126 68 L 117 85 L 101 90 L 91 108
-                     L 76 120 L 69 144 L 55 137 L 51 116
-                     L 36 100 L 28 84 Z"
-                />
+                <path class="continent"
+                  d="M 37 73 L 57 49 L 85 38 L 109 49 L 126 68
+                     L 117 85 L 101 90 L 91 108 L 76 120 L 69 144
+                     L 55 137 L 51 116 L 36 100 L 28 84 Z"/>
 
-                <path
-                  class="continent-shadow"
+                <path class="continent-shadow"
                   d="M 78 122 L 94 116 L 106 132 L 116 148
-                     L 109 167 L 97 161 L 90 143 Z"
-                />
+                     L 109 167 L 97 161 L 90 143 Z"/>
 
-                <!-- Südamerika -->
-                <path
-                  class="continent"
+                <path class="continent"
                   d="M 111 157 L 131 160 L 144 177 L 139 199
                      L 129 222 L 125 251 L 112 280 L 102 260
-                     L 106 237 L 96 216 L 98 192 L 89 177 Z"
-                />
+                     L 106 237 L 96 216 L 98 192 L 89 177 Z"/>
 
-                <!-- Europa und Asien -->
-                <path
-                  class="continent"
-                  d="M 146 68 L 162 56 L 183 59 L 197 49
-                     L 225 54 L 245 68 L 271 75 L 290 93
-                     L 280 110 L 257 112 L 245 127 L 224 124
-                     L 210 138 L 194 128 L 177 135 L 166 117
-                     L 151 109 L 143 90 Z"
-                />
+                <path class="continent"
+                  d="M 146 68 L 162 56 L 183 59 L 197 49 L 225 54
+                     L 245 68 L 271 75 L 290 93 L 280 110 L 257 112
+                     L 245 127 L 224 124 L 210 138 L 194 128 L 177 135
+                     L 166 117 L 151 109 L 143 90 Z"/>
 
-                <!-- Afrika -->
-                <path
-                  class="continent"
+                <path class="continent"
                   d="M 163 126 L 190 126 L 207 144 L 211 169
                      L 198 194 L 185 220 L 173 235 L 161 213
-                     L 157 191 L 144 172 L 147 149 Z"
-                />
+                     L 157 191 L 144 172 L 147 149 Z"/>
 
-                <!-- Indien und Südostasien -->
-                <path
-                  class="continent"
-                  d="M 218 139 L 236 145 L 247 163
-                     L 239 179 L 229 171 L 223 155 Z"
-                />
+                <path class="continent"
+                  d="M 218 139 L 236 145 L 247 163 L 239 179
+                     L 229 171 L 223 155 Z"/>
 
-                <path
-                  class="continent"
-                  d="M 247 174 L 267 178 L 282 190
-                     L 276 202 L 260 195 Z"
-                />
+                <path class="continent"
+                  d="M 247 174 L 267 178 L 282 190 L 276 202 L 260 195 Z"/>
 
-                <!-- Australien -->
-                <path
-                  class="continent"
+                <path class="continent"
                   d="M 250 220 L 272 213 L 292 225 L 287 244
-                     L 269 254 L 249 245 L 242 231 Z"
-                />
+                     L 269 254 L 249 245 L 242 231 Z"/>
 
-                <!-- Grönland -->
-                <path
-                  class="continent"
-                  d="M 119 27 L 141 18 L 155 30
-                     L 148 48 L 128 51 L 116 41 Z"
-                />
+                <path class="continent"
+                  d="M 119 27 L 141 18 L 155 30 L 148 48 L 128 51 L 116 41 Z"/>
 
-                <!-- Antarktis -->
-                <path
-                  class="continent-shadow"
-                  d="M 30 298 Q 170 320 310 298
-                     L 328 322 L 12 322 Z"
-                />
+                <path class="continent-shadow"
+                  d="M 30 298 Q 170 320 310 298 L 328 322 L 12 322 Z"/>
               </g>
             </svg>
-
             <div class="earth-glint"></div>
           </div>
 
-          <!-- Die Umlaufbahn dreht sich im Uhrzeigersinn -->
+          <!-- Läufer dreht gegen den Uhrzeigersinn und schaut nach links -->
           <div class="runner-orbit" aria-hidden="true">
             <div class="runner-marker">
               <span class="runner-emoji">🏃</span>
@@ -1634,9 +1432,8 @@
           </div>
         </div>
 
-        <!-- Kilometer, Spenden und Fortschritt -->
+        <!-- Kilometer, Spendensumme und Fortschritt -->
         <div class="progress-overview">
-
           <div class="progress-summary">
 
             <article class="progress-card">
@@ -1652,13 +1449,11 @@
 
             <article class="progress-card progress-card-combined">
               <div class="combined-progress-heading">Unser Fortschritt</div>
-
               <div class="combined-progress-values">
                 <div class="combined-progress-value">
                   <strong id="progressPercent">0 %</strong>
                   <span>Erreicht</span>
                 </div>
-
                 <div class="combined-progress-value">
                   <strong id="remainingKm">40.000 km</strong>
                   <span>Noch bis zum Ziel</span>
@@ -1684,7 +1479,6 @@
             <span>Unser gemeinsamer Weg</span>
             <span>40.000 km Ziel</span>
           </div>
-
         </div>
 
       </div>
@@ -1704,13 +1498,11 @@
         </div>
 
         <div class="leaderboard-wrap">
-
           <div class="leaderboard-header">
             <div>
               <h3>Die Kilometer-Challenge</h3>
               <p>Sortiert nach bestätigten Gesamtkilometern</p>
             </div>
-
             <span class="live-label">
               <span class="live-dot"></span>
               Dezember-Challenge
@@ -1728,7 +1520,6 @@
                   <th>Ø km / Lauftag</th>
                 </tr>
               </thead>
-
               <tbody id="leaderboardBody">
                 <tr>
                   <td colspan="5" class="leaderboard-empty">
@@ -1744,7 +1535,6 @@
             dauerhaft gespeichertes Leaderboard müssen Nutzerprofile und
             bestätigte Laufdaten mit einer Datenbank verbunden werden.
           </div>
-
         </div>
 
       </div>
@@ -1753,13 +1543,11 @@
     <!-- CHARITY -->
     <section class="section" id="charity">
       <div class="container">
-
         <div class="charity-panel">
           <div class="charity-layout">
 
             <div>
               <span class="eyebrow">💚 Kilometer, die etwas bewegen</span>
-
               <h2>Laufen für einen guten Zweck</h2>
 
               <div class="charity-copy">
@@ -1809,7 +1597,6 @@
 
           </div>
         </div>
-
       </div>
     </section>
 
@@ -1827,7 +1614,6 @@
         </div>
 
         <div class="steps-grid">
-
           <article class="step-card">
             <div class="step-number">01</div>
             <h3>Mitmachen</h3>
@@ -1854,24 +1640,20 @@
               unser gemeinsames Ziel zu erreichen.
             </p>
           </article>
-
         </div>
 
       </div>
     </section>
 
-    <!-- PROFIL / CALL TO ACTION -->
+    <!-- PROFIL -->
     <section class="section" id="profil">
       <div class="container">
-
         <div class="profile-panel">
           <div>
-            <span class="eyebrow" style="color: #b9e1c1;">
+            <span class="eyebrow" style="color:#b9e1c1;">
               Deine Challenge beginnt hier
             </span>
-
             <h2>Bereit, Kilometer zu sammeln?</h2>
-
             <p>
               Schnür deine Laufschuhe, werde Teil der Community und lauf
               mit uns Richtung Weihnachten. Jeder Kilometer zählt.
@@ -1882,7 +1664,6 @@
             Jetzt mitlaufen <span aria-hidden="true">→</span>
           </button>
         </div>
-
       </div>
     </section>
 
@@ -1892,11 +1673,27 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <a class="footer-brand" href="#start">🏃 RUN INTO CHRISTMAS</a>
-      <p class="footer-note">
-        Gemeinsam laufen. Gemeinsam bewegen. 💚
-      </p>
+      <p class="footer-note">Gemeinsam laufen. Gemeinsam bewegen. 💚</p>
     </div>
   </footer>
+
+  <!-- PRIVATER / UNABHÄNGIGER SPENDENHINWEIS -->
+  <section class="disclaimer" aria-label="Hinweis zur Spendenaktion">
+    <div class="container">
+      <strong>Hinweis zur Spendenaktion</strong>
+      <p>
+        „Run into Christmas“ ist eine privat organisierte Lauf- und Spendenaktion.
+        Sie steht in keiner offiziellen Verbindung zu Instagram, Laureus Sport for
+        Good oder anderen Drittpersonen bzw. Organisationen und wird von diesen
+        nicht veranstaltet, gesponsert oder offiziell unterstützt, sofern nicht
+        ausdrücklich anders angegeben. Instagram und Laureus Sport for Good werden
+        hier ausschließlich zur Beschreibung der jeweiligen Plattform bzw. des
+        vorgesehenen Spendenzwecks genannt. Die Anzeige eines errechneten
+        Spendenbetrags ist keine Bestätigung eines bereits eingegangenen oder
+        überwiesenen Spendenbetrags.
+      </p>
+    </div>
+  </section>
 
   <!-- REGISTRIERUNGSVORSCHAU -->
   <div
@@ -1908,7 +1705,6 @@
     aria-hidden="true"
   >
     <div class="modal">
-
       <button
         class="modal-close"
         type="button"
@@ -1917,7 +1713,6 @@
       >×</button>
 
       <span class="eyebrow">🏃 Run into Christmas</span>
-
       <h2 id="modalTitle">Lauf mit uns!</h2>
 
       <p class="modal-description">
@@ -1967,17 +1762,16 @@
           aria-live="polite"
         ></div>
       </form>
-
     </div>
   </div>
 
   <script>
     /*
-      RUN INTO CHRISTMAS – Frontend-Demo
+      RUN INTO CHRISTMAS – Frontend-Demo.
 
-      Die Kennzahlen starten bei null.
-      Für echte, gemeinsame Laufdaten, bestätigte Kilometer, tatsächliche
-      Spenden und Nutzerkonten ist eine Backend-/Datenbankanbindung nötig.
+      Die Kilometerwerte starten bei null. Für echte gemeinsame Laufdaten,
+      bestätigte Kilometer, tatsächliche Spenden und Nutzerkonten ist eine
+      Backend-/Datenbankanbindung erforderlich.
     */
 
     const CHALLENGE_GOAL_KM = 40000;
@@ -2015,7 +1809,7 @@
         CHALLENGE_GOAL_KM - totalKm
       );
 
-      // Vorgesehener Kilometerbeitrag plus optionale Zusatzspenden.
+      // Rechnerischer vorgesehener Kilometerbeitrag plus Zusatzspenden.
       const donationTotal =
         totalKm * DONATION_PER_KM +
         Math.max(0, challengeData.additionalDonations);
@@ -2101,9 +1895,7 @@
       modal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
 
-      window.setTimeout(() => {
-        nameInput.focus();
-      }, 50);
+      window.setTimeout(() => nameInput.focus(), 50);
     }
 
     function closeModal() {
@@ -2121,9 +1913,7 @@
     });
 
     modal.addEventListener("click", (event) => {
-      if (event.target === modal) {
-        closeModal();
-      }
+      if (event.target === modal) closeModal();
     });
 
     document.addEventListener("keydown", (event) => {
@@ -2132,7 +1922,7 @@
       }
     });
 
-    // Registrierung ist vorerst nur eine Vorschau.
+    // Registrierung ist aktuell nur eine Vorschau.
     document.getElementById("registrationForm").addEventListener(
       "submit",
       (event) => {
@@ -2149,7 +1939,6 @@
       }
     );
 
-    // Initiale Darstellung
     renderProgress();
     renderLeaderboard();
   </script>
