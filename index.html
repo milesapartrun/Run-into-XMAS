@@ -4,34 +4,51 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>🎄 Run into Christmas — Winter Running Challenge</title>
-<meta name="description" content="🎄 24 Tage, 24 Läufe. Sammle Lose und gewinne dein Weihnachtsgeschenk!">
+<meta name="theme-color" content="#174d35">
+<title>Run into Christmas — Winter Running Challenge</title>
+<meta name="description" content="Run into Christmas: 24 Tage gemeinsam laufen, Kilometer sammeln und Laureus Sport for Good unterstützen.">
 
 <style>
 :root {
-  --bg: #f4fbf5;
+  --bg: #f4faf4;
   --panel: #ffffff;
-  --line: #c5e5cc;
+  --line: #d4e8d7;
   --text: #153d27;
-  --muted: #52715c;
-  --green: #20834b;
-  --lime: #d8f7dc;
+  --muted: #617c68;
+  --green: #2b7a49;
+  --green-dark: #174d35;
+  --green-deep: #103c29;
+  --green-light: #dff2e2;
+  --green-pale: #edf7ee;
+  --white: #ffffff;
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
 
 body {
   margin: 0;
-  background: radial-gradient(ellipse at 85% 0%, #d9f3df 0, transparent 34%), var(--bg);
+  background:
+    radial-gradient(ellipse at 85% 0%, #e0f2e2 0, transparent 34%),
+    var(--bg);
   color: var(--text);
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
 }
 
 button, input { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
 
-.wrap { max-width: 1120px; margin: auto; padding: 22px; }
+.wrap {
+  max-width: 1120px;
+  margin: auto;
+  padding: 22px;
+}
 
 .nav {
   display: flex;
@@ -43,7 +60,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .brand {
-  color: #174f30;
+  color: var(--green-dark);
   font-weight: 950;
   letter-spacing: -.065em;
   font-size: clamp(18px, 3vw, 24px);
@@ -51,14 +68,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
   white-space: nowrap;
 }
 
-.brand span { color: #23864b; }
+.brand span { color: var(--green); }
 
 .toplabel {
-  border: 1px solid #a9dcb6;
+  border: 1px solid #b8dabe;
   border-radius: 999px;
   padding: 9px 13px;
-  color: #176335;
-  background: #e6f8e9;
+  color: var(--green-dark);
+  background: var(--green-light);
   font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
@@ -75,7 +92,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .eyebrow {
-  color: #23864b;
+  color: var(--green);
   font-weight: 850;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -87,9 +104,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
   line-height: .9;
   letter-spacing: -.08em;
   margin: 18px 0;
+  color: var(--green-dark);
 }
 
-.hero h1 em { font-style: normal; color: #23864b; }
+.hero h1 em {
+  font-style: normal;
+  color: var(--green);
+}
 
 .hero p {
   font-size: clamp(16px, 2vw, 19px);
@@ -98,14 +119,19 @@ button, a { -webkit-tap-highlight-color: transparent; }
   max-width: 590px;
 }
 
-.actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 0;
-  border-radius: 9px;
+  border-radius: 10px;
   padding: 14px 18px;
   font-weight: 900;
   text-decoration: none;
@@ -114,20 +140,29 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .btn:hover { transform: translateY(-1px); }
-.btn-primary { background: #23864b; color: #fff; }
+
+.btn-primary {
+  background: var(--green-dark);
+  color: var(--white);
+}
+
+.btn-primary:hover { background: var(--green-deep); }
 
 .btn-secondary {
-  background: #fff;
-  color: #17542f;
-  border: 1px solid #9bceaa;
+  background: var(--white);
+  color: var(--green-dark);
+  border: 1px solid #b8dabe;
 }
+
+.btn-secondary:hover { background: var(--green-light); }
 
 .visual {
   min-height: 320px;
-  border-radius: 20px;
-  background: radial-gradient(circle at 75% 20%, #b7efc4, transparent 35%),
-              linear-gradient(145deg, #27834a, #124b2b);
-  border: 1px solid #7ac18d;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 75% 20%, #8ecb9a, transparent 35%),
+    linear-gradient(145deg, #398653, #124b2b);
+  border: 1px solid #6fb582;
   padding: 25px;
   display: flex;
   flex-direction: column;
@@ -148,7 +183,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .visual small {
-  color: #fff;
+  color: var(--white);
   letter-spacing: .12em;
   text-transform: uppercase;
   font-size: 10px;
@@ -160,7 +195,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   font-weight: 1000;
   letter-spacing: -.13em;
   line-height: .78;
-  color: #fff;
+  color: var(--white);
   position: relative;
   z-index: 1;
   text-shadow: 0 5px 22px #0b3b1e55;
@@ -181,7 +216,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .stat, .panel {
-  background: linear-gradient(145deg, #fff, #edf9ef);
+  background: linear-gradient(145deg, var(--white), var(--green-pale));
   border: 1px solid var(--line);
   border-radius: 14px;
   padding: 18px;
@@ -194,12 +229,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
   font-size: clamp(25px, 4vw, 32px);
   letter-spacing: -.06em;
   margin-bottom: 7px;
+  color: var(--green-dark);
 }
 
 .stat span {
   display: block;
   font-size: clamp(12px, 2vw, 15px);
-  color: #52715c;
+  color: var(--muted);
   text-transform: uppercase;
   letter-spacing: .04em;
   font-weight: 850;
@@ -209,7 +245,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   display: block;
   margin-top: 5px;
   font-size: 11px;
-  color: #52715c;
+  color: var(--muted);
 }
 
 .sectionhead {
@@ -224,9 +260,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
   font-size: clamp(26px, 4vw, 34px);
   letter-spacing: -.055em;
   margin: 0;
+  color: var(--green-dark);
 }
 
-.sectionhead p { margin: 0; color: var(--muted); font-size: 14px; }
+.sectionhead p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
 
 .calendar {
   display: grid;
@@ -237,23 +278,25 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .day {
   position: relative;
   text-align: center;
-  background: linear-gradient(145deg, #fff, #e9f9ec);
-  border: 1px solid #b6dfbf;
+  background: linear-gradient(145deg, var(--white), #e9f6eb);
+  border: 1px solid #b6d9bd;
   border-radius: 12px;
   padding: 13px;
   min-height: 112px;
-  color: #17482b;
-  cursor: pointer;
+  color: var(--green-dark);
   transition: transform .15s, border-color .15s;
   overflow: hidden;
 }
 
-.day:hover { transform: translateY(-2px); border-color: #23864b; }
+.day:hover {
+  transform: translateY(-2px);
+  border-color: var(--green);
+}
 
 .day .num {
   display: block;
   font-size: 11px;
-  color: #438254;
+  color: var(--green);
   letter-spacing: .04em;
   font-weight: 850;
 }
@@ -265,54 +308,74 @@ button, a { -webkit-tap-highlight-color: transparent; }
   letter-spacing: -.03em;
 }
 
-.day span { font-size: 11px; color: #52715c; }
+.day span { font-size: 11px; color: var(--muted); }
 
 .day:after {
   content: "❄";
   position: absolute;
   right: 10px;
   top: 8px;
-  color: #83c896;
+  color: #78b987;
   font-size: 17px;
 }
 
-.day:nth-child(4n+1) { background: linear-gradient(145deg, #fff, #e4f7e8); border-color: #9fd5ac; }
-.day:nth-child(4n+2) { background: linear-gradient(145deg, #d8f4df, #bce8c8); border-color: #83c896; }
-.day:nth-child(4n+3) { background: linear-gradient(145deg, #fafffb, #eaf8ed); border-color: #b7dfc0; }
-.day:nth-child(4n) { background: linear-gradient(145deg, #c8edcf, #e7f8e9); border-color: #91cda0; }
+.day:nth-child(4n+1) {
+  background: linear-gradient(145deg, #fff, #e4f5e7);
+  border-color: #a6d2ae;
+}
+
+.day:nth-child(4n+2) {
+  background: linear-gradient(145deg, #d8f0dd, #c2e6ca);
+  border-color: #91c99d;
+}
+
+.day:nth-child(4n+3) {
+  background: linear-gradient(145deg, #fbfffb, #eaf6ec);
+  border-color: #b7dabe;
+}
+
+.day:nth-child(4n) {
+  background: linear-gradient(145deg, #d0ebd5, #e7f6e9);
+  border-color: #a1d0aa;
+}
 
 .day.final {
-  background: linear-gradient(145deg, #1f8247, #14552f);
-  color: #fff;
-  border-color: #0e5a2d;
+  background: linear-gradient(145deg, #277b46, #14552f);
+  color: var(--white);
+  border-color: var(--green-dark);
 }
 
 .day.final .num, .day.final span { color: #e9ffed; }
 
 .day.done {
-  outline: 3px solid #23864b;
+  outline: 3px solid var(--green);
   outline-offset: -3px;
-  background: linear-gradient(145deg, #b8edc5, #e8ffed);
+  background: linear-gradient(145deg, #b8e5c1, #e8ffed);
 }
 
-.day.done:after { content: "✓"; color: #176335; font-weight: 1000; }
-.day.final.done:after { color: #142b18; }
+.day.done:after {
+  content: "✓";
+  color: var(--green-dark);
+  font-weight: 1000;
+}
+
+.day.final.done:after { color: var(--white); }
 
 .day.opened {
-  background: linear-gradient(145deg, #d8f7dc, #fff);
-  border: 2px solid #23864b;
+  background: linear-gradient(145deg, #d8f2dd, var(--white));
+  border: 2px solid var(--green);
 }
 
 .day.opened strong {
   font-size: clamp(17px, 2.5vw, 23px);
-  color: #176335;
+  color: var(--green-dark);
 }
 
 .day.final.opened {
-  background: linear-gradient(145deg, #1f8247, #14552f);
+  background: linear-gradient(145deg, #277b46, #14552f);
 }
 
-.day.final.opened strong { color: #fff; }
+.day.final.opened strong { color: var(--white); }
 
 .columns {
   display: grid;
@@ -322,7 +385,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .panel h3 { margin: 0 0 8px; font-size: 21px; }
-.panel p { color: #52715c; line-height: 1.6; }
+.panel p { color: var(--muted); line-height: 1.6; }
 
 .rowitem {
   display: flex;
@@ -337,38 +400,39 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .rowitem small {
   display: block;
-  color: #52715c;
+  color: var(--muted);
   margin-top: 5px;
   line-height: 1.55;
 }
 
-.raffle {
-  background: linear-gradient(120deg, #e3f7e7, #fff);
-  border: 1px solid #a9dcb6;
+.charity {
+  background: linear-gradient(120deg, #e3f4e6, var(--white));
+  border: 1px solid #b5d9bc;
   border-radius: 17px;
-  padding: 25px;
+  padding: 28px;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 24px;
   align-items: center;
-  margin-top: 22px;
+  margin-top: 24px;
 }
 
-.raffle h2 {
+.charity h2 {
   font-size: clamp(27px, 4vw, 39px);
   line-height: 1.08;
   letter-spacing: -.06em;
   margin: 12px 0 17px;
+  color: var(--green-dark);
 }
 
-.raffleintro {
-  font-size: 16px;
+.charityintro {
+  font-size: 15px;
   color: #42664c;
-  line-height: 1.6;
+  line-height: 1.7;
   margin: 0 0 15px;
 }
 
-.rafflepoints {
+.charitypoints {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -376,7 +440,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   gap: 10px;
 }
 
-.rafflepoints li {
+.charitypoints li {
   display: flex;
   align-items: flex-start;
   gap: 9px;
@@ -384,46 +448,45 @@ button, a { -webkit-tap-highlight-color: transparent; }
   line-height: 1.5;
 }
 
-.rafflepoints li span { flex: 0 0 23px; }
+.charitypoints li span { flex: 0 0 23px; }
 
-.rafflefoot {
+.charityfoot {
   margin-top: 16px;
   padding-top: 13px;
-  border-top: 1px solid #c5e5cc;
-  color: #52715c;
-  font-size: 13px;
-  line-height: 1.55;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
 }
 
-.voucher {
-  border: 2px solid #fff;
-  background: linear-gradient(145deg, #fff, #d7f4dd);
-  color: #14552f;
-  box-shadow: 0 8px 25px #174d2820;
+.pledge {
+  border: 2px solid var(--white);
+  background: linear-gradient(145deg, var(--white), #d7efdc);
+  color: var(--green-dark);
+  box-shadow: 0 8px 25px #174d2815;
   border-radius: 14px;
   padding: 22px 20px;
   text-align: center;
   min-width: 170px;
-  transform: rotate(2deg);
 }
 
-.vouchericon { font-size: 31px; margin-bottom: 5px; }
+.pledgeicon { font-size: 31px; margin-bottom: 5px; }
 
-.voucher strong {
+.pledge strong {
   display: block;
   font-size: 39px;
   letter-spacing: -.06em;
   margin: 8px 0;
 }
 
-.voucher span { font-size: 11px; font-weight: 900; letter-spacing: .08em; }
+.pledge span { font-size: 11px; font-weight: 900; letter-spacing: .06em; }
 
 .eventstrip {
   margin-top: 14px;
-  border: 1px solid #a9dcb6;
+  border: 1px solid #b5d9bc;
   border-radius: 14px;
   padding: 19px 20px;
-  background: #fff;
+  background: var(--white);
   display: flex;
   gap: 14px;
   align-items: center;
@@ -435,20 +498,20 @@ button, a { -webkit-tap-highlight-color: transparent; }
   flex: 0 0 48px;
   height: 48px;
   border-radius: 12px;
-  color: #176335;
-  background: #e3f7e7;
+  color: var(--green-dark);
+  background: var(--green-light);
 }
 
 .eventstrip h3 { margin: 0 0 5px; }
-.eventstrip p { margin: 0; color: #52715c; line-height: 1.55; }
+.eventstrip p { margin: 0; color: var(--muted); line-height: 1.55; }
 
 .eventdate {
   display: inline-block;
   margin-top: 8px;
   padding: 6px 10px;
-  background: #e6f8e9;
+  background: var(--green-light);
   border-radius: 7px;
-  color: #176335;
+  color: var(--green-dark);
   font-size: 12px;
   font-weight: 800;
 }
@@ -457,7 +520,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .leaderboard {
   margin-top: 38px;
   padding: 22px;
-  background: linear-gradient(145deg, #fff, #edf9ef);
+  background: linear-gradient(145deg, var(--white), var(--green-pale));
   border: 1px solid var(--line);
   border-radius: 16px;
 }
@@ -475,6 +538,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   margin: 0;
   font-size: clamp(26px, 4vw, 34px);
   letter-spacing: -.055em;
+  color: var(--green-dark);
 }
 
 .leaderboardhead p {
@@ -487,9 +551,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: #e3f7e7;
-  border: 1px solid #b6dfbf;
-  color: #176335;
+  background: var(--green-light);
+  border: 1px solid #b6d9bd;
+  color: var(--green-dark);
   padding: 7px 11px;
   border-radius: 999px;
   font-size: 11px;
@@ -501,7 +565,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .live-dot {
   width: 7px;
   height: 7px;
-  background: #23864b;
+  background: var(--green);
   border-radius: 50%;
 }
 
@@ -509,19 +573,17 @@ button, a { -webkit-tap-highlight-color: transparent; }
   overflow-x: auto;
   border: 1px solid var(--line);
   border-radius: 11px;
-  background: #fff;
+  background: var(--white);
 }
 
 .leaderboard table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 0;
   text-align: left;
-  table-layout: auto;
 }
 
 .leaderboard th {
-  background: #e3f7e7;
+  background: var(--green-light);
   color: #245b36;
   padding: 13px 14px;
   font-size: 11px;
@@ -541,11 +603,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .leaderboard .emptyrow td {
   text-align: center;
   padding: 30px 20px;
-  color: #52715c;
+  color: var(--muted);
   line-height: 1.7;
   white-space: normal;
   overflow-wrap: anywhere;
-  word-break: normal;
 }
 
 .empty-icon { display: block; font-size: 27px; margin-bottom: 8px; }
@@ -554,7 +615,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   margin: 12px 0 0;
   font-size: 12px;
   line-height: 1.55;
-  color: #52715c;
+  color: var(--muted);
   text-align: center;
   overflow-wrap: anywhere;
 }
@@ -567,13 +628,17 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .profilemetric {
-  background: #fff;
+  background: var(--white);
   border: 1px solid var(--line);
   padding: 15px;
   border-radius: 10px;
 }
 
-.profilemetric strong { display: block; font-size: 27px; color: #23864b; }
+.profilemetric strong {
+  display: block;
+  font-size: 27px;
+  color: var(--green);
+}
 
 .profilemetric span {
   font-size: 11px;
@@ -582,7 +647,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   letter-spacing: .06em;
 }
 
-.note { color: #52715c; font-size: 12px; line-height: 1.55; }
+.note { color: var(--muted); font-size: 12px; line-height: 1.65; }
 
 .footer {
   border-top: 1px solid var(--line);
@@ -599,7 +664,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .modalback {
   position: fixed;
   inset: 0;
-  background: #0009;
+  background: rgba(16,60,41,.65);
   display: none;
   align-items: center;
   justify-content: center;
@@ -611,20 +676,30 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .modal {
   width: min(100%, 460px);
-  background: #fff;
-  border: 1px solid #a9dcb6;
+  background: var(--white);
+  border: 1px solid #b5d9bc;
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 20px 80px #0004;
+  box-shadow: 0 20px 80px #0003;
   max-height: 90vh;
   overflow-y: auto;
 }
 
-.modalhead { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-.modal h2 { margin: 0; letter-spacing: -.05em; }
+.modalhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal h2 {
+  margin: 0;
+  letter-spacing: -.05em;
+  color: var(--green-dark);
+}
 
 .close {
-  background: transparent;
+  background: var(--white);
   border: 1px solid var(--line);
   color: var(--text);
   border-radius: 8px;
@@ -633,32 +708,58 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .field { display: block; margin: 15px 0; }
-.field span { display: block; font-size: 12px; color: #52715c; margin-bottom: 6px; }
+
+.field span {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
 
 .field input {
   width: 100%;
-  background: #f5fbf6;
-  color: #153d27;
-  border: 1px solid #a9dcb6;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid #b5d9bc;
   border-radius: 8px;
   padding: 12px;
 }
 
-.field input:focus { outline: 2px solid #8bd69e; }
-.formmsg { font-size: 12px; color: #23864b; line-height: 1.5; margin-top: 12px; }
-.hidden { display: none; }
+.field input:focus {
+  outline: 2px solid #8acb98;
+  outline-offset: 1px;
+}
+
+.formmsg {
+  font-size: 12px;
+  color: var(--green-dark);
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+.hidden { display: none !important; }
 
 @media(max-width:760px) {
   .wrap { padding: 17px; }
-  .hero { grid-template-columns: 1fr; padding-top: 42px; gap: 22px; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 42px;
+    gap: 22px;
+  }
+
   .visual { min-height: 245px; }
   .calendar { grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .day { min-height: 103px; padding: 11px 6px; }
-  .day .num { font-size: 10px; }
   .columns { grid-template-columns: 1fr; }
-  .sectionhead { align-items: flex-start; flex-direction: column; }
-  .raffle { grid-template-columns: 1fr; gap: 22px; }
-  .voucher { justify-self: start; min-width: 150px; }
+
+  .sectionhead {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .charity { grid-template-columns: 1fr; gap: 22px; }
+  .pledge { justify-self: start; min-width: 150px; }
   .toplabel { font-size: 9px; padding: 8px; }
   .profilegrid { grid-template-columns: repeat(3, 1fr); }
   .eventstrip { align-items: flex-start; }
@@ -667,17 +768,24 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .leaderboard .emptyrow td { padding: 24px 12px; }
 }
 
-@media(max-width:390px) {
+@media(max-width:480px) {
   .nav { align-items: flex-start; flex-direction: column; }
-  .toplabel { font-size: 9px; }
   .profilemetric { padding: 10px; }
   .profilemetric strong { font-size: 23px; }
   .profilemetric span { font-size: 9px; }
-  .raffle { padding: 19px; }
+  .charity { padding: 19px; }
   .stat { padding: 13px 6px; }
   .stat strong { font-size: 24px; }
   .stat span { font-size: 11px; letter-spacing: 0; }
   .stat small { font-size: 10px; }
+  .leaderboard table { min-width: 560px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
 }
 </style>
 </head>
@@ -686,266 +794,412 @@ button, a { -webkit-tap-highlight-color: transparent; }
 <div class="wrap">
 
 <header class="nav">
-  <a class="brand" href="#">🎄 RUN INTO <span>CHRISTMAS ❄️</span></a>
-  <div class="toplabel">🏃 24 Days · Winter Running Challenge</div>
+  <a class="brand" href="#">🎄 RUN INTO <span>CHRISTMAS</span></a>
+  <div class="toplabel">24 Days · Winter Running Challenge</div>
 </header>
 
 <main>
 <section class="hero">
   <div>
-    <div class="eyebrow">🎄 01—24 Dezember · Deine Challenge</div>
+    <div class="eyebrow">01—24 Dezember · Deine Challenge</div>
     <h1>RUN INTO<br><em>CHRISTMAS.</em></h1>
     <p>
-      24 Tage. 24 Läufe. 🏃<br>
-      Jeden Tag wartet eine neue Distanz auf dich.<br>
-      Öffne ein Türchen, schnür die Laufschuhe und leg los!<br><br>
-      🎁 Sammle Lose für dein Weihnachtsgeschenk und verdiene dir deinen Platz auf der Rangliste.
+      Jeder Kilometer zählt. Laufe vom 1. bis zum 24. Dezember
+      deine eigene Distanz, sammle Kilometer mit der Community
+      und unterstütze gemeinsam mit uns Laureus Sport for Good.
     </p>
     <div class="actions">
-      <button class="btn btn-primary" onclick="openModal('register')">🎄 JETZT REGISTRIEREN</button>
+      <button class="btn btn-primary" onclick="openModal('register')">
+        Jetzt mitlaufen ↗
+      </button>
+      <a class="btn btn-secondary" href="#kalender">Challenge entdecken ↓</a>
     </div>
   </div>
 
   <div class="visual">
-    <small>❄️ THE DECEMBER RUNNING PROJECT</small>
+    <small>THE DECEMBER RUNNING PROJECT</small>
     <div class="big24">24</div>
-    <div class="tagline">🏃 ONE DAY · ONE RUN · KEEP MOVING</div>
+    <div class="tagline">ONE COMMUNITY · EVERY KILOMETER COUNTS</div>
   </div>
 </section>
 
-<section class="stats">
+<section class="stats" aria-label="Challenge-Informationen">
   <div class="stat">
-    <strong>🎄</strong>
-    <span>24 Tage</span>
-    <small>01.–24. Dezember</small>
+    <strong>24</strong>
+    <span>Dezembertage</span>
+    <small>1. bis 24. Dezember</small>
   </div>
   <div class="stat">
-    <strong>🎁</strong>
-    <span>100 €</span>
-    <small>Nike-Gutschein zu gewinnen</small>
+    <strong>40.000 km</strong>
+    <span>Unser gemeinsames Ziel</span>
+    <small>Einmal um die Erde</small>
   </div>
   <div class="stat">
-    <strong>🎟️</strong>
-    <span>24 Lose</span>
-    <small>Bei 24 bestätigten Läufen</small>
+    <strong>0,01 €</strong>
+    <span>Pro bestätigtem Kilometer</span>
+    <small>Für Laureus Sport for Good</small>
   </div>
 </section>
 
-<section class="raffle">
-  <div>
-    <div class="eyebrow">🎁 Dein Einsatz zahlt sich aus</div>
-    <h2>🏃 Lauf mit.<br>🎟️ Sammle Lose.<br>🎁 Gewinne 100 €.</h2>
-
-    <p class="raffleintro">
-      Jeder bestätigte Lauf bringt dir ein Los für dein Weihnachtsgeschenk!
-    </p>
-
-    <ul class="rafflepoints">
-      <li><span>🎟️</span><div><strong>1 bestätigter Lauf = 1 Los</strong></div></li>
-      <li><span>🎟️</span><div><strong>10 bestätigte Läufe = 10 Lose</strong></div></li>
-      <li><span>🏆</span><div><strong>24 bestätigte Läufe = 24 Lose</strong></div></li>
-    </ul>
-
-    <div class="rafflefoot">
-      Je mehr Läufe du bestätigst, desto mehr Lose sammelst du.<br>
-      Die Teilnahmebedingungen werden vor dem Start veröffentlicht.
+<section id="community">
+  <div class="sectionhead">
+    <div>
+      <div class="eyebrow">Gemeinsam kommen wir weiter</div>
+      <h2>🌍 Einmal um die Erde</h2>
     </div>
+    <p>Unser Ziel: 40.000 gemeinsame Kilometer.</p>
   </div>
 
-  <div class="voucher">
-    <div class="vouchericon">🎁</div>
-    <span>DEIN WEIHNACHTSGESCHENK</span>
-    <strong>100 €</strong>
-    <span>👟 NIKE-GUTSCHEIN</span>
-    <div class="vouchericon">🎟️ ❄️</div>
-  </div>
-</section>
+  <div class="panel">
+    <div class="profilegrid">
+      <div class="profilemetric">
+        <strong id="communityKm">0 km</strong>
+        <span>Bestätigte Kilometer</span>
+      </div>
+      <div class="profilemetric">
+        <strong id="communityPercent">0%</strong>
+        <span>Unser Fortschritt</span>
+      </div>
+      <div class="profilemetric">
+        <strong id="donationTotal">0,00 €</strong>
+        <span>Aktueller Spendenstand</span>
+      </div>
+    </div>
 
-<section class="eventstrip">
-  <div class="eventicon" aria-hidden="true">
-    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="6" width="13" height="12" rx="2"></rect>
-      <path d="m16 10 5-3v10l-5-3"></path>
-      <path d="M7 3v3M12 3v3"></path>
-    </svg>
-  </div>
-  <div>
-    <h3>🎥 Die Verlosung – am 25.12. um 12 Uhr!</h3>
-    <p>
-      Wir ziehen den Gewinner oder die Gewinnerin am 25. Dezember live aus allen gültigen Losen.
-      Sei dabei und feiere mit uns dein Weihnachtsgeschenk! 🎁
+    <div style="margin-top:20px;height:13px;background:#e3f1e5;border-radius:99px;overflow:hidden">
+      <div id="communityBar" style="width:0%;height:100%;background:linear-gradient(90deg,#82c993,#174d35);border-radius:99px;transition:width .4s"></div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;gap:12px;margin-top:9px;font-size:12px;color:#617c68">
+      <span id="remainingKm">Noch 40.000 km bis zum Ziel</span>
+      <span>40.000 km</span>
+    </div>
+
+    <p class="note">
+      Der Spendenstand entspricht 0,01 € je bestätigtem Kilometer.
+      Die tatsächlichen Community-Zahlen werden angezeigt, sobald
+      die Datenbank-Anbindung eingerichtet ist.
     </p>
-    <div class="eventdate">📅 25.12. · 🕛 12 Uhr</div>
   </div>
 </section>
 
 <section id="kalender">
   <div class="sectionhead">
-    <h2>🎄 Dein Adventskalender</h2>
-    <p>🏃 Tag N = N Kilometer laufen.</p>
-  </div>
-  <div class="calendar" id="calendar"></div>
-  <p class="note">❄️ Tippe auf ein Türchen, um deine Tagesdistanz zu sehen. Deinen persönlichen Laufstatus schalten wir nach der Anmeldung und Backend-Anbindung frei.</p>
-</section>
-
-<!-- RANGLISTE -->
-<section class="leaderboard" id="rangliste">
-  <div class="leaderboardhead">
     <div>
-      <h2>🏆 Rangliste</h2>
-      <p>Wer ist bei Run into Christmas vorne mit dabei?</p>
+      <div class="eyebrow">01—24 Dezember</div>
+      <h2>Dein Adventskalender</h2>
     </div>
-    <div class="live-label"><span class="live-dot"></span> Challenge-Rangliste</div>
+    <p>Deine Distanz. Dein Tempo.</p>
   </div>
 
-  <div class="tablewrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Platz</th>
-          <th>Vor- und Nachname</th>
-          <th>Bestätigte Läufe</th>
-          <th>Kilometer</th>
-          <th>Lose 🎟️</th>
-        </tr>
-      </thead>
-      <tbody id="leaderboardBody">
-        <tr class="emptyrow">
-          <td colspan="5">
-            <span class="empty-icon">🏃‍♀️ ❄️ 🏃‍♂️</span>
-            <strong>Noch keine Läuferinnen oder Läufer</strong><br>
-            Sobald die Challenge startet und Läufe bestätigt werden, erscheint hier die Rangliste.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <div class="calendar" id="calendar"></div>
 
-  <p class="leaderboardnote">
-    ℹ️ Die Rangliste ist aktuell noch leer. Namen, Laufzahlen, Kilometer und Lose werden erst angezeigt, wenn Registrierung und Laufbestätigung mit der Datenbank verbunden sind. Es werden keine Beispieldaten angezeigt.
+  <p class="note">
+    Öffne ein Türchen, um den jeweiligen Tag anzusehen.
+    Sobald dein Profil mit der Datenbank verbunden ist,
+    kannst du hier deine bestätigten Tageskilometer sehen.
   </p>
 </section>
-<!-- ENDE RANGLISTE -->
 
-<div class="columns">
-  <section class="panel">
-    <h3>🏃 So funktioniert’s</h3>
-
-    <div class="rowitem">
-      <span class="rowicon">👟</span>
-      <div><b>01 — Lauf absolvieren</b><small>Am 1. Dezember 1 km, am 2. Dezember 2 km – bis zu 24 km am 24. Dezember.</small></div>
+<section id="rangliste">
+  <div class="leaderboard">
+    <div class="leaderboardhead">
+      <div>
+        <div class="eyebrow">Jeder Kilometer zählt</div>
+        <h2>🏆 Community-Rangliste</h2>
+        <p>Sortiert nach bestätigten Gesamtkilometern.</p>
+      </div>
+      <div class="live-label"><span class="live-dot"></span> Lauf-Challenge</div>
     </div>
 
-    <div class="rowitem">
-      <span class="rowicon">📱</span>
-      <div><b>02 — Nachweis hochladen</b><small>Lade einen Screenshot aus Strava, Garmin oder Apple Fitness als Laufnachweis hoch.</small></div>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Platz</th>
+            <th>Name</th>
+            <th>Aktive Lauftage</th>
+            <th>Gesamt</th>
+            <th>Ø pro Lauftag</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody">
+          <tr class="emptyrow">
+            <td colspan="5">
+              <span class="empty-icon">🏃 🌿 🏃</span>
+              <strong>Die Rangliste wartet auf euch!</strong><br>
+              Nach der Registrierung und Bestätigung der Läufe
+              erscheinen hier die echten Ergebnisse.
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <div class="rowitem">
-      <span class="rowicon">🎟️</span>
-      <div><b>03 — Lose sammeln</b><small>Jeder bestätigte Lauf zählt als ein Los. 10 Läufe = 10 Lose. 24 Läufe = 24 Lose.</small></div>
+    <p class="leaderboardnote">
+      Es werden keine erfundenen Teilnehmerdaten angezeigt.
+      Die gemeinsame Rangliste benötigt eine zentrale Datenbank.
+    </p>
+  </div>
+</section>
+
+<section id="charity">
+  <div class="charity">
+    <div>
+      <div class="eyebrow">Kilometer, die etwas bewegen</div>
+      <h2>Laufen für einen guten Zweck.</h2>
+      <p class="charityintro">
+        Jeder bestätigte Kilometer zählt doppelt: für deine Challenge
+        und für den guten Zweck.
+      </p>
+
+      <ul class="charitypoints">
+        <li><span>🌿</span><div><strong>1 Kilometer = 1 Cent</strong><br>Der Gründer spendet 0,01 € pro bestätigtem Kilometer.</div></li>
+        <li><span>🌍</span><div><strong>40.000 Kilometer = 400 €</strong><br>Gemeinsam wollen wir einmal um die Erde laufen.</div></li>
+        <li><span>🤝</span><div><strong>Laureus Sport for Good</strong><br>Sport kann jungen Menschen Chancen eröffnen und Gemeinschaft schaffen.</div></li>
+      </ul>
+
+      <div class="charityfoot">
+        Am 24. Dezember möchten wir zusätzlich dazu einladen,
+        freiwillig direkt für Laureus Sport for Good zu spenden.
+        Eine zusätzliche Spende ist freiwillig und keine Voraussetzung
+        für die Teilnahme an der Challenge.
+      </div>
     </div>
 
-    <div class="rowitem">
-      <span class="rowicon">📈</span>
-      <div><b>04 — Fortschritt sehen</b><small>Sieh in deinem Profil, wie viele Läufe und Türchen du geschafft hast und wie viele Lose du gesammelt hast.</small></div>
+    <div class="pledge">
+      <div class="pledgeicon">🌱</div>
+      <span>UNSER SPENDENZIEL</span>
+      <strong>400 €</strong>
+      <span>BEI 40.000 KM</span>
+      <div class="pledgeicon">🌍</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="panel">
-    <h3>🙌 Dein persönliches Profil</h3>
-    <p>Erstelle dein Konto und behalte deinen Challenge-Fortschritt im Blick.</p>
+<section id="mitmachen">
+  <div class="sectionhead">
+    <div>
+      <div class="eyebrow">So funktioniert es</div>
+      <h2>Einfach loslaufen.</h2>
+    </div>
+  </div>
 
-    <div class="profilegrid">
-      <div class="profilemetric"><strong id="profileRuns">0</strong><span>Läufe bestätigt</span></div>
-      <div class="profilemetric"><strong id="profileDoors">0/24</strong><span>Türchen geschafft</span></div>
-      <div class="profilemetric"><strong id="profileTickets">0</strong><span>Deine Lose</span></div>
+  <div class="columns">
+    <div class="panel">
+      <h3>🏃 Deine Challenge</h3>
+
+      <div class="rowitem">
+        <span class="rowicon">👟</span>
+        <div>
+          <strong>01 — Lauf deine Distanz</strong>
+          <small>Du entscheidest selbst, wie weit du an einem Tag laufen möchtest. Jeder Kilometer zählt.</small>
+        </div>
+      </div>
+
+      <div class="rowitem">
+        <span class="rowicon">📱</span>
+        <div>
+          <strong>02 — Laufnachweis einreichen</strong>
+          <small>Reiche deinen Laufnachweis ein. Nach der Prüfung werden deine Kilometer gezählt.</small>
+        </div>
+      </div>
+
+      <div class="rowitem">
+        <span class="rowicon">📈</span>
+        <div>
+          <strong>03 — Fortschritt verfolgen</strong>
+          <small>Verfolge deine Kilometer, deine aktiven Lauftage und den Fortschritt der Community.</small>
+        </div>
+      </div>
     </div>
 
-    <div class="actions">
-      <button class="btn btn-primary" onclick="openModal('register')">🎄 Profil erstellen</button>
-      <button class="btn btn-secondary" onclick="openModal('login')">🔑 Anmelden</button>
-    </div>
+    <div class="panel">
+      <h3>🙌 Dein Profil</h3>
+      <p>Registriere dich, um an der Challenge teilzunehmen und deine Läufe einzureichen.</p>
 
-    <p class="note">ℹ️ Die Registrierung ist aktuell noch eine Vorschau. Im nächsten Schritt verbinden wir das Formular mit Supabase.</p>
-  </section>
-</div>
+      <div class="profilegrid">
+        <div class="profilemetric"><strong id="profileRuns">0</strong><span>Bestätigte Läufe</span></div>
+        <div class="profilemetric"><strong id="profileKm">0 km</strong><span>Deine Kilometer</span></div>
+        <div class="profilemetric"><strong id="profileDays">0</strong><span>Aktive Tage</span></div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" onclick="openModal('register')">Profil erstellen</button>
+        <button class="btn btn-secondary" onclick="openModal('login')">Anmelden</button>
+      </div>
+
+      <p class="note">
+        Die Formulare sind derzeit eine Vorschau. Für echte Konten,
+        sichere Anmeldung, Nachweisprüfung und gemeinsame Statistiken
+        ist eine Backend-Anbindung erforderlich.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="eventstrip">
+    <div class="eventicon" aria-hidden="true">🎄</div>
+    <div>
+      <h3>Der gemeinsame Abschluss: 24. Dezember</h3>
+      <p>
+        Sammle deine letzten Kilometer, feiere die Leistung der Community
+        und entdecke die Möglichkeit, Laureus Sport for Good zusätzlich
+        freiwillig zu unterstützen.
+      </p>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer class="footer">
-  <span>🎄 RUN INTO CHRISTMAS ©</span>
-  <span>❄️ 24 Days · Winter Running Challenge</span>
+  <span><strong>RUN INTO CHRISTMAS</strong> · Winter Running Challenge</span>
+  <span>Gemeinsam laufen. Gemeinsam etwas bewegen. 🌿</span>
 </footer>
 </div>
 
 <div class="modalback" id="modalback" onclick="if(event.target===this)closeModal()">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modalhead">
-      <h2 id="modalTitle">🎄 Registrieren</h2>
-      <button class="close" type="button" onclick="closeModal()">Schließen ✕</button>
+      <h2 id="modalTitle">Profil erstellen</h2>
+      <button class="close" type="button" onclick="closeModal()" aria-label="Dialog schließen">✕</button>
     </div>
 
-    <form id="registerForm" onsubmit="event.preventDefault();document.getElementById('formmsg').textContent='Das Formular-Design ist vorbereitet. Im nächsten Schritt verbinden wir es mit Supabase, damit dein Konto sicher angelegt und die E-Mail bestätigt wird.';">
-      <label class="field"><span>Vorname</span><input name="firstName" autocomplete="given-name" required placeholder="Dein Vorname"></label>
-      <label class="field"><span>Nachname</span><input name="lastName" autocomplete="family-name" required placeholder="Dein Nachname"></label>
-      <label class="field"><span>E-Mail-Adresse</span><input name="email" type="email" autocomplete="email" required placeholder="du@beispiel.de"></label>
-      <label class="field"><span>Passwort</span><input name="password" type="password" autocomplete="new-password" minlength="8" required placeholder="Mindestens 8 Zeichen"></label>
-      <button class="btn btn-primary" type="submit" style="width:100%">🎁 Registrierung vorbereiten</button>
+    <form id="registerForm">
+      <label class="field">
+        <span>Vorname</span>
+        <input name="firstName" autocomplete="given-name" required placeholder="Dein Vorname">
+      </label>
+
+      <label class="field">
+        <span>Nachname</span>
+        <input name="lastName" autocomplete="family-name" required placeholder="Dein Nachname">
+      </label>
+
+      <label class="field">
+        <span>E-Mail-Adresse</span>
+        <input name="email" type="email" autocomplete="email" required placeholder="du@beispiel.de">
+      </label>
+
+      <label class="field">
+        <span>Passwort</span>
+        <input name="password" type="password" autocomplete="new-password" minlength="8" required placeholder="Mindestens 8 Zeichen">
+      </label>
+
+      <button class="btn btn-primary" type="submit" style="width:100%">Registrierung testen</button>
       <div class="formmsg" id="formmsg" role="status"></div>
     </form>
 
     <div id="loginMsg" class="hidden">
-      <p>🔑 Die Anmeldung wird im nächsten Schritt mit Supabase verbunden.</p>
-      <button class="btn btn-primary" onclick="openModal('register')">🎄 Konto erstellen</button>
+      <p>Die echte Anmeldung wird eingerichtet, sobald das Projekt mit einer Authentifizierungs-Datenbank verbunden ist.</p>
+      <button class="btn btn-primary" onclick="openModal('register')">Profil erstellen</button>
     </div>
   </div>
 </div>
 
 <script>
-const cal = document.getElementById('calendar');
+const calendar = document.getElementById("calendar");
 
-for (let n = 1; n <= 24; n++) {
-  const el = document.createElement('button');
-  el.type = 'button';
-  el.className = 'day' + (n === 24 ? ' final' : '');
-  el.setAttribute('aria-expanded', 'false');
-  el.innerHTML =
-    '<div class="num">DEZEMBER ' + String(n).padStart(2, '0') + '</div>' +
-    '<strong>Türchen ' + n + '</strong>' +
-    '<span>Tippen zum Öffnen</span>';
+for (let day = 1; day <= 24; day++) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "day" + (day === 24 ? " final" : "");
+  button.setAttribute("aria-expanded", "false");
 
-  el.addEventListener('click', () => {
-    const isOpen = el.classList.toggle('opened');
-    el.setAttribute('aria-expanded', String(isOpen));
+  function renderDay(open) {
+    button.setAttribute("aria-expanded", String(open));
 
-    if (isOpen) {
-      el.innerHTML =
-        '<div class="num">DEZEMBER ' + String(n).padStart(2, '0') + '</div>' +
-        '<strong>' + n + (n === 1 ? ' Kilometer' : ' Kilometer') + '</strong>' +
-        '<span>Türchen ' + n + ' geöffnet ✓</span>';
+    if (open) {
+      button.classList.add("opened");
+      button.innerHTML =
+        '<div class="num">DEZEMBER ' + String(day).padStart(2, "0") + '</div>' +
+        '<strong>Dein Lauf</strong>' +
+        '<span>Distanz individuell</span>';
     } else {
-      el.innerHTML =
-        '<div class="num">DEZEMBER ' + String(n).padStart(2, '0') + '</div>' +
-        '<strong>Türchen ' + n + '</strong>' +
-        '<span>Tippen zum Öffnen</span>';
+      button.classList.remove("opened");
+      button.innerHTML =
+        '<div class="num">DEZEMBER ' + String(day).padStart(2, "0") + '</div>' +
+        '<strong>Türchen ' + day + '</strong>' +
+        '<span>Zum Öffnen tippen</span>';
     }
+  }
+
+  renderDay(false);
+
+  button.addEventListener("click", () => {
+    renderDay(button.getAttribute("aria-expanded") !== "true");
   });
 
-  cal.appendChild(el);
+  calendar.appendChild(button);
 }
 
 function openModal(mode) {
-  const back = document.getElementById('modalback');
-  back.classList.add('open');
-  document.getElementById('registerForm').classList.toggle('hidden', mode === 'login');
-  document.getElementById('loginMsg').classList.toggle('hidden', mode !== 'login');
-  document.getElementById('modalTitle').textContent = mode === 'login' ? '🔑 Anmelden' : '🎄 Registrieren';
-  document.getElementById('formmsg').textContent = '';
+  const back = document.getElementById("modalback");
+  const form = document.getElementById("registerForm");
+  const login = document.getElementById("loginMsg");
+
+  back.classList.add("open");
+  form.classList.toggle("hidden", mode === "login");
+  login.classList.toggle("hidden", mode !== "login");
+
+  document.getElementById("modalTitle").textContent =
+    mode === "login" ? "Anmelden" : "Profil erstellen";
+
+  document.getElementById("formmsg").textContent = "";
 }
 
 function closeModal() {
-  document.getElementById('modalback').classList.remove('open');
+  document.getElementById("modalback").classList.remove("open");
 }
+
+document.getElementById("registerForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  document.getElementById("formmsg").textContent =
+    "Die Vorschau funktioniert. Es wurde noch kein Konto erstellt, weil die Datenbank-Anbindung noch fehlt.";
+});
+
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") closeModal();
+});
+
+/*
+  DEMO-STATUS:
+  Die Zahlen starten bei null, weil noch keine zentrale Datenbank
+  verbunden ist. Für echte gemeinsame Daten müssen Anmeldung,
+  Laufnachweise, Bestätigung und Statistiken über ein Backend laufen.
+*/
+const demoConfirmedKilometers = 0;
+const communityGoal = 40000;
+const donationPerKilometer = 0.01;
+
+function updateCommunity() {
+  const km = Math.max(0, demoConfirmedKilometers);
+  const percent = Math.min(100, (km / communityGoal) * 100);
+  const remaining = Math.max(0, communityGoal - km);
+  const donation = km * donationPerKilometer;
+
+  document.getElementById("communityKm").textContent =
+    km.toLocaleString("de-DE") + " km";
+
+  document.getElementById("communityPercent").textContent =
+    percent.toLocaleString("de-DE", { maximumFractionDigits: 1 }) + "%";
+
+  document.getElementById("donationTotal").textContent =
+    donation.toLocaleString("de-DE", {
+      style: "currency",
+      currency: "EUR"
+    });
+
+  document.getElementById("communityBar").style.width = percent + "%";
+
+  document.getElementById("remainingKm").textContent =
+    "Noch " + remaining.toLocaleString("de-DE") + " km bis zum Ziel";
+}
+
+updateCommunity();
 </script>
 </body>
 </html>
