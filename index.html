@@ -46,7 +46,14 @@
 <div class="auth-modal-backdrop" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authModalTitle" aria-hidden="true"><div class="auth-modal"><button class="modal-close" type="button" id="closeAuthModal" aria-label="Fenster schließen">×</button><span class="eyebrow">🏃 Run into Christmas</span><h2 id="authModalTitle">Konto erstellen</h2><p class="auth-modal-description">Registriere dich mit Vorname, Nachname und E-Mail-Adresse. Supabase sendet dir zur Bestätigung eine E-Mail. Danach kannst du dich anmelden.</p><div class="auth-switch"><button class="btn btn-primary" type="button" id="showRegister">Registrieren</button><button class="btn btn-secondary" type="button" id="showLogin">Anmelden</button></div>
 <form id="authForm" class="auth-form"><div class="form-field" id="firstNameField"><label for="firstName">Vorname</label><input id="firstName" name="firstName" autocomplete="given-name" maxlength="80" required></div><div class="form-field" id="lastNameField"><label for="lastName">Nachname</label><input id="lastName" name="lastName" autocomplete="family-name" maxlength="80" required></div><div class="form-field"><label for="authEmail">E-Mail-Adresse</label><input id="authEmail" name="email" type="email" autocomplete="email" required></div><div class="form-field"><label for="authPassword">Passwort</label><input id="authPassword" name="password" type="password" autocomplete="new-password" minlength="8" required></div><button class="btn btn-primary" type="submit" id="authSubmit">Konto erstellen</button></form><div class="status-message" id="authMessage" role="status" aria-live="polite"></div>
 <div class="member-dashboard" id="memberDashboard" hidden><div class="dashboard-header"><div><span class="eyebrow">Dein persönlicher Bereich</span><h3 id="memberGreeting">Hallo!</h3><p id="memberEmail"></p></div><button class="btn btn-secondary" id="logoutButton" type="button">Abmelden</button></div><div class="dashboard-stats"><div class="dashboard-stat"><strong id="personalKm">0 km</strong><span>Deine Gesamtkilometer</span></div><div class="dashboard-stat"><strong id="personalRunDays">0</strong><span>Deine Lauftage</span></div><div class="dashboard-stat"><strong id="personalDonationsTotal">0,00 €</strong><span>Deine gemeldeten Zusatzspenden</span></div></div>
-<div class="dashboard-subsection"><h4>Lauf eintragen</h4><p class="personal-donations-intro">Trage Datum und gelaufene Kilometer ein. Deine Laufdaten werden deinem Konto zugeordnet und in die gemeinsamen Statistiken übernommen.</p><form id="runForm" class="run-form"><div class="form-field"><label for="runDate">Laufdatum</label><input id="runDate" type="date" required></div><div class="form-field"><label for="runKm">Kilometer</label><input id="runKm" type="number" min="0.01" max="300" step="0.01" placeholder="z. B. 5,2" required></div><button class="btn btn-primary" type="submit" id="saveRunButton">Lauf speichern</button></form><div class="status-message" id="runMessage" role="status" aria-live="polite"></div></div>
+<div class="dashboard-subsection"><h4>Lauf eintragen</h4><p class="personal-donations-intro">Trage Datum und gelaufene Kilometer ein. Deine Laufdaten werden deinem Konto zugeordnet und in die gemeinsamen Statistiken übernommen.</p>
+<form id="runForm" class="run-form">
+<div class="form-field"><label for="runDate">Laufdatum</label><input id="runDate" type="date" required></div>
+<div class="form-field"><label for="runKm">Kilometer</label><input id="runKm" type="number" min="0.01" max="300" step="0.01" placeholder="z. B. 5,2" required></div>
+<div class="form-field"><label for="runProof">Lauffoto (Pflicht)</label><input id="runProof" type="file" accept="image/jpeg,image/png,image/webp" required></div>
+<button class="btn btn-primary" type="submit" id="saveRunButton">Lauf speichern</button>
+</form>
+<div class="status-message" id="runMessage" role="status" aria-live="polite"></div></div>
 <div class="dashboard-subsection"><h4>Deine Lauftage und Läufe</h4><div id="personalRuns" class="data-list"><div class="empty-state">Laufdaten werden geladen …</div></div></div>
 <div class="dashboard-subsection"><h4>Deine gemeldeten Spenden</h4><p class="personal-donations-intro">Du kannst deine eigenen Spendenmeldungen jederzeit löschen. Gelöschte Meldungen werden auch aus dem gemeinsamen Spendenstand entfernt.</p><div class="personal-donations-total"><span>Bisher gemeldeter Betrag</span><strong id="personalDonationTotal">0,00 €</strong></div><div id="personalDonationList" class="data-list"><div class="empty-state">Spendenmeldungen werden geladen …</div></div></div>
 </div></div></div>
@@ -86,7 +93,102 @@ $("authForm").addEventListener("submit",async(event)=>{event.preventDefault();cl
 function friendlyAuthError(error){const message=error?.message||"Unbekannter Fehler";if(/already registered|already exists/i.test(message))return "Für diese E-Mail-Adresse gibt es bereits ein Konto. Bitte melde dich an.";if(/email not confirmed/i.test(message))return "Bitte bestätige zuerst deine E-Mail-Adresse über den Link in deinem Postfach.";if(/invalid login credentials/i.test(message))return "E-Mail-Adresse oder Passwort ist nicht korrekt.";return message;}
 $("logoutButton").addEventListener("click",async()=>{const {error}=await db.auth.signOut();if(error){showMessage("runMessage","Abmeldung fehlgeschlagen: "+error.message,true);return;}currentUser=null;currentProfile=null;closeAuthModal();showMemberState(null);setAuthMode("login");showMessage("authMessage","Du wurdest abgemeldet.");});
 $("runDate").value=new Date().toISOString().slice(0,10);
-$("runForm").addEventListener("submit",async(event)=>{event.preventDefault();if(!currentUser)return;clearMessage("runMessage");const km=Number($("runKm").value);const date=$("runDate").value;if(!Number.isFinite(km)||km<=0||km>300){showMessage("runMessage","Bitte gib eine gültige Kilometerzahl zwischen 0,01 und 300 ein.",true);return;}const button=$("saveRunButton");setBusy(button,true);try{const {error}=await db.from("runs").insert({user_id:currentUser.id,run_date:date,distance_km:Math.round(km*100)/100});if(error)throw error;$("runForm").reset();$("runDate").value=new Date().toISOString().slice(0,10);showMessage("runMessage","Dein Lauf wurde gespeichert.");await Promise.all([loadMemberData(),refreshPublicData()]);}catch(error){console.error(error);showMessage("runMessage","Der Lauf konnte nicht gespeichert werden: "+error.message,true);}finally{setBusy(button,false,"Lauf speichern");}});
+
+$("runForm").addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  if (!currentUser) return;
+
+  clearMessage("runMessage");
+
+  const km = Number($("runKm").value);
+  const date = $("runDate").value;
+  const file = $("runProof").files[0];
+
+  if (!Number.isFinite(km) || km <= 0 || km > 300) {
+    showMessage("runMessage","Bitte gib eine gültige Kilometerzahl zwischen 0,01 und 300 ein.",true);
+    return;
+  }
+
+  if (!file) {
+    showMessage("runMessage","Bitte lade zuerst ein Foto deines Laufs hoch.",true);
+    return;
+  }
+
+  const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+
+  if (!allowedTypes.includes(file.type)) {
+    showMessage("runMessage","Bitte lade ein JPG-, PNG- oder WebP-Bild hoch.",true);
+    return;
+  }
+
+  if (file.size > 5 * 1024 * 1024) {
+    showMessage("runMessage","Das Foto darf maximal 5 MB groß sein.",true);
+    return;
+  }
+
+  const button = $("saveRunButton");
+  setBusy(button, true);
+
+  let uploadedPath = null;
+
+  try {
+    const extensionByType = {
+      "image/jpeg": "jpg",
+      "image/png": "png",
+      "image/webp": "webp"
+    };
+
+    const extension = extensionByType[file.type];
+    const filePath = `${currentUser.id}/${crypto.randomUUID()}.${extension}`;
+
+    const { data: uploadData, error: uploadError } = await db.storage
+      .from("run-proofs")
+      .upload(filePath, file, {
+        contentType: file.type,
+        upsert: false
+      });
+
+    if (uploadError) throw uploadError;
+
+    uploadedPath = uploadData.path;
+
+    const { error: insertError } = await db
+      .from("runs")
+      .insert({
+        user_id: currentUser.id,
+        run_date: date,
+        distance_km: Math.round(km * 100) / 100,
+        proof_path: uploadedPath
+      });
+
+    if (insertError) throw insertError;
+
+    $("runForm").reset();
+    $("runDate").value = new Date().toISOString().slice(0,10);
+
+    showMessage("runMessage","Dein Lauf und das Lauffoto wurden erfolgreich gespeichert.");
+
+    await Promise.all([loadMemberData(),refreshPublicData()]);
+  } catch (error) {
+    console.error(error);
+
+    if (uploadedPath) {
+      const { error: cleanupError } = await db.storage
+        .from("run-proofs")
+        .remove([uploadedPath]);
+
+      if (cleanupError) {
+        console.error("Das hochgeladene Foto konnte nach einem Speicherfehler nicht entfernt werden:",cleanupError);
+      }
+    }
+
+    showMessage("runMessage","Der Lauf konnte nicht gespeichert werden: " + error.message,true);
+  } finally {
+    setBusy(button,false,"Lauf speichern");
+  }
+});
+
 $("openDonationModal").addEventListener("click",openDonationModal);
 $("closeDonationModal").addEventListener("click",closeDonationModal);
 $("donationModal").addEventListener("click",e=>{if(e.target===$("donationModal"))closeDonationModal();});
